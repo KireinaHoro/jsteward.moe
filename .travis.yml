@@ -12,5 +12,7 @@ install:
   -in id_ed25519.enc -out id_ed25519 -d
 - echo $server_fingerprint > ~/.ssh/known_hosts
 - chmod 600 id_ed25519
+- eval $(ssh-agent)
+- ssh-add id_ed25519
 script:
 - make ssh_upload
