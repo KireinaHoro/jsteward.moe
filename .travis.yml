@@ -13,4 +13,4 @@ install:
 - echo $server_fingerprint > ~/.ssh/known_hosts
 - chmod 600 id_ed25519
 script:
-- ssh pelican-travis@jsteward.moe -p 2222 -i id_ed25519 -C "echo Hello"
+- ssh pelican-travis@jsteward.moe -p 2222 -i id_ed25519 -c "echo Hello"
