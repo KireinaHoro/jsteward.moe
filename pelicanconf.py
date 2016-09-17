@@ -12,6 +12,8 @@ TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'zh'
 
+THEME = 'themes/pelican-blue'
+
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
@@ -26,8 +28,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
          ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('github', 'https://github.com/xubin990510'),
+        ('twitter', 'https://twitter.com/StewardJohnson'),)
 
 DEFAULT_PAGINATION = 10
 
