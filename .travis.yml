@@ -1,9 +1,6 @@
 language: python
 python:
 - '3.3'
-dd:
-- openssl aes-256-cbc -K $encrypted_8533675f5954_key -iv $encrypted_8533675f5954_iv
-  -in id_ed25519.enc -out id_ed25519 -d
 
 branches:
     only:
@@ -11,5 +8,8 @@ branches:
 
 install: 
 - pip install pelican
+- openssl aes-256-cbc -K $encrypted_8533675f5954_key -iv $encrypted_8533675f5954_iv
+  -in id_ed25519.enc -out id_ed25519 -d
+- echo $server_fingerprint > ~/.ssh/known_hosts
 script:
 - make ssh_upload
