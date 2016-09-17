@@ -13,5 +13,5 @@ install:
 - echo $server_fingerprint > ~/.ssh/known_hosts
 - chmod 600 id_ed25519
 script:
-- git submodule --update --init --recursive
+- git submodule update --init --recursive
 - make ssh_upload
