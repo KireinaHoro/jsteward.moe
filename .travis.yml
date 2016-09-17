@@ -1,5 +1,15 @@
 language: python
 python:
-- '2.7'
 - '3.3'
-- pypy
+dd:
+- openssl aes-256-cbc -K $encrypted_8533675f5954_key -iv $encrypted_8533675f5954_iv
+  -in id_ed25519.enc -out id_ed25519 -d
+
+branches:
+    only:
+    - master
+
+install: 
+- pip install pelican
+script:
+- make ssh_upload
