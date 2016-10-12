@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = '綺麗な賢狼ホロ'
 SITENAME = '與無關有關'
-SITEURL = ''
+SITEURL = 'jsteward.moe'
 
 PATH = 'content'
 
@@ -23,12 +23,11 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
+         ('Python.org', 'http://python.org/'),)
 
 # Social widget
-SOCIAL = (('github', 'https://github.com/xubin990510'),
+SOCIAL = (('keybase', 'https://keybase.io/jsteward'),
+        ('github', 'https://github.com/xubin990510'),
         ('twitter', 'https://twitter.com/StewardJohnson'),)
 
 DEFAULT_PAGINATION = 10
