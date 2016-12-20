@@ -12,7 +12,7 @@ TIMEZONE = 'Asia/Shanghai'
 
 DEFAULT_LANG = 'zh'
 
-THEME = 'themes/built-texts'
+THEME = 'themes/built-text'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
