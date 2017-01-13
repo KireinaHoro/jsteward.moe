@@ -27,7 +27,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),
 
 # Social widget
 SOCIAL = (('keybase', 'https://keybase.io/jsteward'),
-        ('github', 'https://github.com/xubin990510'),
+        ('telegram', 'https://telegram.me/jsteward'),
+        ('github', 'https://github.com/KireinaHoro'),
         ('twitter', 'https://twitter.com/StewardJohnson'),)
 
 DEFAULT_PAGINATION = 10
