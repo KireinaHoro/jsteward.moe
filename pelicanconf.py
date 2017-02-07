@@ -33,7 +33,7 @@ SOCIAL = (
         ('telegram', 'https://telegram.me/jsteward'),
         ('github', 'https://github.com/KireinaHoro'),
         ('twitter', 'https://twitter.com/StewardJohnson'),
-        ('last.fm','https://www.last.fm/user/KireinaHoro'),
+        ('last.fm','http://www.last.fm/user/KireinaHoro'),
         )
 
 DEFAULT_PAGINATION = 10
