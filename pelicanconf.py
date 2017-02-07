@@ -22,14 +22,19 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),)
+LINKS = (
+        ('Pelican', 'http://getpelican.com/'),
+        ('Python.org', 'http://python.org/'),
+        )
 
 # Social widget
-SOCIAL = (('keybase', 'https://keybase.io/jsteward'),
+SOCIAL = (
+        ('keybase', 'https://keybase.io/jsteward'),
         ('telegram', 'https://telegram.me/jsteward'),
         ('github', 'https://github.com/KireinaHoro'),
-        ('twitter', 'https://twitter.com/StewardJohnson'),)
+        ('twitter', 'https://twitter.com/StewardJohnson'),
+        ('last.fm','https://www.last.fm/user/KireinaHoro'),
+        )
 
 DEFAULT_PAGINATION = 10
 
