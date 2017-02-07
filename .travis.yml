@@ -7,7 +7,7 @@ branches:
   only:
   - master
 install:
-- pip install pelican
+- pip install pelican MarkDown
 - openssl aes-256-cbc -K $encrypted_8533675f5954_key -iv $encrypted_8533675f5954_iv
   -in id_ed25519.enc -out id_ed25519 -d
 - echo $server_fingerprint > ~/.ssh/known_hosts
