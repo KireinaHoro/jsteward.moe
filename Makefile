@@ -12,7 +12,7 @@ FTP_HOST=localhost
 FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
-SSH_HOST=shell.jsteward.moe
+SSH_HOST=jsteward.moe
 SSH_PORT=2222
 SSH_USER=pelican-travis
 SSH_TARGET_DIR=/srv/http/blog
