@@ -8,8 +8,7 @@ branches:
   - master
 install:
 - pip install pelican MarkDown
-- openssl aes-256-cbc -K $encrypted_8533675f5954_key -iv $encrypted_8533675f5954_iv
-  -in id_ed25519.enc -out id_ed25519 -d
+- openssl aes-256-cbc -K $encrypted_df38c1ccb282_key -iv $encrypted_df38c1ccb282_iv -in id_ed25519.enc -out id_ed25519 -d
 - echo $server_fingerprint > ~/.ssh/known_hosts
 - chmod 600 id_ed25519
 script:
