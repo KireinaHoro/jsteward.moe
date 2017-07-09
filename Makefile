@@ -13,7 +13,7 @@ FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
 SSH_HOST=jsteward.moe
-SSH_PORT=2222
+SSH_PORT=22
 SSH_USER=pelican-travis
 SSH_TARGET_DIR=/srv/http/blog
 SSH_IDENTITY=$(BASEDIR)/id_ed25519
