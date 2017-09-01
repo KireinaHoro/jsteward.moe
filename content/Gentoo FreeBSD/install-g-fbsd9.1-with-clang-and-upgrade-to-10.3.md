@@ -48,7 +48,7 @@ Things are rather straightforward for a virtual machine. If your setup is on a
 real machine, adjust the following commands accordingly and refer to `gpart(8)`
 when needed. We'll be using UFS as the root filesystem. If you want to use ZFS
 refer to the relevant sections [here in the old Gentoo FreeBSD installation
-guide](1).
+guide][old-guide].
 
     gpart create -s GPT ada0
     gpart add -s 64k -t freebsd-boot ada0
@@ -144,7 +144,7 @@ Install the kernel source and compile a kernel.
 
 Edit the fstab accordingly, set the hostname, network options, local password,
 local keymap, and add a normal user.  For more detailed information, refer to
-the [Gentoo Handbook](2).
+the [Gentoo Handbook][handbook].
 
 Here's a sample fstab:
 
@@ -185,6 +185,6 @@ The installation is now complete. Reboot the system to test it out.
 
 [WIP]
 
-[1]: https://wiki.gentoo.org/wiki/Gentoo_FreeBSD#Using_the_ZFS_file_system_.28experimental.29_.2F_.28GPT.29
+[old-guide]: https://wiki.gentoo.org/wiki/Gentoo_FreeBSD#Using_the_ZFS_file_system_.28experimental.29_.2F_.28GPT.29
 
-[2]: https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/System
+[handbook]: https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/System
