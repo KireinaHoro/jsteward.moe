@@ -23,6 +23,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
+        ('About & Contact', 'pages/about-contact.html'),
         ('Pelican', 'http://getpelican.com/'),
         ('Python.org', 'http://python.org/'),
         )
