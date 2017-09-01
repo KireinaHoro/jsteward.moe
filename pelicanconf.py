@@ -23,7 +23,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-        ('About & Contact', 'pages/about-contact.html'),
+        ('About & Contact', '/pages/about-contact.html'),
         ('Pelican', 'http://getpelican.com/'),
         ('Python.org', 'http://python.org/'),
         )
@@ -33,7 +33,7 @@ SOCIAL = (
         ('keybase', 'https://keybase.io/jsteward'),
         ('telegram', 'https://telegram.me/jsteward'),
         ('github', 'https://github.com/KireinaHoro'),
-        ('twitter', 'https://twitter.com/StewardJohnson'),
+        ('twitter', 'https://twitter.com/KireinaHoro'),
         ('last.fm','http://www.last.fm/user/KireinaHoro'),
         )
 
