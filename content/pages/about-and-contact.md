@@ -1,5 +1,6 @@
 Title: About & Contact
 Date: 2017-03-07 11:40:00
+Status: published
 
 Hello, I'm KireinaHoro (a.k.a. jsteward).
 
