@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = '綺麗な賢狼ホロ'
-SITENAME = '與無關有關 | KireinaHoro (jsteward) \'s place'
+AUTHOR = 'KireinaHoro'
+SITENAME = 'KireinaHoro (jsteward) \'s place'
 SITEURL = 'jsteward.moe'
 
 PATH = 'content'
