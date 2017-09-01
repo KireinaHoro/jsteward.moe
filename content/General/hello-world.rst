@@ -5,6 +5,7 @@ Hello, world!
 :tags: test
 :slug: hello-world
 :summary: first run for pelican
+:status: published
 
 My first try of static blog pages using ``pelican``.
 

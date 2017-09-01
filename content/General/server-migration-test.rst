@@ -5,6 +5,7 @@ Test after migrating the server to Vultr
 :tags: test
 :slug: server-migration-test
 :summary: test if everything's correct
+:status: published
 
 After migrating the server to Vultr and changing system to Arch Linux, I feel it necessary to perform some tests.
 
