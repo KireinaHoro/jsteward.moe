@@ -12,7 +12,12 @@ thus losing the already-configured G-FBSD Clang environment, I have to start
 over again. This article is for future reference and (probably?) save the 
 future headaches and nightmares.
 
-## Setting up the installation environment
+## Install 9.1
+
+We need to install Gentoo FreeBSD 9.1 first in order to upgrade it to 10.3
+later.
+
+### Setting up the installation environment
 
 Grab any FreeBSD installation media. A bootonly image will be fine as we'll
 only be using the Live CD feature.
@@ -42,7 +47,7 @@ Now set up the network and bring up `sshd`.
 We are now ready to connect to the target machine to deploy the system. Use
 ssh client to connect and then proceed to the next section.
 
-## Setting up the disks
+### Setting up the disks
 
 Things are rather straightforward for a virtual machine. If your setup is on a
 real machine, adjust the following commands accordingly and refer to `gpart(8)`
@@ -61,7 +66,7 @@ Create and mount the filesystems.
     mount /dev/ufs/gfbsdroot /mnt
     swapon /dev/gpt/swap
 
-## Unpacking the `stage3` tarball and chrooting
+### Unpacking the `stage3` tarball and chrooting
 
 Fetch and unpack the stage3 tarball. The current tarball is based on FreeBSD
 9.1. After I create the new tarballs based on 10.3 those can be used to install
@@ -87,7 +92,7 @@ do not mount a `tmpfs` at `/var/tmp`.
     cp /etc/resolv.conf /mnt/etc
     chroot /mnt /bin/bash
 
-## Configuring the system
+### Configuring the system
 
 Set the timezone and update portage. As the current tree has proceeded into
 `EAPI=6`, we'll need to update Portage in a rather inelegant way. Never use the
@@ -183,8 +188,50 @@ disk, the only choice is FreeBSD's `boot0`.
 
 The installation is now complete. Reboot the system to test it out.
 
+## Upgrade the system to 10.3
+
+Basically we the following steps:
+
+  - Bootstrap a newer version of the LLVM Clang toolchain
+  - Upgrade the kernel then reboot (the new userland may use functions that are
+only available in the newer kernel)
+  - Upgrade the FreeBSD userland
+  - Change the `CHOST` variable then rebuild the toolchain
+  - Rebuild (thus upgrading in the process) everything (`@world`)
+  - Clean up, rebuild packages that need the old libraries (`@revdep-rebuild`)
+
+Note that some of the packages need patching in order to work correctly. The
+bug ID at Gentoo Bugzilla will be provided when introducing a patch. Feel free
+to revert them provided that the corresponding bugs got fixed.
+
+### Preparation work
+
+Select the correct profile. Note that we're going to use Clang as the system
+compiler so make sure that you've chosen a `clang` profile.
+
+    eselect profile list
+    eselect profile set default/bsd/fbsd/amd64/10.3/clang
+
+Upgrade Portage. If `EAPI` masks occur, you need to update portage with [a
+manual method][manual-update-portage].
+
+    emerge -avu1 sys-apps/portage
+
+Upgrade some packages to proceed with the upgrading work. Note that
+`>=app-arch/libarchive-3.3` requires new macros in the system headers, thus
+can't be built for now. We'll need to mask it temporarily.
+
+    echo ">=app-arch/libarchive-3.3" >> /etc/portage/package.mask
+    emerge -a1 --nodeps sys-freebsd/freebsd-mk-defs
+    emerge -au1 sys-apps/findutils --exclude sys-freebsd/*
+    emerge -a1 sys-devel/libtool --exclude sys-freebsd/*
+    emerge -au1 sys-devel/flex sys-devel/patch sys-devel/m4 net-libs/libpcap sys-devel/gettext app-arch/libarchive dev-util/dialog --exclude sys-freebsd/*
+    emerge -a1 sys-devel/libtool --exclude sys-freebsd/*
+
 [WIP]
 
 [old-guide]: https://wiki.gentoo.org/wiki/Gentoo_FreeBSD#Using_the_ZFS_file_system_.28experimental.29_.2F_.28GPT.29
 
 [handbook]: https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/System
+
+[manual-update-portage]: https://wiki.gentoo.org/wiki/Gentoo_FreeBSD/Upgrade_Guide#Update_the_portage_with_a_manual_method.
