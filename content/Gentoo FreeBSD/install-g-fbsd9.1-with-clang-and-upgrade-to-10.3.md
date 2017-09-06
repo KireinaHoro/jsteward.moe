@@ -228,6 +228,114 @@ can't be built for now. We'll need to mask it temporarily.
     emerge -au1 sys-devel/flex sys-devel/patch sys-devel/m4 net-libs/libpcap sys-devel/gettext app-arch/libarchive dev-util/dialog --exclude sys-freebsd/*
     emerge -a1 sys-devel/libtool --exclude sys-freebsd/*
 
+### Upgrade the FreeBSD userland
+
+Although the correct way to upgrade an old system is to upgrade the toolchain
+first and then rebuild the system, seems like LLVM won't build correctly with
+FreeBSD 9 headers. Let's upgrade FreeBSD userland first and rebuild it again
+when we've done the userland upgrade.
+
+Kernel upgrade first.
+
+    emerge -C freebsd-sources
+    emerge --nodeps freebsd-sources
+    reboot
+
+Check if the kernel is functioning.
+
+    uname -a
+
+Let's do the userland upgrade. We need to purge old packages, rebuild binutils
+and then upgrade the FreeBSD userland.
+
+    emerge -aC dev-libs/libelf dev-libs/libexecinfo dev-libs/libiconv
+    emerge -a1 binutils
+    emerge --nodeps -1 freebsd-libexec
+    USE=build MAKEOPTS="-j1" emerge -1 --nodeps sys-freebsd/freebsd-lib sys-freebsd/freebsd-share
+    CC=gcc CXX=g++ CXXFLAGS="-O2 -pipe" emerge -auN1 boot0 freebsd-bin freebsd-lib freebsd-libexec freebsd-mk-defs freebsd-pam-modules freebsd-sbin freebsd-share freebsd-ubin freebsd-usbin
+
+We need to rebuild the packages as sime packages require newer packages.
+
+    emerge -1a boot0 freebsd-bin freebsd-lib freebsd-libexec freebsd-mk-defs freebsd-pam-modules freebsd-sbin freebsd-share freebsd-ubin freebsd-usbin
+
+
+### Toolchain upgrade
+
+As for the time of writing, `>=sys-devel/binutils-2.28` will cause severe
+problems with 9.1, 10.3 and 11.0 profiles ([#629128][629128]). We need to mask
+it or we'll get a badly broken system.
+
+    echo ">=sys-devel/binutils-2.28" >> /etc/portage/package.mask
+
+Upgrade binutils.
+
+    emerge -au1 sys-devel/binutils --exclude sys-freebsd/*
+
+Upgrade LLVM and Clang. We need to temporarily abuse `CXXFLAGS` as `cmake`'s
+compiler detector won't properly do its job without `-lcxxrt` in it.
+
+    emerge -au1 sys-libs/libcxxrt
+    emerge -av1 dev-util/re2c dev-util/ninja
+    CXXFLAGS="-lcxxrt ${CXXFLAGS}" emerge -av1 dev-util/cmake
+
+I can't figure out why I can't use the current `sys-devel/clang-3.3`. Building
+LLVM requires GCC 4.7 and up, so we'll need to update GCC first.
+
+    emerge -av1 sys-devel/gcc
+    gcc-config -l
+    gcc-config 2
+    . /etc/profile
+
+We need global `-lcxxrt` in `LDFLAGS` for now.
+
+    echo "LDFLAGS=\"-lcxxrt\"" > /etc/portage/make.conf
+
+## TODO: circular dependency
+Enable `sys-devel/clang-runtime[libcxx]` to pull in `libcxx` instead of GCC's
+`libstdc++`.
+
+    echo sys-devel/clang-runtime libcxx > /etc/portage/package.use/clang-runtime
+
+Prior to upgrading LLVM, the recent versions of `app-crypt/rhash` require
+patching to build ([#629060][629060]). We'll need to setup a local repository
+to hold the modified ebuild. Here's the patch of the ebuild:
+
+    diff -Naur a/rhash-1.3.5.ebuild b/rhash-1.3.5.ebuild
+	--- a/rhash-1.3.5.ebuild	2017-08-28 04:14:15.995458000 +0800
+	+++ b/rhash-1.3.5.ebuild	2017-08-28 04:13:51.176520000 +0800
+	@@ -54,6 +54,7 @@
+		)
+	 
+		local ADDLDFLAGS=(
+	+		$(use userland_GNU || echo -lintl)
+			$(use openssl && echo -ldl)
+		)
+
+Create a local repository named `localrepo`.
+
+    mkdir -p /usr/local/portage/{metadata,profiles}
+    chown -R portage:portage /usr/local/portage
+    echo 'localrepo' > /usr/local/portage/profiles/repo_name
+    cat > /usr/local/portage/metadata/layout.conf << EOF
+    masters = gentoo
+    auto-sync = false
+    EOF
+    cat > /etc/portage/repos.conf/localrepo.conf << EOF
+    [localrepo]
+    location = /usr/local/portage
+    EOF
+
+Add the patched `rhash` ebuild. We'll need `repoman` for creating the ebuild's
+manifest.
+
+    emerge -av app-portage/repoman
+    cd /usr/local/portage/app-crypt/rhash
+    repoman manifest
+
+We can now upgrade LLVM and Clang. 
+
+    emerge -au1 sys-devel/llvm sys-devel/clang --exclude sys-freebsd/*
+
 [WIP]
 
 [old-guide]: https://wiki.gentoo.org/wiki/Gentoo_FreeBSD#Using_the_ZFS_file_system_.28experimental.29_.2F_.28GPT.29
@@ -235,3 +343,7 @@ can't be built for now. We'll need to mask it temporarily.
 [handbook]: https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/System
 
 [manual-update-portage]: https://wiki.gentoo.org/wiki/Gentoo_FreeBSD/Upgrade_Guide#Update_the_portage_with_a_manual_method.
+
+[629128]: https://bugs.gentoo.org/show_bug.cgi?id=629128
+
+[629060]: https://bugs.gentoo.org/show_bug.cgi?id=629060
