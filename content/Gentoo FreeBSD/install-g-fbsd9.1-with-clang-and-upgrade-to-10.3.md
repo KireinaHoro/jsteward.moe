@@ -235,7 +235,19 @@ first and then rebuild the system, seems like LLVM won't build correctly with
 FreeBSD 9 headers. Let's upgrade FreeBSD userland first and rebuild it again
 when we've done the userland upgrade.
 
-Kernel upgrade first.
+As for the time of writing, `>=sys-devel/binutils-2.28` will cause severe
+problems with 9.1, 10.3 and 11.0 profiles ([#629128][629128]). We need to mask
+it or we'll get a badly broken system.
+
+    echo ">=sys-devel/binutils-2.28" >> /etc/portage/package.mask
+
+Upgrade binutils.
+
+    emerge -au1 sys-devel/binutils --exclude sys-freebsd/*
+
+
+The kernel shall be upgraded first as newer userland programs require functions
+in the newer kernel.
 
     emerge -C freebsd-sources
     emerge --nodeps freebsd-sources
@@ -256,45 +268,23 @@ and then upgrade the FreeBSD userland.
 
 We need to rebuild the packages as sime packages require newer packages.
 
-    emerge -1a boot0 freebsd-bin freebsd-lib freebsd-libexec freebsd-mk-defs freebsd-pam-modules freebsd-sbin freebsd-share freebsd-ubin freebsd-usbin
+    CC=gcc CXX=g++ CXXFLAGS="-O2 -pipe" emerge -1a boot0 freebsd-bin freebsd-lib freebsd-libexec freebsd-mk-defs freebsd-pam-modules freebsd-sbin freebsd-share freebsd-ubin freebsd-usbin
+    
+Do some clean-up.
+
+    rm /var/run/utmp /var/log/lastlog /var/log/wtmp*
 
 
 ### Toolchain upgrade
 
-As for the time of writing, `>=sys-devel/binutils-2.28` will cause severe
-problems with 9.1, 10.3 and 11.0 profiles ([#629128][629128]). We need to mask
-it or we'll get a badly broken system.
-
-    echo ">=sys-devel/binutils-2.28" >> /etc/portage/package.mask
-
-Upgrade binutils.
-
-    emerge -au1 sys-devel/binutils --exclude sys-freebsd/*
-
 Upgrade LLVM and Clang. We need to temporarily abuse `CXXFLAGS` as `cmake`'s
-compiler detector won't properly do its job without `-lcxxrt` in it.
+compiler detector won't properly do its job without `-lcxxrt` in it. Edit
+`/etc/portage/make.conf` and add `-lcxxrt` to `CXXFLAGS`.
 
-    emerge -au1 sys-libs/libcxxrt
-    emerge -av1 dev-util/re2c dev-util/ninja
-    CXXFLAGS="-lcxxrt ${CXXFLAGS}" emerge -av1 dev-util/cmake
+    vim /etc/portage/make.conf
+    emerge -a1uv dev-util/cmake
 
-I can't figure out why I can't use the current `sys-devel/clang-3.3`. Building
-LLVM requires GCC 4.7 and up, so we'll need to update GCC first.
-
-    emerge -av1 sys-devel/gcc
-    gcc-config -l
-    gcc-config 2
-    . /etc/profile
-
-We need global `-lcxxrt` in `LDFLAGS` for now.
-
-    echo "LDFLAGS=\"-lcxxrt\"" > /etc/portage/make.conf
-
-## TODO: circular dependency
-Enable `sys-devel/clang-runtime[libcxx]` to pull in `libcxx` instead of GCC's
-`libstdc++`.
-
-    echo sys-devel/clang-runtime libcxx > /etc/portage/package.use/clang-runtime
+You can then revert the changes made to `make.conf`.
 
 Prior to upgrading LLVM, the recent versions of `app-crypt/rhash` require
 patching to build ([#629060][629060]). We'll need to setup a local repository
@@ -332,9 +322,15 @@ manifest.
     cd /usr/local/portage/app-crypt/rhash
     repoman manifest
 
+LLVM needs `-lcxxrt` in its `LDFLAGS` to link correctly. Do the following:
+
+    mkdir -p /etc/portage/env
+    echo "LDFLAGS=\"-lcxxrt\"" > /etc/portage/env/link-cxxrt
+    echo "sys-devel/llvm link-cxxrt" >> /etc/portage/package.env
+
 We can now upgrade LLVM and Clang. 
 
-    emerge -au1 sys-devel/llvm sys-devel/clang --exclude sys-freebsd/*
+    emerge -au1 sys-devel/llvm sys-devel/clang
 
 [WIP]
 
