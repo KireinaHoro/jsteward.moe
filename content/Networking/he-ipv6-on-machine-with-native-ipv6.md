@@ -4,6 +4,7 @@ Modified: 2017-11-10 0:00
 Category: Networking
 Tags: networking, gentoo
 Slug: he-ipv6-routing-on-machines-with-ipv6
+Status: published
 
 ## Preface
 
@@ -14,8 +15,7 @@ can be useful if one wish to assign IPv6 addresses through VPN. This
 article mainly serves as a memo for achieving the following goals:
 
  - native IPv6 should work just fine (i.e. `default` route untouched)
- - tunnelbroker's addresses should work as well (e.g. services that bind to
- the tunnelbroker's addresses should get correct routes)
+ - tunnelbroker's addresses should work as well (e.g. services that bind to the tunnelbroker's addresses should get correct routes)
 
 ## The `default` route
 
