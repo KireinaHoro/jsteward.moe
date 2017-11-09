@@ -11,7 +11,7 @@ Status: published
 On a machine with native IPv6 that's working quite well (e.g. CERNET2),
 it's usually desirable to set the host's default IPv6 route to go through
 native IPv6. Yet the cheap `/48` address block offered by HE Tunnelbroker
-can be useful if one wish to assign IPv6 addresses through VPN. This
+can be useful if one wishes to assign IPv6 addresses through VPN. This
 article mainly serves as a memo for achieving the following goals:
 
  - native IPv6 should work just fine (i.e. `default` route untouched)
