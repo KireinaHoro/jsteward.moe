@@ -83,6 +83,6 @@ All clients get a `/96` from its upstream, regardless of it being a small router
 `ndppd`, in order to get the correct routes, as prefixes longer than `/64` will break SLAAC.
 
 If JSteward Tech should possess any public IP addresses, they should be assigned to servers without native IPv6, replacing what
-HE tunnelbroker does for now. Due to this possibility, the IPv6 address assignment section are prone to changes.
+HE tunnelbroker does for now. Due to this possibility, the IPv6 address assignment section is prone to changes.
 
 
