@@ -85,4 +85,51 @@ All clients get a `/96` from its upstream, regardless of it being a small router
 If JSteward Tech should possess any public IP addresses, they should be assigned to servers without native IPv6, replacing what
 HE tunnelbroker does for now. Due to this possibility, the IPv6 address assignment section is prone to changes.
 
+## Part three: how are routes selected
 
+Note: IPv6 route is not discussed here. All IPv6 data should simply follow its upstream's native IPv6 rules and go out into the public
+Internet wherever possible.
+
+The IPv4 traffic that goes through this network fall into *exactly* one of the following categories:
+
+ - it goes to a host **inside** the network (e.g. a server in the network that serves contents)
+ - it goes to a host **outside** the network (e.g. when a client uses the network as some kind of proxy)
+
+The following sections discuss the two kind of network traffic in detail.
+
+### To a host **inside** the network
+
+JSteward Tech will use iBGP for route exchanging within the network. Route selection will be based on link latency and bandwidth,
+with latency as the first consideration. This will be achieved through dynamically alternating the `bgp_community` values, whose data
+is acquired through a live monitoring system. The following documents should help when implementing the system, thus listed here for
+future reference:
+
+ - [DN42's Bird howto](https://dn42.eu/howto/Bird)
+ - [DN42's Bird BGP community howto](https://dn42.eu/howto/Bird-communities)
+ - [Bird documentation](http://bird.network.cz/?get_doc&f=bird-6.html#ss6.3)
+ - [Example on monitoring a network and visualizing data with Grafana](https://lkhill.com/using-influxdb-grafana-to-display-network-statistics/)
+
+### To a host **outside** the network
+
+MPLS shall be utilized to identify the exit preferred when a data packet enters the core, in which the exit is selected according to
+a predefined table describing which exit a packet should choose based on its destination address. The packet is then encapsulated with
+the appropriate MPLS label according to the exit chosen, and routed through the core. Actions in the [LSP](https://en.wikipedia.org/wiki/Multiprotocol_Label_Switching#Label-switched_path)
+are defined as follows:
+
+ - a LER (label edge router) encapsulates the packet with MPLS label selected by destination address and sends it to the next hop determined
+by the optimal next hop to the egress router according to the iBGP routing table
+ - a LSR (label switching router) swaps the the label with one identical to the original one (i.e. leave the label *untouched*) and sends it
+to the next hop determined by optimal next hop to the egress router according to the iBGP routing table
+ - the egress router decapsulates the MPLS label, does MASQUERADE and sends the packet out into the Internet.
+
+Due to the nature of needing to operate on the MPLS table every time the link latency changes (and that the iBGP routing table changes), a
+helper program will be needed to update the MPLS routes every time such change occurs.
+
+For a host that wishes to select the exit node of its traffic on its own instead of conforming to the predefined table at the LER, the server
+can act as an LER itself, encapsulating the packets with the desired label corresponding to the exit chosen. Then the packets will be routed to
+the desired exit by the LSR's on the LSP.
+
+The following documents should help when implementing the system, thus listed here for future reference:
+
+ - [MPLS over GRE experiment on my own blog](/mpls-in-gre-tunnel-linux.html)
+ - [MPLS testbed article](http://www.samrussell.nz/2015/12/mpls-testbed-on-ubuntu-linux-with.html)
