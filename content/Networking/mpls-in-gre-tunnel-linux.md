@@ -13,7 +13,7 @@ This article works out how to label packets with MPLS and switch according to pa
 
 ## Step 1: the GRE tunnel
 
-Let there be two machines: A and B. A have the address `10.128.0.2` and B have the address `10.128.100.2`. The following creates a GRE tunnel between the host.
+Let there be two machines: A and B. A has the address `10.128.0.2` and B has the address `10.128.100.2`. The following creates a GRE tunnel between the host.
 We'll use the interface name `foo4` on both ends. Execute all the following with root:
 
 On A:
