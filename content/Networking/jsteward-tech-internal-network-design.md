@@ -7,8 +7,8 @@ Slug: jsteward-tech-internal-network-design
 
 ## Preface
 
-As the number of machines that belong to me increase gradually, it has become a necessity to connect the machines
-together with secure, reliable tunnels, thus forming an internal network. A private network can have the following
+As the number of machines I manage increase gradually, it has become a necessity to connect the machines
+together through secure, reliable tunnels, thus forming an internal network. A private network can have the following
 advantages:
 
  - Ease of configuring services that involve multiple machines, such as a databases and database clients
@@ -41,7 +41,7 @@ The following sections define the detailed properties of possible connections be
 ### **Server** to **server** and **small router** to **server**
 
 The two hosts should connect to each other through GRE over IPsec. The IPsec tunnel should be managed by `strongswan`.
-The both ends should authenticate each other through X.509 certificates, issued by the PKI managed by JSteward Tech.
+Both ends should authenticate each other through X.509 certificates, issued by the PKI managed by JSteward Tech.
 
 ### **Client** to **server**
 
@@ -52,7 +52,7 @@ The client should establish a VPN session to the server, with one of the followi
 
 ### **Client** to **small router**
 
-The client should connect to the small router directly via physical medium, such as an ethernet cable or a WiFi connection.
+The client should connect to the small router directly via physical media, such as an ethernet cable or a WiFi connection.
 
 ## Part two: how are addresses allocated
 
@@ -87,7 +87,7 @@ HE tunnelbroker does for now. Due to this possibility, the IPv6 address assignme
 
 ## Part three: how are routes selected
 
-Note: IPv6 route is not discussed here. All IPv6 data should simply follow its upstream's native IPv6 rules and go out into the public
+Note: IPv6 routes are not discussed here. All IPv6 data should simply follow its upstream's native IPv6 rules and go out into the public
 Internet wherever possible.
 
 The IPv4 traffic that goes through this network fall into *exactly* one of the following categories:
@@ -95,7 +95,7 @@ The IPv4 traffic that goes through this network fall into *exactly* one of the f
  - it goes to a host **inside** the network (e.g. a server in the network that serves contents)
  - it goes to a host **outside** the network (e.g. when a client uses the network as some kind of proxy)
 
-The following sections discuss the two kind of network traffic in detail.
+The following sections discuss the two kinds of network traffic in detail.
 
 ### To a host **inside** the network
 
