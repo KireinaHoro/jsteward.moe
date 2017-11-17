@@ -4,6 +4,7 @@ Modified: 2017-11-11 15:00
 Category: Networking
 tags: networking, infrastructure
 Slug: jsteward-tech-internal-network-design
+Status: published
 
 ## Preface
 
