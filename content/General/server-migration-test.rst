@@ -1,7 +1,7 @@
 Test after migrating the server to Vultr
 ########################################
 
-:date: 2017-12-20 13:00:00
+:date: 2016-12-20 13:00:00
 :tags: test
 :slug: server-migration-test
 :summary: test if everything's correct
