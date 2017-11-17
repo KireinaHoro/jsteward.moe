@@ -22,4 +22,5 @@ A machine name should consist of the following three parts:
 ## Examples for the Japanese words to be chosen
 
 光　影　日　月　雨　雪　風　嵐
+
 海　川　山　空　森　池　滝　島
