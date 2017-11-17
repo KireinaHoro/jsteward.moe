@@ -1,7 +1,7 @@
 Hello, world!
 #############
 
-:date: 2017-09-17 15:00:00
+:date: 2016-09-17 15:00:00
 :tags: test
 :slug: hello-world
 :summary: first run for pelican
