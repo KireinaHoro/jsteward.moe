@@ -31,14 +31,14 @@ mkdir -p /var/debian/
 debootstrap --arch=sparc64 --variant=buildd --verbose sid /var/debian/ https://deb.debian.org/debian-ports
 ```
 
-Download the required apt keys. Chroot into the new debian environemnt, install keys, and install required packages:
+Download the required keychain package. Chroot into the new debian environemnt, install keychain, and install required packages:
 
 ```bash
-gpg --keyserver pgp.mit.edu --recv-keys 06AED62430CB581C
-gpg --armor --export 06AED62430CB581C > /var/debian/root/06AED62430CB581C.asc
+cd /var/debian/root
+wget http://deb.debian.org/debian-ports/pool/main/d/debian-ports-archive-keyring/debian-ports-archive-keyring_2018.01.05_all.deb
 chroot /var/debian /bin/su
 chsh -s /bin/bash
-apt-key add /root/06AED62430CB581C.asc
+dpkg -i /root/debian-ports-archive-keyring_2018.01.05_all.deb
 apt update
 apt install gccgo-6
 ```
@@ -113,3 +113,8 @@ ldd helloworld
 If any libraries are missing, we need to copy it over (to `/lib64`) and re-generate
 `ld.so.cache` with `env-update`. From this point we're able to compile the Go source code in
 the Debian chroot, and copy it over for use.
+
+## Credits
+
+The method to resolve the incompatiable libc libraries comes from lilydjwg, while the suggestion
+of installing the keychain package instead of importing raw keys comes from zhsj. Thanks.
