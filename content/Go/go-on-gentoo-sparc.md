@@ -82,13 +82,15 @@ go build helloworld.go
 Now that we can produce executables, we need to set up the Gentoo system to be
 able to use the executables from Debian chroot. Debian has 64bit libc:
 
-> root@hikari:~# ldd helloworld
->         libgo.so.9 => /usr/lib/sparc64-linux-gnu/libgo.so.9 (0xffff800100230000)
->         libm.so.6 => /lib/sparc64-linux-gnu/libm.so.6 (0xffff8001015ac000)
->         libgcc_s.so.1 => /lib/sparc64-linux-gnu/libgcc_s.so.1 (0xffff800101794000)
->         libc.so.6 => /lib/sparc64-linux-gnu/libc.so.6 (0xffff8001018a8000)
->         libpthread.so.0 => /lib/sparc64-linux-gnu/libpthread.so.0 (0xffff800101b18000)
->         /lib64/ld-linux.so.2 (0xffff800100000000)
+```
+root@hikari:~# ldd helloworld
+        libgo.so.9 => /usr/lib/sparc64-linux-gnu/libgo.so.9 (0xffff800100230000)
+        libm.so.6 => /lib/sparc64-linux-gnu/libm.so.6 (0xffff8001015ac000)
+        libgcc_s.so.1 => /lib/sparc64-linux-gnu/libgcc_s.so.1 (0xffff800101794000)
+        libc.so.6 => /lib/sparc64-linux-gnu/libc.so.6 (0xffff8001018a8000)
+        libpthread.so.0 => /lib/sparc64-linux-gnu/libpthread.so.0 (0xffff800101b18000)
+        /lib64/ld-linux.so.2 (0xffff800100000000)
+```
 
 We need to copy those to the Gentoo host's `/lib64` and add it to `ld`'s search paths.
 
