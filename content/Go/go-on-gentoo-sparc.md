@@ -20,20 +20,20 @@ executables it creates won't run outside without some tricks. (Gentoo SPARC has 
 
 Install debootstrap:
 
-```
+```bash
 emerge --ask --verbose dev-util/debootstrap
 ```
 
 Make the debian root and create the chroot with `debootstrap`:
 
-```
+```bash
 mkdir -p /var/debian/
 debootstrap --arch=sparc64 --variant=buildd --verbose sid /var/debian/ https://deb.debian.org/debian-ports
 ```
 
 Download the required apt keys. Chroot into the new debian environemnt, install keys, and install required packages:
 
-```
+```bash
 gpg --keyserver pgp.mit.edu --recv-keys 06AED62430CB581C
 gpg --armor --export 06AED62430CB581C > /var/debian/root/06AED62430CB581C.asc
 chroot /var/debian /bin/su
@@ -45,7 +45,7 @@ apt install gccgo-6
 
 Symlink the required go tools, make the GOPATH, and set it upon entering the chroot:
 
-```
+```bash
 for a in go{,fmt}; do ln -sf /usr/bin/$a-6 /usr/bin/$a; done
 mkdir -p /root/go
 echo "export GOPATH=/root/go" >> /root/.bashrc
@@ -53,7 +53,7 @@ echo "export GOPATH=/root/go" >> /root/.bashrc
 
 Exit the chroot, enter it once again, and verify that everything's working:
 
-```
+```bash
 exit
 chroot /var/debian /bin/su
 go env
@@ -61,7 +61,7 @@ go env
 
 Test the toolchain via a simple `Hello, world!`:
 
-```
+```bash
 cd
 cat > helloworld.go << EOF
 package main
@@ -82,7 +82,7 @@ go build helloworld.go
 Now that we can produce executables, we need to set up the Gentoo system to be
 able to use the executables from Debian chroot. Debian has 64bit libc:
 
-```
+```plain
 root@hikari:~# ldd helloworld
         libgo.so.9 => /usr/lib/sparc64-linux-gnu/libgo.so.9 (0xffff800100230000)
         libm.so.6 => /lib/sparc64-linux-gnu/libm.so.6 (0xffff8001015ac000)
@@ -94,7 +94,7 @@ root@hikari:~# ldd helloworld
 
 We need to copy those to the Gentoo host's `/lib64` and add it to `ld`'s search paths.
 
-```
+```bash
 mkdir -p /lib64
 for a in /usr/lib/sparc64-linux-gnu/libgo.so.9 /lib/sparc64-linux-gnu/{libm.so.6,libgcc_s.so.1,libc.so.6.libpthread.so.0} /lib64/ld-linux.so.2; do cp -Lv /var/debian$a /lib64/$(basename $a); done
 cp -Pv /var/debian/lib/sparc64-linux-gnu/libnss* /lib64 # needed for proper user / dns support
@@ -104,7 +104,7 @@ env-update
 
 We can now check if the executable works outside the chroot:
 
-```
+```bash
 cd /var/debian/root
 ldd helloworld
 ./helloworld
