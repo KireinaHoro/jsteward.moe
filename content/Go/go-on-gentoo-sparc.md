@@ -1,6 +1,6 @@
 Title: Go on Gentoo SPARC
 Date: 2018-01-22 16:00
-Modified: 2018-01-22 16:00
+Modified: 2018-01-25 14:00
 Category: Go
 Tags: golang, gentoo, sparc
 Slug: go-on-gentoo-sparc
@@ -113,6 +113,48 @@ ldd helloworld
 If any libraries are missing, we need to copy it over (to `/lib64`) and re-generate
 `ld.so.cache` with `env-update`. From this point we're able to compile the Go source code in
 the Debian chroot, and copy it over for use.
+
+## Extra setup for ease of use
+
+Copying the executable outside the chroot outside every time is exhausting. The following setup
+will ease the process of compiling source and using the executable.
+
+Set up fstab entries for the debian chroot, so that it will be ready for use right after
+boot. Failing to mount system psuedo-filesystems (especially `/proc`) will result in
+mysterious errors with `libbacktrace`.
+
+```plain
+# debian chroot mounts
+/dev /var/debian/dev none defaults,rbind,rslave 0 0
+/sys /var/debian/dev none defaults,rbind,rslave 0 0
+/proc /var/debian/proc none defaults,rbind,rslave 0 0
+# mount to expose the executables built to the system outside
+/var/debian/root/go/bin /usr/local/go/bin none defaults,bind 0 0
+```
+
+The last entry exposes `${GOPATH}/bin` inside the debian chroot to the system
+outside, so that we can add `/usr/local/go/bin` to `PATH`, and easily use them
+outside (as we have set up appropriate `libc` outside).
+
+Add the `/usr/local/go/bin` to `PATH`:
+
+```bash
+echo "PATH=\"/usr/local/go/bin\"\nROOTPATH=\"/usr/local/go/bin\"" | sudo tee /etc/env.d/40debian-golang
+env-update
+```
+
+And add the following alias to your shell config (`.bashrc` or `.zshrc`):
+
+```bash
+alias gobuild='sudo chroot /var/debian /bin/bash --login'
+```
+
+We can now issue `gobuild` from Gentoo, go into the Debian chroot, issue
+
+    go get path/to/your/great/package
+
+to install your binary, and then you can access them outside the chroot as well,
+thanks to the bind mount and the `PATH` settings.
 
 ## Credits
 
