@@ -1,6 +1,6 @@
 Title: Go on Gentoo SPARC
 Date: 2018-01-22 16:00
-Modified: 2018-01-25 14:00
+Modified: 2018-02-02 23:00
 Category: Go
 Tags: golang, gentoo, sparc
 Slug: go-on-gentoo-sparc
@@ -15,6 +15,9 @@ the rescue, as although no Gc as well, their Gccgo (at least `gccgo-6`; `gccgo-7
 in early stages) is working. Yet Debian's SPARC port is on architecture `sparc64`, which
 means it'll run on a Gentoo kernel (UltraSPARC T2 requires a 64bit kernel), yet the
 executables it creates won't run outside without some tricks. (Gentoo SPARC has 32bit userland)
+
+**EDIT:** as of Feb 2, 2018, `gccgo-7` works as well. It seems like they've fixed it. Kudos for
+Debian team!
 
 ## Set up Debian Ports environment
 
@@ -92,15 +95,32 @@ root@hikari:~# ldd helloworld
         /lib64/ld-linux.so.2 (0xffff800100000000)
 ```
 
+And for `gccgo-7`:
+
+```plain
+root@hikari:~# ldd helloworld
+        libgo.so.11 => /usr/lib/sparc64-linux-gnu/libgo.so.11 (0xffff800100230000)
+        libm.so.6 => /lib/sparc64-linux-gnu/libm.so.6 (0xffff800101b60000)
+        libgcc_s.so.1 => /lib/sparc64-linux-gnu/libgcc_s.so.1 (0xffff800101d44000)
+        libc.so.6 => /lib/sparc64-linux-gnu/libc.so.6 (0xffff800101e58000)
+        libz.so.1 => /lib/sparc64-linux-gnu/libz.so.1 (0xffff8001020c0000)
+        libpthread.so.0 => /lib/sparc64-linux-gnu/libpthread.so.0 (0xffff8001021dc000)
+        /lib64/ld-linux.so.2 (0xffff800100000000)
+```
+
 We need to copy those to the Gentoo host's `/lib64` and add it to `ld`'s search paths.
 
 ```bash
 mkdir -p /lib64
-for a in /usr/lib/sparc64-linux-gnu/libgo.so.9 /lib/sparc64-linux-gnu/{libm.so.6,libgcc_s.so.1,libc.so.6.libpthread.so.0} /lib64/ld-linux.so.2; do cp -Lv /var/debian$a /lib64/$(basename $a); done
+for a in /usr/lib/sparc64-linux-gnu/libgo.so.{9,11} /lib/sparc64-linux-gnu/{libm.so.6,libgcc_s.so.1,libc.so.6,libz.so.1,libpthread.so.0}; do cp -Lv /var/debian$a /lib64/$(basename $a); done
+cp -v /var/debian/lib/sparc64-linux-gnu/ld-2.26.so /lib64/ld-linux.so.2
 cp -Pv /var/debian/lib/sparc64-linux-gnu/libnss* /lib64 # needed for proper user / dns support
 sed -i -e 's|/lib:/usr/lib|/lib:/lib64:/usr/lib|' /etc/env.d/00basic
 env-update
 ```
+
+**Note:** if you upgrade the debian chroot, watch closely if `libc` and friends have been updated.
+If so, remember to copy the libraries over to avoid possible breakage.
 
 We can now check if the executable works outside the chroot:
 
