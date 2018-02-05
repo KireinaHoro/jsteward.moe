@@ -98,3 +98,7 @@ Save it to `/etc/init.d/disk-pool`, give it `+x` permission, and add it to the d
 ```
 rc-update add disk-pool default
 ```
+
+## Credit
+
+Credit for this method goes to lilydjwg. Thanks!
