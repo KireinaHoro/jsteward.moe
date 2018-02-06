@@ -1,6 +1,6 @@
 Title: MPLS in GRE tunnel on Linux with iproute2
 Date: 2017-11-15 18:00
-Modified: 2017-11-15 18:00
+Modified: 2018-02-06 20:20
 Category: Networking
 Tags: networking, gre, mpls, iproute2
 Slug: mpls-in-gre-tunnel-linux
@@ -50,7 +50,7 @@ On B:
     sysctl -w net.mpls.platform_labels=65535
     sysctl -w net.mpls.conf.foo4=1
     ip rou c 10.199.0.0/24 encap mpls 101 dev foo4
-    ip -f mpls 100 dev lo
+    ip -f mpls rou a 100 dev lo
 
 Packets sent from one peer will be labeled with its corresponding label, and then decapsulated at the other end and delivered to its local interface.
 
