@@ -41,14 +41,14 @@ B towards A. Execute all the following with root:
 On A:
 
     sysctl -w net.mpls.platform_labels=65535
-    sysctl -w net.mpls.conf.foo4=1
+    sysctl -w net.mpls.conf.foo4.input=1
     ip rou c 10.199.0.0/24 encap mpls 100 dev foo4
     ip -f mpls rou a 101 dev lo
 
 On B:
 
     sysctl -w net.mpls.platform_labels=65535
-    sysctl -w net.mpls.conf.foo4=1
+    sysctl -w net.mpls.conf.foo4.input=1
     ip rou c 10.199.0.0/24 encap mpls 101 dev foo4
     ip -f mpls rou a 100 dev lo
 
