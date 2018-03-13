@@ -31,7 +31,7 @@ And I'm currently utilizing the following capabilities of a YubiKey to do things
 - **U2F capability** for 2FA at various websites that supports hardware U2F tokens, such as Google and GitHub
 - **OTP capability** (Yubico OTP, to be more specific), to authenticate myself in PAM applications (e.g. sudo) on remote machines
 - **PGP capability** for storing my OpenPGP secret keys for signing, authentication and (en|de)cryption
-    - leverage PGP in emails and live chats to ~~circumvent censorship~~ retain privacy better
+    - leverage PGP in emails and live chats to <s>circumvent censorship</s> retain privacy better
     - with the help of a properly configured GPG agent to replace SSH agent, authenticate with remote machines with GPG's ssh
       emulation mode
 
