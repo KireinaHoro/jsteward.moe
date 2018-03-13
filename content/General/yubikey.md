@@ -25,30 +25,30 @@ So, basically what's a **YubiKey**? According to Wikipedia,
 
 And I'm currently utilizing the following capabilities of a YubiKey to do things like these:
 
-- PIV capability for OS logon and authentication
-  - on macOS this works for both system logon / screensaver deactivation as well as sudo authentication...
-  - what's more, you can ask macOS to activate the screensaver automatically when the *login token* is removed 
-- U2F capability for 2FA at various websites that supports hardware U2F tokens, such as Google and GitHub
-- OTP capability (Yubico OTP, to be more specific), to authenticate myself in PAM applications (e.g. sudo) on remote machines
-- PGP capability for storing my OpenPGP secret keys for signing, authentication and (en|de)cryption
-  - leverage PGP in emails and live chats to ~~circumvent censorship~~ retain privacy better
-  - with the help of a properly configured GPG agent to replace SSH agent, authenticate with remote machines with GPG's ssh
-    emulation mode
+- **PIV capability** for OS logon and authentication
+    - on macOS this works for both system logon / screensaver deactivation as well as sudo authentication...
+    - what's more, you can ask macOS to activate the screensaver automatically when the *login token* is removed 
+- **U2F capability** for 2FA at various websites that supports hardware U2F tokens, such as Google and GitHub
+- **OTP capability** (Yubico OTP, to be more specific), to authenticate myself in PAM applications (e.g. sudo) on remote machines
+- **PGP capability** for storing my OpenPGP secret keys for signing, authentication and (en|de)cryption
+    - leverage PGP in emails and live chats to ~~circumvent censorship~~ retain privacy better
+    - with the help of a properly configured GPG agent to replace SSH agent, authenticate with remote machines with GPG's ssh
+      emulation mode
 
 ## Details
 
 Documents for how to configure each subsystem of the YubiKey are listed for reference, and I will not duplicate them here.
 
-- PIV: https://www.yubico.com/support/knowledge-base/categories/articles/how-to-use-your-yubikey-with-macos-sierra/
+- **PIV**: <https://www.yubico.com/support/knowledge-base/categories/articles/how-to-use-your-yubikey-with-macos-sierra/>
   to enable "login token removal = screensaver activation":
-  - go to System Preferences > Security and Privacy > General > Advanced (you may need to unlock the panel by clicking on the
-    lock icon and authenticating)
-  - check "if the login token gets removed, activate screensaver"
-- U2F: the simplest; follow the setup instructions from major websites that support U2F as 2FA
-  you may need to unblock the U2F capability if you happen to turn it off (or you notice that it had stopped working):
-  https://wiki.archlinux.org/index.php/yubikey#Set_the_enabled_modes
-- OTP: https://mig5.net/content/adding-yubikey-2-factor-authentication-ssh-and-sudo-debian
-- PGP: https://github.com/drduh/YubiKey-Guide
+    - go to `System Preferences > Security and Privacy > General > Advanced` (you may need to unlock the panel by clicking on the
+      lock icon and authenticating)
+    - check "if the login token gets removed, activate screensaver"
+- **U2F**: the simplest; follow the setup instructions from major websites that support U2F as 2FA
+    - you may need to unblock the U2F capability if you happen to turn it off (or you notice that it had stopped working):
+      <https://wiki.archlinux.org/index.php/yubikey#Set_the_enabled_modes>
+- **OTP**: <https://mig5.net/content/adding-yubikey-2-factor-authentication-ssh-and-sudo-debian>
+- **PGP**: <https://github.com/drduh/YubiKey-Guide>
 
 ## Credit
 
