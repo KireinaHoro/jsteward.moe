@@ -41,9 +41,9 @@ Documents for how to configure each subsystem of the YubiKey are listed for refe
 
 - **PIV**: <https://www.yubico.com/support/knowledge-base/categories/articles/how-to-use-your-yubikey-with-macos-sierra/>
   to enable "login token removal = screensaver activation":
-    - go to `System Preferences > Security and Privacy > General > Advanced` (you may need to unlock the panel by clicking on the
+    - go to `System Preferences > Security & Privacy > General > Advanced...` (you may need to unlock the panel by clicking on the
       lock icon and authenticating)
-    - check "if the login token gets removed, activate screensaver"
+    - check `Turn on screen saver when login token is removed`
 - **U2F**: the simplest; follow the setup instructions from major websites that support U2F as 2FA
     - you may need to unblock the U2F capability if you happen to turn it off (or you notice that it had stopped working):
       <https://wiki.archlinux.org/index.php/yubikey#Set_the_enabled_modes>
