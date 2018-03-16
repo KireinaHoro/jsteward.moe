@@ -4,36 +4,38 @@ Modified: 2018-03-17 01:00
 Category: C++
 Tags: c++, language
 Slug: conversion-sequence-precedence-cpp
+Status: published
 
 ## The story
 
 Consider the following code snippet:
 
 ```cpp
+#include <iostream>
+
 class A;
 
 class B { 
     public: 
         B() {} 
 
-        B(A&) { // conversion constructor that takes cv-unqualified A
-            cout << "called B's conversion constructor" << endl; 
+        B(A &) { // conversion constructor that takes cv-unqualified A
+            std::cout << "called B's conversion constructor" << std::endl; 
         } 
 };
 
 class A { 
     public: 
         operator B() const { // conversion operator that takes cv-qualified A
-            cout << "called A's conversion operator" << endl; 
+            std::cout << "called A's conversion operator" << std::endl; 
             return B(); 
         } 
 };
 
-int main()
-{
+int main() {
     A a;
-    B bb = static_cast<B>(a); // who gets called here? case 1
-    B b = A();                // who gets called here? case 2
+    B bb = static_cast<B>(a); // who gets called here? <case 1>
+    B b = A();                // who gets called here? <case 2>
     return 0;
 }
 ```
@@ -53,7 +55,7 @@ though in an unexpected way.
 
 This case is fairly simple.
 
-[`[expr.static.cast/4]`](http://eel.is/c++draft/expr.static.cast#4):
+[`[expr.static.cast/4]`](http://eel.is/c++draft/expr.static.cast#4) (this is clickable; so are other specification references):
 
 > An expression e can be explicitly converted to a type T if [...] overload resolution for a direct-initialization of an object or reference of type T from e would find at least one viable function ([over.match.viable]). If T is a reference type, the effect is the same as performing the declaration and initialization
 >
@@ -116,8 +118,8 @@ If we want to use temporaries for initializing via the conversion constructor, a
 be needed, like this:
 
 ```cpp
-        B(A&&) { // conversion constructor that takes cv-unqualified A as rvalue reference
-            cout << "called B's conversion constructor - rvalue reference" << endl; 
+        B(A &&) { // conversion constructor that takes cv-unqualified A as rvalue reference
+            std::cout << "called B's conversion constructor - rvalue reference" << std::endl; 
         } 
 ```
 
