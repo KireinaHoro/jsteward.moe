@@ -4,3 +4,5 @@ id_ed25519
 .*.swp
 .DS_Store
 */.DS_Store
+**/*~
+*~
