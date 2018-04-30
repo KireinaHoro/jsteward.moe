@@ -1,13 +1,13 @@
 Title: Gentoo GSoC Weekly Report 04/30
 Date: 2018-04-30 12:00
-Modified: 2018-04-30 12:00
+Modified: 2018-04-30 16:30
 Category: GSoC 2018
 Tags: android, gentoo, gsoc
 Slug: weekly-report-0430
 
 ## Preface
 
-According to the schedule planned in the proposal, this week was about getting familiar with Lineage OS building process and install it on the development device. This blog post summarizes the problems I ran into (and successfully fixed) in the process, and makes a brief plan about what will be done in the following week.
+According to the schedule planned in the proposal, this week was about getting familiar with Lineage OS building process and installing it on the development device. This blog post summarizes the work I've done and the problems I ran into (and successfully fixed) in the process, and makes a brief plan about what will be done in the following week.
 
 ## Work done this week
 
@@ -50,15 +50,19 @@ Some compile errors (such as missing semi-colons and `#include`'s) pop up as I e
 
 I've been using Lineage OS before I switched over to Android Beta since the release of Oreo, so TWRP is present on the device. Yet, due to unknown reasons, the updater binary of Lineage OS ROM package had trouble identifying my device as an `angler` device correctly. It kept reporting:
 
-	This package is for "angler" devices; this is a .
+	This package is for device: angler; this device is .
 	
+There should be a device name (e.g. `angler`) before that end mark in the above error message. Seems like the property strings that describe the device are not properly read by the update binary. In fact, the code that generated the above error message (in `META-INF/com/google/android/updater-script` in the ROM package) reads:
+
+	assert(getprop("ro.product.device") == "angler" || getprop("ro.build.product") == "angler" || abort("E3004: This package is for device: angler; this device is " + getprop("ro.product.device") + "."););
+
 The issue was later resolved by flashing the newest version of TWRP (version 3.2.1-0 for `angler` at the time of writing).
 
 Another problem is that the old system (the Android Beta Program build) has encrypted the `userdata` partition with LUKS, resulting in the recovery and the newly-installed system consistently asking for a password to decrypt the partition. As formatting the `userdata` partition after decrypting the partition in recovery only formats the `ext4` filesystem, which was _on top of_ the LUKS partition, I had to wipe the LUKS header in the partition manually in recovery as instructed [here][3]. The key is to execute the following in recovery shell:
 
 	dd if=/dev/zero of=/dev/block/platform/soc.0/f9824900.sdhci/by-name/userdata bs=4096 count=512
 
-Make sure that the partition (block device specified after `of=`) is the correct one. Accidentally wiping critical partitions (e.g. partitions that store the bootloader) can result in a __HARD BRICK__ which would require Qualcomm's tools to repair, which will be an extremely complicated process.
+Make sure that the partition (block device specified after `of=`) is the correct one. Accidentally wiping critical partitions (e.g. partitions that store the bootloader) can result in a __HARD BRICK__ which would require Qualcomm's tools to repair, and that will be an extremely complicated process.
 
 ### Explorations in the Android Build System
 
@@ -81,7 +85,7 @@ Android had a place to store the kernel message buffer for view on the next boot
 
 The next week should be about getting a stage3 onto the Nexus 6P. As the current stage3 tarballs for `arm` looks quite outdated (20161129), I expect that some efforts will be needed to roll it up to match the most up-to-date portage tree.
 
-Another plan is to write a small test program that makes some noise (e.g. printing something to dmesg, firing up the motor engine, or draw something on the screen) upon being executed. By replacing Android init with this program, we can check if home-brewed executables can be ran properly.
+Another plan is to write a small test program that makes some noise (e.g. printing something to dmesg, firing up the motor engine, or draw something on the screen) upon being executed. By replacing Android init with this program, we can check if home-brewed executables can be run properly. And, if that works as expected, I can then start reading the code of Android init, to learn about how it mounts the encrypted root, in order to get ready for loading the GNU/Linux init.
 
 
 [1]: https://developer.android.com/studio/run/win-usb
