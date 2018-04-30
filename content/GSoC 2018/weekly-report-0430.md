@@ -4,6 +4,7 @@ Modified: 2018-04-30 16:30
 Category: GSoC 2018
 Tags: android, gentoo, gsoc
 Slug: weekly-report-0430
+Status: published
 
 ## Preface
 
