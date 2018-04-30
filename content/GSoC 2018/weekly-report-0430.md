@@ -7,7 +7,7 @@ Slug: weekly-report-0430
 
 ## Preface
 
-According to the schedule planned in the proposal, this week was about getting familiar with Lineage OS building process and installing it on the development device. This blog post summarizes the work I've done and the problems I ran into (and successfully fixed) in the process, and makes a brief plan about what will be done in the following week.
+According to the schedule in the proposal, this week was about getting familiar with Lineage OS building process and installing it on the development device. This blog post summarizes the work I've done and the problems I ran into (and successfully fixed) in the process, and makes a brief plan about what will be done in the following week.
 
 ## Work done this week
 
@@ -42,7 +42,7 @@ In this specific case, the configuration I use is
 
 	${KERNEL_SOURCE}/arch/arm64/configs/lineageos_angler_defconfig
 	
-One can issue `make ${BOARD_NAME}_defconfig` followed by `make menuconfig` to customize the kernel configurations. To build the kernel with the configuration tailored to one's needs, he copies the generated `.config` file to override the `defconfig` he picks. Though the generated `.config` file will be far longer than the `defconfig` file, which exactly defines what's needed for the board's functionality, the configuration generated this way will work as well. The Android build system then picks the configuration up for the device to build the kernel. Note that cleaning the repository is required, as stated above.
+One can issue `make ${BOARD_NAME}_defconfig` followed by `make menuconfig` to customize the kernel configurations. To build the kernel with the configuration tailored to one's needs, he copies the generated `.config` file to override the `defconfig` he picks. Though the generated `.config` file will be far longer than the `defconfig` file, which exactly defines what's needed for the board's functionality, the configuration generated this way will work as well. The Android build system then picks the configuration for the device to build the kernel. Note that cleaning the repository is required, as stated above.
 
 Some compile errors (such as missing semi-colons and `#include`'s) pop up as I enable options in kernel config. <del>(This clearly demonstrates Google's poor code quality :/ )</del> I've forked the kernel repository [on GitHub][4] to store my changes to the kernel source.
 
@@ -69,15 +69,15 @@ Make sure that the partition (block device specified after `of=`) is the correct
 After <del>ripgrep'ing</del>examining the AOSP source tree, I've discovered the following information that will be useful for further progress:
 
   * source code for Android init in `system/core/init/`; written in C++
-  * packed initramfs image `ramdisk.img` (gzip-compressed cpio archive, without kernel) in `out/target/product/angler/ramdisk.img`
-  * source directory for packing the initramfs in `boot.img` in `out/target/product/angler/root/`
+  * packed initramfs image `ramdisk.img` (gzip-compressed cpio archive, without kernel) at `out/target/product/angler/ramdisk.img`
+  * source directory for packing the initramfs in `boot.img` at `out/target/product/angler/root/`
   * Makefile for generating the `ninja` rules responsible for packing initramfs at `build/make/core/Makefile`
   
-I've added a hook to the Makefile above, which runs before the image gets packed (by the tool `mkbootimg`), while after the contents of the initramfs get populated. The hook is a bash script at `build/make/core/pre_ramdisk_hook.sh`. The forked `android_build` repository is [here][5], and the related commit is [03ec95b][6].
+I've added a hook to the Makefile above, which runs before the image gets packed (by the tool `mkbootimg`), and after the contents of the initramfs get populated. The hook is a bash script at `build/make/core/pre_ramdisk_hook.sh`. The forked `android_build` repository is [here][5], and the related commit is [03ec95b][6].
 
 ### Android persistent store (previously known as last_kmg)
 
-Android had a place to store the kernel message buffer for view on the next boot, which is useful for debugging boot failures. The location for the store used to be `/proc/last_kmsg`, but it has changed to the following location:
+Android had a place to store the kernel message buffer for view on the next boot, which is useful for debugging boot failures. The location for the store used to be `/proc/last_kmsg`, but it has changed to the following location since Android 6.0:
 
 	/sys/fs/pstore/console-ramoops
 	
@@ -85,7 +85,7 @@ Android had a place to store the kernel message buffer for view on the next boot
 
 The next week should be about getting a stage3 onto the Nexus 6P. As the current stage3 tarballs for `arm` looks quite outdated (20161129), I expect that some efforts will be needed to roll it up to match the most up-to-date portage tree.
 
-Another plan is to write a small test program that makes some noise (e.g. printing something to dmesg, firing up the motor engine, or draw something on the screen) upon being executed. By replacing Android init with this program, we can check if home-brewed executables can be run properly. And, if that works as expected, I can then start reading the code of Android init, to learn about how it mounts the encrypted root, in order to get ready for loading the GNU/Linux init.
+Another task is to write a small test program that makes some noise (e.g. printing something to dmesg, firing up the taptic engine, or draw something on the screen) upon being executed. By replacing Android init with this program, we can check if home-brewed executables can be run properly (i.e. SELinux is not interfering with its execution). And, if that works as expected, I can then start reading the code of Android init, to learn about how it mounts the encrypted partitions, in order to get ready for loading the GNU/Linux init.
 
 
 [1]: https://developer.android.com/studio/run/win-usb
