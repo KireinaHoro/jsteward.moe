@@ -2,7 +2,7 @@ Title: Installing Gentoo in Hyper-V
 Date: 2018-05-05 00:00
 Modified: 2018-05-05 00:00
 Category: Gentoo
-Tag: gentoo, linux, virtualization
+Tags: gentoo, linux, virtualization
 Slug: install-gentoo-in-hyper-v
 Status: published
 
