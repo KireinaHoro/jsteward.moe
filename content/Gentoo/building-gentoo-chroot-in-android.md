@@ -1,6 +1,6 @@
 Title: Building a Gentoo chroot in Android
 Date: 2018-05-04 11:00
-Modified: 2018-05-04 11:00
+Modified: 2018-05-05 23:00
 Category: Gentoo
 Tags: android, gentoo, gsoc
 Slug: building-gentoo-chroot-in-android
@@ -20,7 +20,7 @@ First of all, we need to find somewhere to store our chroot. Connect the phone t
 	angler:/ # mkdir -p /data/gentoo && cd /data/gentoo
 	angler:/data/gentoo #
 
-Then, we need to fetch the `stage3` image corresponding to the architecture--`aarch64` for Nexus 6P. Currently, `aarch64` stages are not stable yet. The current status of Gentoo's ARM64 Project can be found [here][1]. According to the developers on [gentoo-dev](mailto:gentoo-dev@lists.gentoo.org), despite the fact that arm64 is still experimental for Gentoo, development is definitely taking place and we're getting packages keyworded every day. Consequently, arm64 seems to be a better choice than arm.
+Then, we need to fetch the `stage3` image corresponding to the architecture--`aarch64` for Nexus 6P. Currently, `aarch64` stages are not stable yet. The current status of Gentoo's ARM64 Project can be found [here][1]. According to the developers on [gentoo-dev](mailto:gentoo-dev@lists.gentoo.org) in [this email](https://archives.gentoo.org/gentoo-dev/message/9f25d996bcc00e318bdfa2ec4e071be4), despite the fact that arm64 is still experimental for Gentoo, development is definitely taking place and we're getting packages keyworded every day. Consequently, arm64 seems to be a better choice than arm.
 
 As no arm64 profiles are stable as of writing, I'll use the experimental stages, and they're located in `experimental/arm64` in the Gentoo mirror you choose. The link I used is [here][2]. You can either download the tarball on your device directly, or transfer it to the phone via `adb push` after downloading it on your computer. Move the tarball to `/data/gentoo/` for the next step.
 
