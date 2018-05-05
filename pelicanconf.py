@@ -10,7 +10,7 @@ PATH = 'content'
 
 TIMEZONE = 'Asia/Shanghai'
 
-DEFAULT_LANG = 'zh'
+DEFAULT_LANG = 'en'
 
 THEME = 'themes/built-texts'
 
@@ -23,24 +23,25 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-        ('About & Contact', '/pages/about-contact.html'),
-        ('Pelican', 'http://getpelican.com/'),
-        ('Python.org', 'http://python.org/'),
-        )
+    ('About & Contact', '/pages/about-contact.html'),
+    ('Gentoo', 'https://www.gentoo.org'),
+    ('Pelican', 'http://getpelican.com/'),
+    ('Tsinghua University TUNA Association',
+     'https://tuna.moe/'),
+)
 
 # Social widget
 SOCIAL = (
-        ('keybase', 'https://keybase.io/jsteward'),
-        ('telegram', 'https://telegram.me/jsteward'),
-        ('github', 'https://github.com/KireinaHoro'),
-        ('twitter', 'https://twitter.com/KireinaHoro'),
-        ('last.fm','http://www.last.fm/user/KireinaHoro'),
-        )
+    ('github', 'https://github.com/KireinaHoro'),
+    ('telegram', 'https://telegram.me/jsteward'),
+    ('twitter', 'https://twitter.com/KireinaHoro'),
+    ('keybase', 'https://keybase.io/jsteward'),
+)
 
-DEFAULT_PAGINATION = 10
+DEFAULT_PAGINATION = 5
 
 DEFAULT_METADATA = {
-        'status': 'draft',
+    'status': 'draft',
 }
 
 # Uncomment following line if you want document-relative URLs when developing
