@@ -4,6 +4,7 @@ Modified: 2018-05-04 11:00
 Category: GSoC 2018
 Tags: android, gentoo, gsoc, linux
 Slug: weekly-report-0507
+Status: published
 
 ## Preface
 
@@ -11,8 +12,8 @@ This week was about getting the Gentoo stage3 to work on Android (as a subsystem
 
   * [Building a Gentoo chroot in Android][1]
   * [Installing Gentoo in Hyper-V][2]
-  * [TODO: article about replacing `init`][3]
+  * [Replace Android init with test script][3]
   
 [1]: {filename}/Gentoo/building-gentoo-chroot-in-android.md
 [2]: {filename}/Gentoo/install-gentoo-in-hyper-v.md
-[3]: {filename}article-init.md
+[3]: {filename}replace-android-init-with-test-script.md
