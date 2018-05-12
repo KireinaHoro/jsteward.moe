@@ -1,9 +1,10 @@
 Title: Gentoo GSoC Weekly Report 05/14
 Date: 2018-05-12 0:00
-Modified: 2018-05-12 0:00
+Modified: 2018-05-12 13:00
 Category: GSoC 2018
 Tags: android, gentoo, gsoc
 Slug: weekly-report-0514
+Status: published
 
 ## Things done this week
 
@@ -19,7 +20,7 @@ I've ran into problems tackling the native encryption of Android: after spending
 
 ### Bypassing Android force encryption and restructuring userdata partition
 
-As we can't use an encrypted `userdata` for now, and encryption is forced on AOSP for Nexus 6P, we'll need to bypass the policy. The 
+As we can't use an encrypted `userdata` for now, and encryption is forced on AOSP for Nexus 6P, we'll need to bypass the policy. The last section in [the `cryptfs` analysis article][4] ("What next?") describes how to do this. In short, we modify `vold`'s `fstab` so that `vold` won't encrypt the phone on first boot.
 
 The next part is about "chainloading" the real, full-blown `/sbin/init`, which belongs to OpenRC. This is done in several stages:
 
@@ -37,14 +38,34 @@ Note that for `jchroot` to work, several namespace-related config options are ne
 	
 Failing to enable these options will result in `jchroot` (or to say, the `clone(2)`) failing with `EINVAL`.
 
+## Current boot sequence, filesystem structure and current work status
+
+After some discussion with UnderSampled, OxR463 and heroxbd on IRC, I feel it necessary to explain a few things here.
+
+### Boot sequence and where we are now
+
+The boot sequence is of the following stages:
+
+  * bootloader loads `boot.img`, executing the kernel;
+  * kernel executes `/init`, which is `preinit`, in the initramfs that came with `boot.img`;
+  * `preinit` mounts `userdata` and handles mountpoints correctly, then executes Gentoo's `openrc-init`;
+  * OpenRC starts, launching a service that uses `jchroot` to launch Android's init.
+  
+We're currently at the `preinit` stage, trying to launch OpenRC's init.
+
+### Filesystem structure
+
+The final filesystem structure would be like this: Gentoo root sits in `userdata` partition. The path `/var/lib/android` is special: it holds the Android `init` as well as Android mountpoints. When we `jchroot` into `/var/lib/android`, Android init would mount the partition it needs correctly, except for `/data` in the Android root. We'll need to change the `fstab` entry for `userdata` into a bind mount of `/data` (from Android's perspective of view; the real path in `userdata` is `/var/lib/android/data`) to _itself_, thus making `/data` a mountpoint, so as to make `vold` happy. 
+
 ## Work to be done next week
 
-By the end of next week the first stage of my GSoC 2018 project should have been finished: an Android system successfully booting inside a chroot (and namespaces) under OpenRC init, who gets loaded by `preinit`. Several expected problems/projects exist:
+By the end of next week we shall see: an Android system successfully booting inside a chroot (and namespaces) under OpenRC init, who gets loaded by `preinit`. Several expected problems/projects:
 
-  * The filesystem structure in `userdata` needs working out.
-  * If Android `/data` turns into a directory instead of the filesystem root, it will be our responsibility to build Android's mount structure.
+  * `switch_root` into `userdata/gentoo` temporarily to see if OpenRC loads fine. Fix it if it's not working.
+  * Refactor `userdata`, deal with the mountpoints correctly, and edit Android `fstab` accordingly. Android's `fstab` parser may not support bind mounts; we may have to bind-mount it ourselves and remove that line in `fstab` completely.
   * We'll definitely run into problems, thus a serial console through UART (in headphone jack for Nexus'es and Pixels) is necessary; asynchronous `console-ramoops` does not fulfill the requirement for interactions.
-    This requires a headphone-jack UART cable, which was made by @imi415 on Telegram. Thanks a lot!
+  
+   This requires a headphone-jack UART cable, which was made by @imi415 on Telegram. Kudos for @imi415!
 
 [1]: https://github.com/KireinaHoro/preinit_angler
 [2]: {filename}replace-android-init-with-test-script.md
