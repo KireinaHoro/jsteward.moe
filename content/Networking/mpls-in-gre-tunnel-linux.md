@@ -1,6 +1,6 @@
 Title: MPLS in GRE tunnel on Linux with iproute2
 Date: 2017-11-15 18:00
-Modified: 2018-02-06 20:20
+Modified: 2018-05-16 0:00
 Category: Networking
 Tags: networking, gre, mpls, iproute2
 Slug: mpls-in-gre-tunnel-linux
@@ -10,6 +10,32 @@ Status: published
 
 [MPLS](https://en.wikipedia.org/wiki/Multiprotocol_Label_Switching) can be used for prioritizing traffic, which will be used in JSteward Tech's routing policy.
 This article works out how to label packets with MPLS and switch according to packets between two host connected by a GRE tunnel.
+
+## Before you start
+
+Full MPLS support wasn't present in Linux kernel until lately (4.3 at least), so check your kernel version before trying out things in this article; incompatiable kernels will most likely give out the following two types of errors:
+
+	# ip -f mpls route add 101 dev lo
+	RTNETLINK answers: Operation not supported
+	
+... which says by itself pretty much. Another type of error looks like this:
+
+	# sysctl -w net.mpls.conf.foo4.input=1
+	sysctl: cannot stat /proc/sys/net/mpls/conf/foo4/input: No such file or directory
+	
+This means that you haven't loaded the correct kernel modules (`mpls_router` in this case). Userspace tools should get the modules loaded on demand, though; the (most likely non-exhaustive) list for MPLS-related kernel modules are as follows:
+
+  * mpls_router
+  * mpls_gso
+  * mpls_iptunnel
+
+Make sure that you have the suitable kernel as well as the correct set of kernel modules--maybe your Enterprise Linux vendor has back-ported things to older kernels, but I wouldn't be able to help in those cases: contact your vendor for support as you pay them for that. If you use Gentoo (and don't use `genkernel all`, which is evil), try enabling everything related to MPLS to avoid cryptic errors. To tell if your kernel really supports MPLS, issue the following, and you should see output like this for __all__ of your interfaces:
+
+	# sysctl -a --pattern mpls
+	net.mpls.conf.eth0.input = 0
+	net.mpls.conf.eth1.input = 0
+	net.mpls.conf.lo.input = 0
+	net.mpls.platform_labels = 0
 
 ## Step 1: the GRE tunnel
 
