@@ -18,18 +18,30 @@ After visiting @imi415's lab and having the output voltages from the phone measu
 
 ## FT232R
 
-@imi415 suggested that I should try FT232, as it supported 1.8v input; and [this post](http://people.redhat.com/jmcnicol/nexus_debug/) showed that chips from FTDI at 3.3v mode should work fine on Nexus 5X.  As Nexus 5X shouldn't be different from Nexus 6P too much, I purchased a FT232RL TTL board and soldered the headphone cable to some jump wires, and connected them to the FT232RL unit.  Plugging the unit into the computer and firing up PuTTY proved that things worked perfectly.
+@imi415 suggested that I should try FT232, as it supported 1.8v input; and [this post](http://people.redhat.com/jmcnicol/nexus_debug/) showed that chips from FTDI at 3.3v mode should work fine on Nexus 5X.  As Nexus 5X shouldn't be different from Nexus 6P too much, I purchased a FT232RL TTL board and soldered the headphone cable to some jump wires, and connected them to the FT232RL unit.  Plugging the unit into the computer and firing up PuTTY proved that things worked perfectly.  Credit for the solder work goes to @Catofes on Telegram.
 
 ## Pictures
 
-![FT232RL TTL Board]({filename}/images/ft232rl.jpg "FT232RL TTL Board")
+FT232RL TTL Board:
 
-![FT232RL with voltage converter (but didn't work :/)]({filename}/images/ft232rl-with-voltage-converter.jpg "FT232RL with voltage converter (but didn't work :/)")
+![FT232RL TTL Board]({filename}/images/ft232rl.jpg)
 
-![Bypassing the voltage converter]({filename}/images/bypassing-voltage-converter.jpg "Bypassing the voltage converter")
+FT232RL with voltage converter (but didn't work :/):
 
-![Before soldering the wires]({filename}/images/before-soldering-wires-together.jpg "Before soldering the wires")
+![FT232RL with voltage converter (but didn't work :/)]({filename}/images/ft232rl-with-voltage-converter.jpg)
 
-![Final product]({filename}/images/final-product.jpg "Final product")
+Bypassing the voltage converter:
 
-![Console output!]({filename}/images/console-output.jpg "Console output!")
+![Bypassing the voltage converter]({filename}/images/bypassing-voltage-converter.jpg)
+
+Before soldering the wires:
+
+![Before soldering the wires]({filename}/images/before-soldering-wires-together.jpg)
+
+Final product:
+
+![Final product]({filename}/images/final-product.jpg)
+
+Console output!
+
+![Console output!]({filename}/images/console-output.jpg)
