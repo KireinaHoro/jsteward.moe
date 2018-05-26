@@ -251,7 +251,7 @@ If you take a look at the config for LXC, the start-stop hooks, and the `init.rc
   * [Real-Time group scheduling](https://www.kernel.org/doc/Documentation/scheduler/sched-rt-group.txt)
   * [How do I configure LXC to allow the use of SCHED_RR in a container?](https://serverfault.com/questions/630220/how-do-i-configure-lxc-to-allow-the-use-of-sched-rr-in-a-container/632564)
 
-The rest of things (filesystem mounting, etc.) are pretty straightforward.  Note that we need to tell Android (`vold` to be specific) not to touch mounting, by commenting out `fstab` entries for the relevant partitions.  Due to [poorly-written `vold` code without `nullptr` checks](https://android.googlesource.com/platform/system/vold/+/master/cryptfs.cpp#2919), we need an empty entry in Android `fstab`, otherwise `vold` will crash.
+The rest of things (filesystem mounting, etc.) are pretty straightforward.  Note that we need to tell Android (`vold` to be specific) not to touch mounting, by commenting out `fstab` entries for the relevant partitions.  Due to [poorly-written `vold` code without `nullptr` checks](https://android.googlesource.com/platform/system/vold/+/master/cryptfs.cpp#2919), we need an empty entry for `/data` in Android `fstab`, otherwise `vold` will crash.
 
 We bind `/run` from GNU/Linux Android so that the container can talk to the host, informing the host about its states (such as "We're in charger mode: reboot when I finish instead of power off").  `/run` was chosen because it's the place to hold runtime files by convention on a GNU/Linux system.  Read [this article](http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html) for more information.
 
