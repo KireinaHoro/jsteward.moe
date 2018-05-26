@@ -1,9 +1,10 @@
 Title: Starting Android in LXC
-Date: 2018-05-26 11:00
-Modified: 2018-05-26 11:00
+Date: 2018-05-26 13:00
+Modified: 2018-05-26 13:00
 Category: Android
 Tags: android, lxc, gsoc, gentoo
 Slug: starting-android-in-lxc
+Status: published
 
 ## Preface
 
@@ -93,7 +94,7 @@ The process can take a little bit of time to run.  If it's too slow in your case
 
 ### Kernel
 
-According to [LXC on Gentoo Wiki](https://wiki.gentoo.org/wiki/LXC#Kernel_with_the_appropriate_LXC_options_enabled), we need quite many options for LXC's functioning.  I've put how to compile a custom kernel in a separate article: [Building a LXC-ready Android kernel with Gentoo toolchain]({filename}building-lxc-ready-kernel.md).  Follow that article to get a `Image.gz-dtb` file, which is the kernel image that satisfies our needs, and proceed with the following instructions to repack the `preinit` `boot.img`--we no longer need the Android `boot.img` from this point on.
+According to [LXC on Gentoo Wiki](https://wiki.gentoo.org/wiki/LXC#Kernel_with_the_appropriate_LXC_options_enabled), we need quite many options for LXC's functioning.  I've put how to compile a custom kernel in a separate article: [Building a LXC-ready Android kernel with Gentoo toolchain]({filename}building-lxc-ready-kernel.md).  Follow that article to get a `Image.gz-dtb` file, which is the kernel image that satisfies our needs, and proceed with the following instructions to repack the `preinit` `boot.img`--we no longer need the Android `boot.img` to be `boot` from this point on.
 
 	yuki $ cp Image.gz-dtb ~/preinit_angler/out/zImage && cd ~/preinit_angler
 	yuki $ make repack
@@ -177,11 +178,82 @@ umi #
 
 ## Bring Android up in LXC container
 
-Now that we have LXC correctly configured, we can set up the Android container.  Some modifications to Andoid's `fstab.<device>` and `init.rc` are needed for a successful boot.  Some hacks are required to fix some functions, of which we'll discuss in the next section.
+Now that we have LXC correctly configured, we can set up the Android container.  Some modifications to Andoid's `fstab.<device>` and `init.rc` are needed for a successful boot.  Some hacks are required to fix some functions, of which we'll discuss in the next section.  Commands in this section are expected to be executed with Gentoo booted up with `preinit`, not in the chroot from Android.
+
 
 The modified files' patches as well as helper scripts are put together in [a repository on GitHub](https://github.com/KireinaHoro/android-lxc-files).  Make sure that you apply them before continuing.
 
-TODO: Stub
+Place `pre-start.sh`, `post-stop.sh`, and `config` in `/var/lib/lxc/android`.  Make sure that the executable bit is there for the scripts.  Issue the following to see if LXC has recognized the container:
+
+	umi # lxc-info android
+	Name:           android
+	State:          STOPPED
+	
+If everything's going as expected, start the container, and we'll see Android booting up on the device screen.
+
+	umi # lxc-start android
+	umi #
+	
+If the container failed to start, issue the following and then examine `start.log` to see what's wrong:
+
+	umi # lxc-start -l debug -o start.log -n android
+	( ... error output elided ... )
+	umi #
+	
+Verify that things are working, especially the hardware.  In case something's crashing, or the Android framework failed to start at all, connect the phone to the computer via USB and check out `logcat` via ADB (it starts pretty early).  Tombstones at `/data/tombstones` in Android root are usually helpful; consult [this article](https://source.android.com/devices/tech/debug/) for how to read them.
+
+	yuki # adb logcat | less
+	yuki # adb shell
+	angler # cd /data/tombstones
+
+Only some small bits don't work by now, and we'll cover them in the following section.
+
+## Improvements
+
+### Container Auto-start
+
+It's tiresome to attach a serial cable and issue `lxc-start android` to boot Android every time.  Create `lxc.android` service and add it to the `boot` runlevel, as Android takes care of most of the device-specific work, namely networking:
+
+	umi # cd /etc/init.d
+	umi # ln -s lxc lxc.android
+	umi # rc-update add lxc.android boot
+	
+### Dial Home from Android world
+
+Having to attach serial cable to access Gentoo is just too tiresome.  Configure `ssh` so that the Android guest can `dialhome`.
+
+	angler # ssh-keygen -t ed25519 -C android -f /data/ssh/id_ed25519
+
+Enable `sshd` in Gentoo, configure `authorized_keys` for root, and put a little script `dialhome` (available in [`scripts/` in the `android-lxc-files` repository](https://github.com/KireinaHoro/android-lxc-files/tree/master/scripts)) for quick access:
+
+	umi # umask 077
+	umi # mkdir -p ~/.ssh
+	umi # cat /var/lib/android/data/ssh/id_ed25519.pub >> ~/.ssh/authorized_keys
+	umi # cp dialhome /var/lib/android/data/ssh/
+	umi # chmod u+x /var/lib/android/data/ssh/dialhome
+	umi # chown 2000:2000 /var/lib/android/data/ssh/dialhome
+	umi # rc-update add sshd default
+	
+We can now issue `/data/ssh/dialhome` to log into Gentoo.  No more serial cable needed unless something goes wrong.  We can safely disable ADB root access from Android Developer Settings by now.
+
+Note that you can `lxc-attach android` from Gentoo world!  This will launch `/bin/sh`, which is the busybox sh.  You may need to set `PATH` to include `/system/bin` to get Android's utilities.
+
+### Fix Charger Mode
+
+Android's init knows whether it's plugged into the charger while powered off.  If that's the case, it launches `/sbin/charger`, which draws the charging animation on the screen.  Long-pressing the power button causes a restart, and the system will boot into normal Android.  Unfortunately, our LXC stop hooks can't tell if the container ended with a poweroff or a restart, thus we won't be able to exit charger mode unless we unplug the power source.
+
+The solution is quite simple: replace `/sbin/charger` with a simple script that places a marker file in `/run` (which is also GNU/Linux's `/run`), and then call the real charger, which is now `/sbin/charger.real`.  The `post-stop.sh` hook can then reboot if it sees that marker file.  The script is available [here](https://github.com/KireinaHoro/android-lxc-files/blob/master/scripts/charger).
+
+## How It Worked
+
+If you take a look at the config for LXC, the start-stop hooks, and the `init.rc` patch, you'll discover that we needed to correct paths for cgroup pseudo-filesystems and set `rt_runtime_us` RT schedule parameters.  Android uses cgroups heavily as well, and we need to get it correct so that Android doesn't end up writing to the host's cgroup space.  We need to set `rt_runtime_us` to allocate realtime bandwidth to the cgroup, otherwise realtime schedulers will fail.  The following should be helpful to grab a general understanding of group scheduling:
+
+  * [Real-Time group scheduling](https://www.kernel.org/doc/Documentation/scheduler/sched-rt-group.txt)
+  * [How do I configure LXC to allow the use of SCHED_RR in a container?](https://serverfault.com/questions/630220/how-do-i-configure-lxc-to-allow-the-use-of-sched-rr-in-a-container/632564)
+
+The rest of things (filesystem mounting, etc.) are pretty straightforward.  Note that we need to tell Android (`vold` to be specific) not to touch mounting, by commenting out `fstab` entries for the relevant partitions.  Due to [poorly-written `vold` code without `nullptr` checks](https://android.googlesource.com/platform/system/vold/+/master/cryptfs.cpp#2919), we need an empty entry in Android `fstab`, otherwise `vold` will crash.
+
+We bind `/run` from GNU/Linux Android so that the container can talk to the host, informing the host about its states (such as "We're in charger mode: reboot when I finish instead of power off").  `/run` was chosen because it's the place to hold runtime files by convention on a GNU/Linux system.  Read [this article](http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html) for more information.
 
 ## Known Problems
 
