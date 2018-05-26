@@ -1,15 +1,185 @@
 Title: Starting Android in LXC
-Date: 2018-05-26 01:00
-Modified: 2018-05-26 01:00
+Date: 2018-05-26 11:00
+Modified: 2018-05-26 11:00
 Category: Android
 Tags: android, lxc, gsoc, gentoo
 Slug: starting-android-in-lxc
 
 ## Preface
 
-After successfully booting Gentoo [in the previous article]({filename}/Gentoo/booting-gentoo-on-nexus-6p.md), we can move on to launching Android in LXC, which is the last mission in the first period of my GSoC 2018 project.  This article documents the process to bring up Android successfully with most of its functions working; only a few things don't work by now, and they're recorded in the Known Problems section at the end of this article.  Note that while this article strives to provide easy-to-follow instructions, it may not be suitable as a step-by-step tutorial. That is to say, you may encounter problems due to mistakes or things that the author didn't notice.  The author appreciates your understanding when such thing happens; meanwhile, feel free to contact the author by the means listed in the page linked at the bottom of this page.
+After successfully booting Gentoo on Nexus 6P [in the previous article]({filename}/Gentoo/booting-gentoo-on-nexus-6p.md), we can move on to launching Android in LXC, which is the last mission in the first period of my GSoC 2018 project.  This article documents the process to bring up Android successfully with most of its functions working; only a few things don't work by now, and they're recorded in the Known Problems section at the end of this article.  Note that while this article strives to provide easy-to-follow instructions, it may not be suitable as a step-by-step tutorial. That is to say, you may encounter problems due to mistakes or things that the author didn't notice.  The author appreciates your understanding when such things happen; meanwhile, feel free to contact the author by the means listed in the page linked at the bottom of this page.
+
+## Legends
+
+Command prompts in this article starts with the hostname of the machine, followed by a `#` or `$`, denoting if the user executing the command need to be root or not.  The following hostnames have special meanings:
+
+  * `yuki`: the Linux workstation
+  * `umi`: Gentoo Linux on Nexus 6P
+  * `angler`: Android on Nexus 6P
 
 ## Set Up Filesystem for Android
+
+Android directly uses the initramfs as its rootfs and mounts other partitions, namely `userdata`, `system`, `cache`, `persist`, and `vendor`, at mountpoints in `/`.  What we need to do here is to copy Android's rootfs to LXC's rootfs location so that we can launch it later on.  Grab a copy of the Android `boot.img` (not the trimmed `preinit` `boot.img`), unpack it with the [Makefile rules in `preinit` repository](https://github.com/KireinaHoro/preinit_angler/blob/61f8fefb1f027eb09dc6ee291f6f990cf032c624/Makefile#L64), tar it up, and transfer the tarball to the phone via adb.  Remember to enable root access for ADB, which can be found in Developer Options in Android.
+
+	yuki $ adb devices
+	List of devices attached
+	84xxxxxxxxxxxxxx        device
+	
+	yuki $ adb root
+	yuki $ adb shell dd if=/dev/block/bootdevice/by-name/boot | dd of=boot-stock.img
+	( ... output elided ... )
+	yuki $ mv boot-stock.img ~/preinit_angler/initramfs/boot.img && cd ~/preinit_angler
+	yuki $ make unpack
+	( ... output elided ... )
+	yuki $ cd initramfs/root && tar czvf - . | adb shell "cat >/data/android-root.tar.gz"
+	yuki $
+
+Copy the tarball into the Gentoo chroot and enter the chroot.  Create the necessary mountpoints and unpack the root tarball into LXC rootfs.
+
+	yuki $ adb shell
+	angler # /data/gnu/start_chroot
+	angler # mv /data/android-root.tar.gz /data/gnu/root/
+	angler # chroot /data/gnu /bin/su
+	umi # mkdir -p /var/lib/android/{system,vendor,data,system,cache}
+	umi # mkdir -p /var/lib/lxc/android/rootfs
+	umi # tar xvf ~/android-root.tar.gz -C /var/lib/lxc/android/rootfs
+	( ... output elided ... )
+	umi # mkdir -p /var/lib/lxc/android/run
+	umi #
+	
+We need `/run` in Android rootfs to talk to the host for the `charger` hack later on.
+	
+Write the following `fstab` entries to `/etc/fstab` in Gentoo, so that OpenRC will take care of mounts on Gentoo startup.
+
+```
+# Android mounts
+/dev/mmcblk0p43 /var/lib/android/system ext4 ro,barrier=1,inode_readahead_blks=8 0 0
+/dev/mmcblk0p32 /var/lib/android/persist ext4 noatime,nosuid,nodev,barrier=1,data=ordered,nomblk_io_submit 0 0
+/dev/mmcblk0p37 /var/lib/android/vendor ext4 ro,barrier=1,inode_readahead_blks=8 0 0
+/dev/mmcblk0p38 /var/lib/android/cache ext4 noatime,nosuid,nodev,barrier=1,data=ordered,nomblk_io_submit,noauto_da_alloc 0 0
+/dev/mmcblk0p44 /var/lib/android/data ext4 noatime,nosuid,nodev,barrier=1,data=ordered,nomblk_io_submit,noauto_da_alloc,inode_readahead_blks=8 0 0
+
+# Bind into container
+/var/lib/android/system /var/lib/lxc/android/rootfs/system none bind 0 0
+/var/lib/android/persist /var/lib/lxc/android/rootfs/persist none bind 0 0
+/var/lib/android/vendor /var/lib/lxc/android/rootfs/vendor none bind 0 0
+/var/lib/android/cache /var/lib/lxc/android/rootfs/cache none bind 0 0
+/var/lib/android/data /var/lib/lxc/android/rootfs/data none bind 0 0
+/run /var/lib/lxc/android/rootfs/run none bind 0 0
+```
+
+Boot into Gentoo by temporarily booting the `preinit` `boot.img` to check if the partitions are mounted correctly.  Double-check that the device nodes are correct if things go wrong.  Boot back into Android by rebooting.
+
+## Install LXC in Gentoo Linux
+
+LXC is the core suite to boot Android containerized here.  The installation process is in two parts: installing the userspace utilities, and enabling necessary options in the kernel.
+
+### Userspace Utilities
+
+This is not different from installing normal Gentoo packages.  Enter the chroot and install `app-emulation/lxc`:
+
+	yuki $ adb root
+	yuki $ adb shell /data/gnu/start_chroot
+	yuki $ adb shell chroot /data/gnu /bin/su
+	umi # emerge --verbose --autounmask-write=y app-emulation/lxc
+	( ... output elided ... )
+	umi # dispatch-conf
+	( ... output elided ... )
+	umi # emerge --verbose app-emulation/lxc
+	( ... output elided ... )
+	umi #
+	
+The process can take a little bit of time to run.  If it's too slow in your case, consider [setting up a cross build environment](https://wiki.gentoo.org/wiki/Cross_build_environment) per instructions on Gentoo Wiki if you have a Gentoo workstation.  That's out of the scope of this article.
+
+### Kernel
+
+According to [LXC on Gentoo Wiki](https://wiki.gentoo.org/wiki/LXC#Kernel_with_the_appropriate_LXC_options_enabled), we need quite many options for LXC's functioning.  I've put how to compile a custom kernel in a separate article: [Building a LXC-ready Android kernel with Gentoo toolchain]({filename}building-lxc-ready-kernel.md).  Follow that article to get a `Image.gz-dtb` file, which is the kernel image that satisfies our needs, and proceed with the following instructions to repack the `preinit` `boot.img`--we no longer need the Android `boot.img` from this point on.
+
+	yuki $ cp Image.gz-dtb ~/preinit_angler/out/zImage && cd ~/preinit_angler
+	yuki $ make repack
+	( ... output elided ... )
+	yuki $
+	
+The final `preinit` `boot.img` should be located at `out/boot-mod.img`.  Boot the phone into `fastboot`, then _flash_ the new image.
+
+	yuki $ fastboot devices
+	84xxxxxxxxxxxxxx        fastboot
+	yuki $ fastboot flash boot out/boot-mod.img
+	( ... output elided ... )
+	yuki $
+	
+Boot into Gentoo by choosing "Start" in `fastboot`.  Run `lxc-checkconfig` to see if our kernel is suitable.  Not everything's required; as long as you don't see red "missing" on items other than systemd, you're good to go.
+
+```
+umi # lxc-checkconfig
+--- Namespaces ---
+Namespaces: enabled
+Utsname namespace: enabled
+Ipc namespace: enabled
+Pid namespace: enabled
+User namespace: enabled
+Network namespace: enabled
+Multiple /dev/pts instances: enabled
+
+--- Control groups ---
+Cgroups: enabled
+
+Cgroup v1 mount points:
+/sys/fs/cgroup/openrc
+/sys/fs/cgroup/cpuset
+/sys/fs/cgroup/debug
+/sys/fs/cgroup/cpu
+/sys/fs/cgroup/cpuacct
+/sys/fs/cgroup/devices
+/sys/fs/cgroup/freezer
+
+Cgroup v2 mount points:
+
+
+Cgroup v1 systemd controller: missing
+Cgroup v1 clone_children flag: enabled
+Cgroup device: enabled
+Cgroup sched: enabled
+Cgroup cpu account: enabled
+Cgroup memory controller: missing
+Cgroup cpuset: enabled
+
+--- Misc ---
+Veth pair device: enabled, not loaded
+Macvlan: enabled, not loaded
+Vlan: missing
+Bridges: enabled, not loaded
+Advanced netfilter: enabled, not loaded
+CONFIG_NF_NAT_IPV4: enabled, not loaded
+CONFIG_NF_NAT_IPV6: missing
+CONFIG_IP_NF_TARGET_MASQUERADE: enabled, not loaded
+CONFIG_IP6_NF_TARGET_MASQUERADE: missing
+CONFIG_NETFILTER_XT_TARGET_CHECKSUM: missing
+CONFIG_NETFILTER_XT_MATCH_COMMENT: enabled, not loaded
+FUSE (for use with lxcfs): enabled, not loaded
+
+--- Checkpoint/Restore ---
+checkpoint restore: missing
+CONFIG_FHANDLE: enabled
+CONFIG_EVENTFD: enabled
+CONFIG_EPOLL: enabled
+CONFIG_UNIX_DIAG: enabled
+CONFIG_INET_DIAG: enabled
+CONFIG_PACKET_DIAG: enabled
+CONFIG_NETLINK_DIAG: enabled
+File capabilities:
+
+Note : Before booting a new kernel, you can check its configuration
+usage : CONFIG=/path/to/config /usr/bin/lxc-checkconfig
+
+umi #
+```
+
+## Bring Android up in LXC container
+
+Now that we have LXC correctly configured, we can set up the Android container.  Some modifications to Andoid's `fstab.<device>` and `init.rc` are needed for a successful boot.  Some hacks are required to fix some functions, of which we'll discuss in the next section.
+
+The modified files' patches as well as helper scripts are put together in [a repository on GitHub](https://github.com/KireinaHoro/android-lxc-files).  Make sure that you apply them before continuing.
 
 TODO: Stub
 
@@ -17,7 +187,7 @@ TODO: Stub
 
 The (non-exhaustive) list of problems as of 2018-05-26:
 
-  * Reboot function in Android system (along with Advanced Reboot) doesn't work.  This is because Android system doesn't actually poweroff the system or reboot it when inside a container: it simply `exit(0)`, making it impossible for the GNU/Linux world (at least for now) to tell how the container stopped.  The current behavior is that the system will power down regardless of whether "Poweroff" or "Reboot" (or other reboot options, e.g. Reboot to bootloader) has been selected in Android.
+  * Reboot function in Android system (along with Advanced Reboot) doesn't work.  This is because Android system doesn't actually poweroff the system or reboot it when inside a container: it simply performs `exit(0)`, making it impossible for the GNU/Linux world (at least for now) to tell how the container stopped.  The current behavior is that the system will power down regardless of whether "Poweroff" or "Reboot" (or other reboot options, e.g. Reboot to bootloader) has been selected in Android.
     * `charger` suffers from similar problems, though a workaround works pretty well; see The Charger section above.
 	* This may be fixed by patching Android framework so that it signals the host about how it ended, by placing a file in the `/run` filesystem bind-mounted from the host.  The host then decides whether to reboot or to poweroff according to the signal file.  This is exactly how `charger`'s problem gets fixed.
   * Boot is unbearably slow.  Charging while powered off takes a long time to show the charging animation as well.
