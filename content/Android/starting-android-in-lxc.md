@@ -202,8 +202,8 @@ If the container failed to start, issue the following and then examine `start.lo
 	
 Verify that things are working, especially the hardware.  In case something's crashing, or the Android framework failed to start at all, connect the phone to the computer via USB and check out `logcat` via ADB (it starts pretty early).  Tombstones at `/data/tombstones` in Android root are usually helpful; consult [this article](https://source.android.com/devices/tech/debug/) for how to read them.
 
-	yuki # adb logcat | less
-	yuki # adb shell
+	yuki $ adb logcat | less
+	yuki $ adb shell
 	angler # cd /data/tombstones
 
 Only some small bits don't work by now, and we'll cover them in the following section.
