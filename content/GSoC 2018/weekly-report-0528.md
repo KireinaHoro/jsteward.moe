@@ -8,7 +8,7 @@ Status: published
 
 ## Summary
 
-This week was planned as the last week for the first (Preparation) and second (Gaining control of the system) parts in my [GSoC 2018 proposal](https://docs.google.com/document/d/1v3yA4rkex5DGiPmdlXOSse5QZrZAL8QDJFNY2fFAMRY/edit).  I'm pleased to announce that I've successfully hit the target as planned: a video demonstration of the work posted on Twitter can be watched [here](https://twitter.com/KireinaHoro/status/1000328318497902593). 
+This week was planned as the last week for the first (Preparation) and second (Gaining control of the system) parts in my [GSoC 2018 proposal](https://docs.google.com/document/d/1v3yA4rkex5DGiPmdlXOSse5QZrZAL8QDJFNY2fFAMRY/edit).  I'm pleased to announce that I've successfully hit the target as planned: a video demonstration posted on Twitter can be watched [here](https://twitter.com/KireinaHoro/status/1000328318497902593). 
 
 Reading and following the instructions in the following articles in order would form a complete, detailed tutorial to reproduce the work up to this point:
 
