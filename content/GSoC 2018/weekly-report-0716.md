@@ -1,4 +1,4 @@
-Title: Gentoo GSoC Weekly Report 07/09
+Title: Gentoo GSoC Weekly Report 07/16
 Date: 2018-07-16 5:00
 Modified: 2018-07-16 5:00
 Category: GSoC 2018
@@ -13,7 +13,7 @@ This week is mainly about decoupling toolchain from Android Build System so as t
   * Java (Android Platform, apps)
   * Go (build system, i.e. Soong & Blueprint)
 
-As of current, the entire source tree is mounted onto the phone via NFS.  Tweak kernel config to enable NFS, emerge `net-fs/nfs-utils`, then mount the filesystem.  Refer to `nfs(5)` for more information.  The articles in this report assume that the AOSP tree is mounted at `/import/lineageos`; adjust paths accordingly if this is not the case.
+As of current, the entire source tree is mounted onto the phone via NFS.  Tweak kernel config to enable NFS, emerge `net-fs/nfs-utils`, then mount the filesystem.  Refer to `nfs(5)` for more information.  The articles in this report assume that the AOSP tree is mounted at `/import/lineageos`.
 
 The last week's work sums up into the following two articles:
 
