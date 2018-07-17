@@ -8,7 +8,7 @@ Status: published
 
 ## The story
 
-It has been a while since [I got my Yubikey from Harry Chen]({filename}/General/meet-yubikey.md).  Now that I'm back working on Gentoo, so time to explore functions of the Yubikey on Linux.  Instead of just using the Yubikey as a OpenPGP card, its [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor) function can serve more than simply logging you into Google.  In this article, we'll show how to make the Yubikey a convenient and secure login token for Linux systems, enabling you to log into the system with a plug and a touch, and lock the session when the token is removed.
+It has been a while since [I got my Yubikey from Harry Chen]({filename}/General/meet-yubikey.md).  Now that I'm back working on Gentoo, so it is time to explore functions of the Yubikey on Linux.  Instead of just using the Yubikey as a OpenPGP card, its [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor) function can serve more than simply logging you into Google.  In this article, we'll show how to make the Yubikey a convenient and secure login token for Linux systems, enabling you to log into the system with a plug and a touch, and lock the session when the token is removed.
 
 ## U2F capability for PAM
 
@@ -44,7 +44,7 @@ Just above the following existing line in the file:
 
     auth        required    pam_unix.so try_first_pass likeauth nullok
 
-**Note:** the `cue` parameter makes the module display a prompt "Please touch the device." when it is waiting for a response so that the user does not mistaken it as the system has hung.
+**Note:** the `cue` parameter makes the module display a prompt "Please touch the device." when it is waiting for a response so that the user does not mistake it as the system has hung.
 
 This enables you to authenticate with a Yubikey without the need of user passwords.  To use the Yubikey as a 2FA tool, change `sufficient` to `required`.  However, this will result in failed authentication when the Yubikey is not present (and touched in time).
 
