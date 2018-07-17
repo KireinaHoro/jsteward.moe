@@ -4,6 +4,7 @@ Modified: 2018-07-16 5:00
 Category: GSoC 2018
 Tags: android, gentoo, gsoc
 Slug: weekly-report-0716
+Status: published
 
 ## Summary
 
@@ -22,4 +23,4 @@ The last week's work sums up into the following two articles:
   * [Using distcc to speed up builds on phone]({filename}/Gentoo/distcc-speed-up.md): speed up Portage builds on phone with `distccd` running on the laptop.
   * [C/C++ Toolchain for Android Build on aarch64 (WIP)]({filename}/Android/toolchain-for-android.md): attempt to get the set of toolchains for building Android on aarch64.
 
-Currently there are some blocking obstacles, and I'm trying to figure out how to work around them.  They are discussed in details in the articles above.
+This week did not achieve any significant milestones; instead, several obstacles are discovered.  They are discussed in the relative articles.

@@ -4,6 +4,11 @@ Modified: 2018-07-15 12:00
 Category: Android
 Tags: android, toolchain, build
 Slug: aarch64-build-host
+Status: published
+
+## Disclaimer
+
+This article is a *stub*.  This means that it may only serve status report purposes; it may contain severe scientific fallacies and/or inappropriate language, or have missing sections of information.  In case of disagreement on previous point, **cease consumption/utilization of content in this webpage immediately**.
 
 ## Preface
 
@@ -16,7 +21,7 @@ We need to add `aarch64` and `arm` (32bit variant) toolchain support into the bu
 
 # Get the build system to recognize aarch64 as a valid HOST arch
 
-The repository [`build/make`](https://github.com/KireinaHoro/android_build) holds core makefiles that describe how the build system works.  The following code defines the `HOST_ARCH` section for the build host:
+The repository [`build/make`](https://github.com/KireinaHoro/android_build) holds core makefiles that describe how the build system works.  The following code in `build/make/core/envsetup.mk` defines the `HOST_ARCH` section for the build host:
 
 ```make
 # HOST_ARCH
