@@ -56,7 +56,7 @@ angler
     * For devices that does not support encryption or have the Gentoo root in a partition that's not encrypted, this script should just print a notice and return 0.
     * **Warn users about data wipe and wait for 10 seconds for a Ctrl-C!**
   * `fstab.android` is appended to the Gentoo fstab and contain mountpoints that are necessary for Android.
-    * Android's `vold` should not handle any mounts any more; make sure all required mounts are present.
+    * Android's `vold` should not handle any internal mounts any more (external mounts such as OTG or SD card may still be managed by `vold`); make sure all required mounts are present.
     * It is strongly recommended to mount to `/var/lib/android` and then bind into the LXC rootfs for ease when accessing the Android partitions and extra security.  Refer to the example `fstab.android` file for `angler` to get a better understanding of this.
   * `patches` holds patches that will be applied to the real Android rootfs via `patch -p0`, extracted from the current boot.img present on the device.
     * Disable all partition mounts in `fstab.$DEVICE.patch` or equivalent file.
