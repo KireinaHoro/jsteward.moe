@@ -4,6 +4,7 @@ Modified: 2018-07-27 23:00
 Category: SharkBait
 Tags: sharkbait, android, gsoc
 Slug: sharkbait-porters-guide
+Status: published
 
 ## Welcome, porters!
 
@@ -11,8 +12,8 @@ This article is intended for porters who want to add SharkBait support for a dev
 
   * Preinit.  [repository home](https://github.com/KireinaHoro/preinit)
   * SharkBait-setup. [repository home](https://github.com/KireinaHoro/sharkbait-setup)
-  * Kernel sources. (`sys-kernel/${BOARD_NAME}-sources`)
-  * Kernel headers. (`sys-kernel/linux-headers-${BSP_VERSION}`)
+  * Kernel sources. (`sys-kernel/${BOARD_NAME}-sources`) [example](https://github.com/KireinaHoro/android/tree/master/sys-kernel/angler-sources)
+  * Kernel headers. (`sys-kernel/linux-headers-${BSP_VERSION}`) [example](https://github.com/KireinaHoro/android/tree/master/sys-kernel/liunx-headers)
 
 ## Preinit
 
@@ -64,4 +65,19 @@ angler
 
 ## Kernel sources
 
-*WIP*
+The kernel source package of a device packages the source tree from the vendor.  A ebuild for `sys-kernel/${BOARD_NAME}-sources` is required; read the [ebuild for `angler-sources`](https://github.com/KireinaHoro/android/blob/master/sys-kernel/angler-sources/angler-sources-3.10.73.ebuild) for reference.  Only the package name, version, and the git repo URL would require adapting; the other parts of the ebuild do not need modification.
+
+The following modifications on the source tree are required for a working kernel:
+
+  * Apply [this patch](https://github.com/KireinaHoro/android_kernel_huawei_angler/commit/be819350157b2aadcbc8db7001119130f0e51bad.patch) on the tree to enable `installkernel` function.
+  * Supply a valid `defconfig` with LXC features enabled.  See [the example for angler](https://github.com/KireinaHoro/android_kernel_huawei_angler/blob/sharkbait/arch/arm64/configs/sharkbait_angler_defconfig) and [LXC on Gentoo Wiki](https://wiki.gentoo.org/wiki/LXC#Kernel_options_required) for reference.
+  * Make sure that the kernel **compiles** and **boots correctly** with (relatively) new compilers from Gentoo.
+  * Regularly merge upstream changes.
+
+## Kernel headers
+
+Kernel headers that match the device kernel source ease the process of compiling cross-compile toolchains for Android targets.  The [ebuild for `angler`](https://github.com/KireinaHoro/android/blob/master/sys-kernel/linux-headers/linux-headers-3.10.73.ebuild) should be a clear example, with only the need to modify the version number and the git repo URL.
+
+## Test the port
+
+Make sure the port boots correctly.  You may need a serial console to debug boot failures.  Also, check that all the hardware functions work properly (camera, bluetooth, etc.); if that's not the case point it out when submitting a merge request so that we can look into the issue.  Happy hacking!
