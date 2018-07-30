@@ -26,7 +26,7 @@ This part defaults to using `aarch64-linux-android` as the target and using the 
 
 ## Set up GCC for target
 
-GCC is needed for cross compiling with Clang/LLVM.  Follow [this article on GCC cross-compiling for Android]({filename}toolchain-for-aarch64-linux-android.html) to get a working copy of cross GCC.  This should get you through the comment block that reads:
+GCC is needed for cross compiling with Clang/LLVM.  Follow [this article on GCC cross-compiling for Android]({filename}toolchain-for-aarch64-linux-android.md) to get a working copy of cross GCC.  This should get you through the comment block that reads:
 
 ```bash
 # install GNU binutils
