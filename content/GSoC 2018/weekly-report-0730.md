@@ -14,7 +14,7 @@ The last week was about writing guides and automatic setup scripts for users.  T
 
 The following articles have been added to the blog:
 
-  * [Clang/LLVM toolchain with sanitizers support for Android]({filename}/Android/toolchain-clang-llvm-with-sanitiazers-for-android.md)
+  * [Clang/LLVM toolchain with sanitizers support for Android]({filename}/Android/toolchain-clang-llvm-with-sanitizers-for-android.md)
   * [SharkBait User Guide]({filename}/SharkBait/sharkbait-user-guide.md)
   * [SharkBait Porter's Guide]({filename}/SharkBait/sharkbait-porters-guide.md)
 
