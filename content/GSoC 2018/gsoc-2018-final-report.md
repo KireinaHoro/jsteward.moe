@@ -35,4 +35,48 @@ The build logic for AOSP targets is described in `Android.mk` and `Android.bp` f
 
 ## Documentation Work
 
+Development details have been kept by blog articles that explain work done on specific topics.  These articles form the weekly reports of progress.  The [user guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_User_Guide) and [porter's guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_User_Guide) have been created on Gentoo Wiki to serve as official documentations for the project.
 
+## Community Building
+
+Regular discussion about the project takes place every Saturday at 2:00 AM UTC time in #shark-bait at Freenode IRC.  Tyson Tan, the designer for the KDE mascot, have created a mascot and a logo for the project.  A website [shark-bait.org](https://www.shark-bait.org/) that serves as a portal and development blog has been created by my fellow developers that helped me work on the project.
+
+## Work left to be done
+
+The GSoC period is somewhat short for a massive project to restructure Android like this, and many of the things that were originally planned are not finished yet.  They will eventually get handled as the project evolves.
+
+### Binary artifacts in the toolchain
+
+As a sensible way to build Bionic separately has not been worked out yet, the `libc` components in the toolchains created are copied from a live Android system.  Proper build method of Bionic is required to eliminate copying object files in creating the toolchain.
+
+### Android Build system
+
+The manually-created toolchains have to be plugged into the Android build system to enable native building on AArch64.  Many parts of the build system currently do not make clear distinction between host OS and architecture, assuming that the host to be an x86 system.  Work is needed to rework these parts and enable the use of system toolchains instead of prebuilt ones.
+
+### Dependency relationship between AOSP modules
+
+The AOSP sources are modularized and support incremental, reproducible building of the modules, but the dependency relationship between modules are implicit and dynamically resolved by the build system during build.  To separately build modules, the dependency relationship needs to be clear so that the dependencies are not built multiple times.
+
+### Eclass for Android build system functions
+
+The Android build systems expose functions to build modules.  The functions should be wrapped in a eclass to provide a consistent interface for ebuilds for Android components.
+
+### Support for more devices
+
+Currently, the Portage-powered Android project only supports two devices: Huawei Nexus 6P and ASUS *TODO*.  Support for more and newer devices is needed.
+
+## Projects created during GSoC 2018
+
+  * [Preinit](https://github.com/KireinaHoro/preinit)
+  * [Installkernel](https://github.com/KireinaHoro/installkernel)
+  * [SharkBait-setup](https://github.com/KireinaHoro/sharkbait-setup)
+
+## Acknowledgement
+
+I appreciate the guidance from my mentor Benda Xu very much.  He shows great passion and enthusiasm in my project while still gives me great freedom to determine how the project would go when issues occur.  His extreme patience and timely help ensured the success of my GSoC 2018 project.
+
+Stephen Christie and Lucas Ramage actively participated in the weekly discussion that takes place in the #shark-bait channel, maintain the project website, and providing crucial insights when I run into tough issues.  Stephen also contacted the artist, Tyson Tan, who created the KDE mascot, to create a logo and a mascot for the project.  Thanks a lot.  Also, I would like to show my gratefulness for Tyson for creating the cute, lovely mascot Mako.  She exactly represents what we imagined about her.
+
+I would also like to thank the Tsinghua University TUNA Association and its energetic members for providing me with a high-quality environment to make technical discussions.  Many times when I was stuck with a problem we heatedly discuss, and complicated issues get resolved easily.
+
+Finally, thanks to all the people who have encouraged, commented on, or criticized on my project.  Hope that my effort can make Android and Gentoo better platforms, and even better, the world a better place.
