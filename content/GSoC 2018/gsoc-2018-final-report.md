@@ -4,6 +4,7 @@ Modified: 2018-08-02 8:00
 Category: GSoC 2018
 Tags: gsoc, gentoo
 Slug: gsoc-2018-final-report
+Status: published
 
 ## Overview
 
@@ -15,7 +16,7 @@ This part is based on the work of [the Gentoo ARM64 Project](https://wiki.gentoo
 
 ## Manage device kernel sources and headers with Portage
 
-Android devices use kernel sources that are heavily patched to drive the vendor-specific devices, and in most situations these patches will never be submitted to the main Linux kernel source tree.  As a result, it is crucial to use the kernel source tree dedicated to the device.  Ebuilds have been created in category `sys-kernel` in the [proj/android.git](https://gitweb.gentoo.org/proj/android.git/) overlay.
+Android devices use kernel sources that are heavily patched to drive the vendor-specific devices, and the patches may never be submitted to the main Linux kernel source tree.  Consequently, it is crucial to use the kernel source tree dedicated to the device.  Ebuilds have been created in category `sys-kernel` in the [proj/android.git](https://gitweb.gentoo.org/proj/android.git/) overlay.
 
 Due to differences between the Android bootloader and regular bootloaders for GNU/Linux systems, a plugin to the kernel build system, [installkernel](https://github.com/KireinaHoro/installkernel), which serves to correctly install the kernel automatically, has been created.  Installkernel packs the kernel and preinit files into a `boot.img` and flashes it to the correct partition.
 
@@ -28,10 +29,6 @@ The Android system is started as a guest in LXC in Gentoo.  As the Android files
 ## Toolchain for Android system target
 
 Toolchains that run on different host architectures is important for building Android system natively on the device.  [GCC](https://jsteward.moe/toolchain-for-aarch64-linux-android.html) and [LLVM](https://jsteward.moe/toolchain-clang-llvm-with-sanitiazers-for-android.html) cross-compile toolchains for Android `aarch64-linux-android` target have been reproduced without Google's obscured scripts, which greatly helps to building Android on an AArch64 host, specifically the Android device itself.
-
-## Separating Android build logic from the repository
-
-The build logic for AOSP targets is described in `Android.mk` and `Android.bp` files, which gets parsed and executed by the [`android_build`](https://github.com/LineageOS/android_build) and [`android_build_soong`](https://github.com/LineageOS/android_build_soong) systems.  The two systems get separated from the AOSP repositories, which will ease the process of modular builds managed by Portage.
 
 ## Documentation Work
 
@@ -63,13 +60,27 @@ The Android build systems expose functions to build modules.  The functions shou
 
 ### Support for more devices
 
-Currently, the Portage-powered Android project only supports two devices: Huawei Nexus 6P and ASUS *TODO*.  Support for more and newer devices is needed.
+Currently, the Portage-powered Android project only supports two devices: Huawei Nexus 6P and ASUS ZenPhone.  Support for more and newer devices is needed.
 
 ## Projects created during GSoC 2018
 
   * [Preinit](https://github.com/KireinaHoro/preinit)
   * [Installkernel](https://github.com/KireinaHoro/installkernel)
   * [SharkBait-setup](https://github.com/KireinaHoro/sharkbait-setup)
+
+## Code and documentation merged upstream
+
+  * [Commits in proj/gentoo.git](https://gitweb.gentoo.org/proj/android.git/log/)
+  * Pages on Gentoo Wiki:
+    * [Starting Android in LXC](https://wiki.gentoo.org/wiki/User:Jsteward/Starting_Android_in_LXC)
+    * [Building a toolchain for aarch64-linux-android](https://wiki.gentoo.org/wiki/User:Jsteward/Building_a_toolchain_for_aarch64-linux-android)
+    * [Clang/LLVM toolchain with sanitizers support for Android](https://wiki.gentoo.org/wiki/User:Jsteward/Clang_toolchain_with_sanitizers_support_for_Android)
+    * [SharkBait User Guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_User_Guide)
+    * [SharkBait Porter's Guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_Porter%27s_Guide)
+
+## GSoC reports archive
+
+[Category GSoC 2018](https://jsteward.moe/category/gsoc-2018.html)
 
 ## Acknowledgement
 
