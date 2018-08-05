@@ -8,7 +8,7 @@ Status: published
 
 ## Overview
 
-The project is still being worked on.  Due to overly-optimistic estimation of the time needed to work on the Android build system, not all the objectives originally planned in the proposal have been finished.  The project itself, however, is going pretty smoothly and the work is expected to continue despite the finish of the GSoC program.
+The project is still being worked on.  Due to the overly-optimistic estimation of the time needed to work on the Android build system, not all the objectives originally planned in the proposal have been finished.  The project itself, however, is going pretty smoothly and the work is expected to continue despite the finish of the GSoC program.
 
 ## Boot Gentoo system on Android hardware -- Preinit
 
@@ -20,23 +20,23 @@ Android devices use kernel sources that are heavily patched to drive the vendor-
 
 Due to differences between the Android bootloader and regular bootloaders for GNU/Linux systems, a plugin to the kernel build system, [installkernel](https://github.com/KireinaHoro/installkernel), which serves to correctly install the kernel automatically, has been created.  Installkernel packs the kernel and preinit files into a `boot.img` and flashes it to the correct partition.
 
-Using the Android kernel headers matter when building Android components natively on the device.  Ebuilds for kernel headers with version corresponding to the kernel sources have been created in the `sys-kernel` category as well, and the user is recommended to use the correct version of kernel headers.
+Using the Android kernel headers matter when building Android components natively on the device.  Ebuilds for kernel headers with the version corresponding to the kernel sources have been created in the `sys-kernel` category as well, and the user is recommended to use the correct version of kernel headers.
 
-## Start Android in container for phone functionality
+## Start Android in a container for phone functionality
 
 The Android system is started as a guest in LXC in Gentoo.  As the Android filesystem structure differs from GNU/Linux greatly and some paths overlap, keeping the Android filesystem tree in a separate place is desired rather than mixing them together.  The project [SharkBait-setup](https://github.com/KireinaHoro/installkernel) has been created to automatically set up a vanilla Android device with Gentoo chroot available as a Portage-powered Android system.
 
 ## Toolchain for Android system target
 
-Toolchains that run on different host architectures is important for building Android system natively on the device.  [GCC](https://jsteward.moe/toolchain-for-aarch64-linux-android.html) and [LLVM](https://jsteward.moe/toolchain-clang-llvm-with-sanitiazers-for-android.html) cross-compile toolchains for Android `aarch64-linux-android` target have been reproduced without Google's obscured scripts, which greatly helps to building Android on an AArch64 host, specifically the Android device itself.
+Toolchains that run on different host architectures is important for building the Android system natively on the device.  [GCC](https://jsteward.moe/toolchain-for-aarch64-linux-android.html) and [LLVM](https://jsteward.moe/toolchain-clang-llvm-with-sanitiazers-for-android.html) cross-compile toolchains for Android `aarch64-linux-android` target have been reproduced without Google's obscured scripts, which greatly helps in building Android on an AArch64 host, specifically the Android device itself.
 
 ## Documentation Work
 
-Development details have been kept by blog articles that explain work done on specific topics.  These articles form the weekly reports of progress.  The [user guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_User_Guide) and [porter's guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_User_Guide) have been created on Gentoo Wiki to serve as official documentations for the project.
+Development details have been kept by blog articles that explain work done on specific topics.  These articles form the weekly reports of progress.  The [user guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_User_Guide) and [porter's guide](https://wiki.gentoo.org/wiki/User:Jsteward/SharkBait_User_Guide) have been created on Gentoo Wiki to serve as official documentation for the project.
 
 ## Community Building
 
-Regular discussion about the project takes place every Saturday at 2:00 AM UTC time in #shark-bait at Freenode IRC.  Tyson Tan, the designer for the KDE mascot, have created a mascot and a logo for the project.  A website [shark-bait.org](https://www.shark-bait.org/) that serves as a portal and development blog has been created by my fellow developers that helped me work on the project.
+Regular discussion about the project takes place every Saturday at 2:00 AM UTC time in #shark-bait at Freenode IRC.  Tyson Tan, the designer for the KDE mascot, have created a mascot and a logo for the project.  A website [shark-bait.org](https://www.shark-bait.org/) that serves as a portal and development blog has been created by fellow developers that helped me work on the project.
 
 ## Work left to be done
 
@@ -48,15 +48,15 @@ As a sensible way to build Bionic separately has not been worked out yet, the `l
 
 ### Android Build system
 
-The manually-created toolchains have to be plugged into the Android build system to enable native building on AArch64.  Many parts of the build system currently do not make clear distinction between host OS and architecture, assuming that the host to be an x86 system.  Work is needed to rework these parts and enable the use of system toolchains instead of prebuilt ones.
+The manually-created toolchains have to be plugged into the Android build system to enable native building on AArch64.  Many parts of the build system currently do not make a clear distinction between host OS and architecture, assuming that the host to be an x86 system.  Work is needed to rework these parts and enable the use of system toolchains instead of prebuilt ones.
 
 ### Dependency relationship between AOSP modules
 
-The AOSP sources are modularized and support incremental, reproducible building of the modules, but the dependency relationship between modules are implicit and dynamically resolved by the build system during build.  To separately build modules, the dependency relationship needs to be clear so that the dependencies are not built multiple times.
+The AOSP sources are modularized and support incremental, reproducible building of the modules, but the dependency relationship between modules are implicit and dynamically resolved by the build system during the build.  To separately build modules, the dependency relationship needs to be clear so that the dependencies are not built multiple times.
 
 ### Eclass for Android build system functions
 
-The Android build systems expose functions to build modules.  The functions should be wrapped in a eclass to provide a consistent interface for ebuilds for Android components.
+The Android build systems expose functions to build modules.  The functions should be wrapped in an eclass to provide a consistent interface for ebuilds for Android components.
 
 ### Support for more devices
 
@@ -82,7 +82,7 @@ Currently, the Portage-powered Android project only supports two devices: Huawei
 
 [Category GSoC 2018](https://jsteward.moe/category/gsoc-2018.html)
 
-## Acknowledgement
+## Acknowledgment
 
 I appreciate the guidance from my mentor Benda Xu very much.  He shows great passion and enthusiasm in my project while still gives me great freedom to determine how the project would go when issues occur.  His extreme patience and timely help ensured the success of my GSoC 2018 project.
 
@@ -90,4 +90,4 @@ Stephen Christie and Lucas Ramage actively participated in the weekly discussion
 
 I would also like to thank the Tsinghua University TUNA Association and its energetic members for providing me with a high-quality environment to make technical discussions.  Many times when I was stuck with a problem we heatedly discuss, and complicated issues get resolved easily.
 
-Finally, thanks to all the people who have encouraged, commented on, or criticized on my project.  Hope that my effort can make Android and Gentoo better platforms, and even better, the world a better place.
+Finally, thanks to all the people who have encouraged, commented on, or criticized my project.  Hope that my effort can make Android and Gentoo better platforms, and even better, the world a better place.
