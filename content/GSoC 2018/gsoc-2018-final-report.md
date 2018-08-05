@@ -48,7 +48,7 @@ As a sensible way to build Bionic separately has not been worked out yet, the `l
 
 ### Android Build system
 
-The manually-created toolchains have to be plugged into the Android build system to enable native building on AArch64.  Many parts of the build system currently do not make a clear distinction between host OS and architecture, assuming that the host to be an x86 system.  Work is needed to rework these parts and enable the use of system toolchains instead of prebuilt ones.
+The manually-created toolchains have to be plugged into the Android build system to enable native building on AArch64.  Many parts of the build system currently do not make a clear distinction between host OS and architecture, assuming that the host to be an x86 system.  Work is needed to refactor these parts and enable the use of system toolchains instead of prebuilt ones.
 
 ### Dependency relationship between AOSP modules
 
@@ -80,7 +80,7 @@ Currently, the Portage-powered Android project only supports two devices: Huawei
 
 ## GSoC reports archive
 
-[Category GSoC 2018](https://jsteward.moe/category/gsoc-2018.html)
+[Category GSoC 2018 on jsteward.moe](https://jsteward.moe/category/gsoc-2018.html)
 
 ## Acknowledgment
 
@@ -88,6 +88,6 @@ I appreciate the guidance from my mentor Benda Xu very much.  He shows great pas
 
 Stephen Christie and Lucas Ramage actively participated in the weekly discussion that takes place in the #shark-bait channel, maintain the project website, and providing crucial insights when I run into tough issues.  Stephen also contacted the artist, Tyson Tan, who created the KDE mascot, to create a logo and a mascot for the project.  Thanks a lot.  Also, I would like to show my gratefulness for Tyson for creating the cute, lovely mascot Mako.  She exactly represents what we imagined about her.
 
-I would also like to thank the Tsinghua University TUNA Association and its energetic members for providing me with a high-quality environment to make technical discussions.  Many times when I was stuck with a problem we heatedly discuss, and complicated issues get resolved easily.
+I would also like to thank the Tsinghua University TUNA Association and its energetic members for providing me with a high-quality environment for technical discussions.  Many times was I stuck with a problem we heatedly discuss, and complicated issues get resolved easily.
 
-Finally, thanks to all the people who have encouraged, commented on, or criticized my project.  Hope that my effort can make Android and Gentoo better platforms, and even better, the world a better place.
+Finally, thanks to all the people who have encouraged, commented on, or criticized my project, and thanks to everyone that worked on the project with me.  Hope that our effort can make Android and Gentoo better platforms, and even better, the world a better place.
