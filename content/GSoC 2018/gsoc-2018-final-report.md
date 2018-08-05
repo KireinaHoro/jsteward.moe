@@ -88,6 +88,8 @@ I appreciate the guidance from my mentor Benda Xu very much.  He shows great pas
 
 Stephen Christie and Lucas Ramage actively participated in the weekly discussion that takes place in the #shark-bait channel.  They maintain the project website and provide crucial insights when I run into tough issues.  Stephen also contacted the artist, Tyson Tan, who created the KDE mascot, to create a logo and a mascot for the project.  Thanks for their devotion to the project.  Also, I would like to show my gratefulness for Tyson for creating the cute, lovely mascot Mako.  She exactly represents what we imagined about her.
 
+I would like to express my gratitude for Bingxing Wang and Icenowy for helping me with the Linux kernel.  Bingxing Wang helped me understand how the hardware and low-level software work on embedded ARM devices, while Icenowy provided important insights to handle problems I had encountered with the Android `boot.img` as well as knowledge with the GNU tools and ARM architecture.
+
 I would also like to thank the Tsinghua University TUNA Association and its energetic members for providing me with a high-quality environment for technical discussions.  Many times was I stuck an issue we heatedly discuss, and it gets resolved easily.
 
 Finally, I would like to thank all the people who have encouraged, commented on, or criticized my project and everyone that worked on the project with me.  Hope that our effort can make Android and Gentoo better platforms, and even better, the world a better place.
