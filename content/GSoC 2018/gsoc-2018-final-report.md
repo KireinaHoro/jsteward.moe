@@ -60,7 +60,7 @@ The Android build systems expose functions to build modules.  The functions shou
 
 ### Support for more devices
 
-Currently, the Portage-powered Android project only supports two devices: Huawei Nexus 6P and ASUS ZenPhone 3 Ultra.  Support for more and newer devices is expected to come in the future.
+Currently, the Portage-powered Android project only supports two devices: Huawei Nexus 6P and ASUS ZenFone 3 Ultra.  Support for more and newer devices is expected to come in the future.
 
 ## Projects created during GSoC 2018
 
