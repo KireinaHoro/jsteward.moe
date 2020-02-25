@@ -7,13 +7,13 @@ Slug: edgeboard-series
 
 ## Intro
 
-I haven't been writing blog articles [ever since August, 2018](../GSoC%202018/gsoc-2018-final-report.md).  Under the strong request from [@jiegec](https://t.me/jiegec), I decided to record various related aspects of my recent works on [booting untethered, standard Linux/RISC-V on a ZynqMP board](https://github.com/KireinaHoro/rocket-zynqmp), forming a series of blog articles of which you can find links below.  The list may be updated if new, related articles come in.
+I haven't been writing blog articles [ever since August, 2018]({filename}/GSoC 2018/gsoc-2018-final-report.md).  Under the strong request from [@jiegec](https://t.me/jiegec), I decided to record various related aspects of my recent works on [booting untethered, standard Linux/RISC-V on a ZynqMP board](https://github.com/KireinaHoro/rocket-zynqmp), forming a series of blog articles of which you can find links below.  The list may be updated if new, related articles come in.
 
 ## The articles
 
 This article serves mostly as a catalog for the coming up articles.  If you're interested in _why_ the whole idea has come up, read the section that follows.
 
-- _placeholder for the first article_
+- _placeholder for an upcoming article - whenever this is in place, there are articles planned_
 
 ## The idea
 
