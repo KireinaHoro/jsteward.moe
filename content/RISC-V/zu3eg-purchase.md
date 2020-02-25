@@ -74,7 +74,7 @@ After starting `hwserver` as described in [the previous article]({filename}dev-s
 
 ![vivado hwserver]({filename}/images/vivado-hwserver.png)
 
-Further functional tests about the shipped AI core can also be performed following the hardware manual from Baidu and ALINX (designer and manufacturer of PCB), and will not be convered here.
+Further functional tests about the shipped AI core can also be performed following the hardware manual from Baidu and ALINX (designer and manufacturer of PCB), and will not be covered here.
 
 ## Gallery
 
