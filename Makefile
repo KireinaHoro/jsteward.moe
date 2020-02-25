@@ -13,7 +13,6 @@ FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
 SSH_HOST=kage.jsteward.moe
-SSH_PORT=22
 SSH_USER=pelican-travis
 SSH_TARGET_DIR=/var/www/blog
 SSH_IDENTITY=$(BASEDIR)/id_ed25519
@@ -101,7 +100,7 @@ publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 
-ssh_opts := -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -P $(SSH_PORT) -i $(SSH_IDENTITY) 
+ssh_opts := -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i $(SSH_IDENTITY) 
 
 ssh_upload: publish
 	ssh $(ssh_opts) $(SSH_USER)@$(SSH_HOST) rm -rf $(SSH_TARGET_DIR)/*
