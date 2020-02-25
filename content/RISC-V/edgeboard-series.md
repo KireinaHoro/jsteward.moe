@@ -17,6 +17,7 @@ I haven't been writing blog articles [ever since August, 2018]({filename}/GSoC 2
 This article serves mostly as a catalog for the coming up articles.  If you're interested in _why_ the whole idea has come up, read the section that follows.
 
 - [Development System Setup - Edgeboard RISC-V Series]({filename}dev-system-setup.md)
+- [Meet the Baidu Edgeboard ZU3EG - Edgeboard RISC-V Series]({filename}zu3eg-purchase.md)
 - _placeholder for an upcoming article - whenever this is in place, there are articles planned_
 
 ## The idea
