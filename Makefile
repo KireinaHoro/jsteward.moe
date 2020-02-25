@@ -100,8 +100,12 @@ stopserver:
 publish:
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
+
+ssh_opts := -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -P $(SSH_PORT) -i $(SSH_IDENTITY) 
+
 ssh_upload: publish
-	scp -v -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -P $(SSH_PORT) -i $(SSH_IDENTITY) -r $(OUTPUTDIR)/* $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) 
+	ssh $(ssh_opts) $(SSH_USER)@$(SSH_HOST) rm -rf $(SSH_TARGET_DIR)/*
+	scp $(ssh_opts) -r $(OUTPUTDIR)/* $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) 
 rsync_upload: publish
 	rsync -e "ssh -p $(SSH_PORT)" -P -rvzc --delete $(OUTPUTDIR)/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR) --cvs-exclude
 
