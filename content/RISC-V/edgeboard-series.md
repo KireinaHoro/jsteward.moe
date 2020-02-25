@@ -4,6 +4,9 @@ Modified: 2020-2-25 11:00
 Category: RISC-V
 Tags: risc-v, fpga, embedded
 Slug: edgeboard-series
+Status: published
+
+![RISC-V logo]({filename}/images/RISC-V-logo.svg)
 
 ## Intro
 
@@ -13,6 +16,7 @@ I haven't been writing blog articles [ever since August, 2018]({filename}/GSoC 2
 
 This article serves mostly as a catalog for the coming up articles.  If you're interested in _why_ the whole idea has come up, read the section that follows.
 
+- [Development System Setup - Edgeboard RISC-V Series]({filename}dev-system-setup.md)
 - _placeholder for an upcoming article - whenever this is in place, there are articles planned_
 
 ## The idea
