@@ -81,4 +81,4 @@ The pattern was that PS wrote continuous `Hello, world!` pattern to DRAM assigne
 
 ![axi width]({filename}/images/ps-axi-data-width.png)
 
-This behavior is counter-intuitive and nowhere to be seen in the [Technical Reference Manual](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf).  If you know why this happened, please contact me.
+This behavior is counter-intuitive and nowhere to be seen in the [Technical Reference Manual](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf).  I would appreciate it greatly if someone familiar with the ZynqMP can explain to me why this happened.  If you have any clues, please don't hesitate to contact me.
