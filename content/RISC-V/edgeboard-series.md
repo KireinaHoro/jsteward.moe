@@ -18,6 +18,7 @@ This article serves mostly as a catalog for the coming up articles.  If you're i
 
 - [Development System Setup - Edgeboard RISC-V Series]({filename}dev-system-setup.md)
 - [Meet the Baidu Edgeboard ZU3EG - Edgeboard RISC-V Series]({filename}zu3eg-purchase.md)
+- [RISC-V Hardware Design, Part A - Edgeboard RISC-V Series]({filename}risc-v-hardware-design-part-a.md)
 - _placeholder for an upcoming article - whenever this is in place, there are articles planned_
 
 ## The idea
