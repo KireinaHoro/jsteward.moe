@@ -19,25 +19,25 @@ Rocket Chip is an SoC generator, which [is necessary](https://riscv.org/wp-conte
 The exact config I have been using on the Edgeboard can be found [here](https://github.com/KireinaHoro/rocket-zynqmp/blob/master/src/main/scala/Configs.scala#L10).  Listing the main differences from `DefaultConfig`:
 
 - Main memory (DRAM) has been relocated to `0x40000000`, with a size of `0x3ff00000`.
-  - The Edgeboard has 2GB of DDR4 RAM available.  Under this configuration, the APU in Zynq PS can use `0x00000000`, size `0x40000000` (1GB) as main memory, and the higher ~1GB can be used by RISC-V.
-    - The highest 16MB of RAM is reserved by the PMU in ZynqMP.
+    - The Edgeboard has 2GB of DDR4 RAM available.  Under this configuration, the APU in Zynq PS can use `0x00000000`, size `0x40000000` (1GB) as main memory, and the higher ~1GB can be used by RISC-V.
+        - The highest 16MB of RAM is reserved by the PMU in ZynqMP.
 - MMIO has been relocated to `0xe0000000`.
-  - According to [UG1085](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf), most of the PS peripherals are mapped in `0xe0000000` to `0xffffffff`.  In order to use PS peripherals in RISC-V, specifically GEM and MMC, we have to follow this arrangement as well.
+    - According to [UG1085](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf), most of the PS peripherals are mapped in `0xe0000000` to `0xffffffff`.  In order to use PS peripherals in RISC-V, specifically GEM and MMC, we have to follow this arrangement as well.
 - There are 4 interrupts to the interrupt controller, listed in the order of IRQ:
-  - UART
-  - Ethernet (Zynq GEM)
-  - Ethernet Wake
-  - MMC
+    - UART
+    - Ethernet (Zynq GEM)
+    - Ethernet Wake
+    - MMC
 - The system runs at 100MHz.
-  - This is used for a correct `timebase-frequency` as well as other frequency specifications in the generated device tree.
-    - _Although the generated device tree is [not used](https://github.com/KireinaHoro/opensbi/blob/64b6b1c96ad30910e60a219cf908455ceb017658/platform/edgeboard/edgeboard.dts) after all..._
+    - This is used for a correct `timebase-frequency` as well as other frequency specifications in the generated device tree.
+        - _Although the generated device tree is [not used](https://github.com/KireinaHoro/opensbi/blob/64b6b1c96ad30910e60a219cf908455ceb017658/platform/edgeboard/edgeboard.dts) after all..._
 - 8 hardware breakpoints, instead of the default of 2, are instantiated.
-  - 2 of them are just not enough for any proper debugging with GDB later on.
-  - You may have heard of [software breakpoints](http://www.nynaeve.net/?p=80), but they don't work well in the situation we're in.  The follow-up article about debugging will cover this.
+    - 2 of them are just not enough for any proper debugging with GDB later on.
+    - You may have heard of [software breakpoints](http://www.nynaeve.net/?p=80), but they don't work well in the situation we're in.  The follow-up article about debugging will cover this.
 - 1 big core (RV64GC) is instantiated.
-  - Unlike the [ZCU102 with ZU7EG](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html#overview) which can house 4 big cores with barely over 50% LUT use, the Edgeboard uses ZU3EG and will house 1 big core with about 55% LUT use.
+    - Unlike the [ZCU102 with ZU7EG](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html#overview) which can house 4 big cores with barely over 50% LUT use, the Edgeboard uses ZU3EG and will house 1 big core with about 55% LUT use.
 - The reset vector has been changed to `0x10000`.
-  - The original setup has it at `0x10040`, which is just a bootloop application.  This change enables meaningful code to be run on the processor.
+    - The original setup has it at `0x10040`, which is just a bootloop application.  This change enables meaningful code to be run on the processor.
 
 Besides configuration, a [top module implementation and optional wrapper](https://github.com/KireinaHoro/rocket-zynqmp/blob/master/src/main/scala/Top.scala) are needed for actual instantiation of the SoC.  We will not go through how the various traits contribute to the final generation of the SoC, or how Diplomacy works.  After running the generator and FIRRTL compiler, we get our generated Verilog file, which contains the `RocketTop` module ready for simulation or synthesis.
 
@@ -48,20 +48,20 @@ The Rocket Chip SoC instantiated in this project communicates with the _external
 To save time that would be wasted if every time Rocket Chip needed re-synthesizing despite only small changes to the BootROM, AXI topology, or [debug cores](https://www.xilinx.com/products/intellectual-property/axis_ila.html), we package the Rocket Chip module as a separate IP such that the synthesis results can be cached.  Other IP modules used in the project are:
 
 - Zynq UltraScale+ MPSoC (the PS block)
-  - DRAM access, peripheral access
-  - System reset
-    - The PS fabric clock output was deliberately avoided due to its unpredictable behavior (which caused a lot of confusions together with [@jiegec](https://t.me/jiegec))
+    - DRAM access, peripheral access
+    - System reset
+        - The PS fabric clock output was deliberately avoided due to its unpredictable behavior (which caused a lot of confusions together with [@jiegec](https://t.me/jiegec))
 - AXI UART16550
-  - For serial access
-    - The board lacked a proper board file, so it's required to only make UART `sin` and `sout` external, or unconstrainted ports that does not actually exist on board will prevent bitstream generation
+    - For serial access
+        - The board lacked a proper board file, so it's required to only make UART `sin` and `sout` external, or unconstrainted ports that does not actually exist on board will prevent bitstream generation
 - AXI BRAM Controller and Block Memory Generator
-  - Used together for hosting the Secondary BootLoader - OpenSBI with U-Boot as payload.  This will be explained in detail in the follow-up RISC-V software system articles.
+    - Used together for hosting the Secondary BootLoader - OpenSBI with U-Boot as payload.  This will be explained in detail in the follow-up RISC-V software system articles.
 - Various utility IPs
-  - AXI Interconnect for data width, protocol conversion and xbar feature
-  - JTAG to AXI master for debugging memory and device access
-  - VIO (Virtual Input/Output) for RISC-V reset signal (Edgeboard does not have any push buttons wired to PL)
-  - Processor System Reset, Clocking Wizard for clock and reset generation
-  - Utility Vector Logic, Concat, Constant for manipulating basic signals
+    - AXI Interconnect for data width, protocol conversion and xbar feature
+    - JTAG to AXI master for debugging memory and device access
+    - VIO (Virtual Input/Output) for RISC-V reset signal (Edgeboard does not have any push buttons wired to PL)
+    - Processor System Reset, Clocking Wizard for clock and reset generation
+    - Utility Vector Logic, Concat, Constant for manipulating basic signals
 
 The complete block design is as shown below.  [Download PDF]({filename}/images/block-design-rocket-chip.pdf) if you want to examine the details.  Also check out the [TCL script](https://github.com/KireinaHoro/rocket-zynqmp/blob/master/vivado/src/design_1_bd.tcl) for recreating the block design in Vivado.
 
