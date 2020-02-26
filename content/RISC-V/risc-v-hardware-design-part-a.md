@@ -75,7 +75,7 @@ During the development process, I've spent a lot of time trying to debug weird p
 
 The debug process went rather extensive, involving trying to memtest from PS and PL, with RISC-V or without RISC-V (with JTAG to AXI master), over different interconnect ports PS has to offer.  Finally, in an orchestrated debug attempt involving both PL and PS, the following pattern was identified:
 
-![mem dump]({filename}/images/riscv-ddr-malfunction.md)
+![mem dump]({filename}/images/riscv-ddr-malfunction.jpg)
 
 The pattern was that PS wrote continuous `Hello, world!` pattern to DRAM assigned for RISC-V, and RISC-V writing simple memtest incremental patterns word-by-word.  Obviously this is a data width problem.  After changing the AXI slave data width from 64 to 128, everything worked like a charm.
 
