@@ -1,6 +1,6 @@
-Title: RISC-V Hardware Design, Part A - Edgeboard RISC-V Series
+Title: RISC-V Hardware Design: System & Block Design - Edgeboard RISC-V Series
 Date: 2020-2-25 14:40
-Modified: 2020-2-25 14:40
+Modified: 2020-2-27 15:40
 Category: RISC-V
 Tags: risc-v, fpga, zynq, embedded
 Slug: risc-v-hardware-design-part-a-edgeboard-series
