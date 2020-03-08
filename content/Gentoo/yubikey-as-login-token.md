@@ -8,7 +8,7 @@ Status: published
 
 ## The story
 
-It has been a while since [I got my Yubikey from Harry Chen]({filename}/General/meet-yubikey.md).  Now that I'm back working on Gentoo, so it is time to explore functions of the Yubikey on Linux.  Instead of just using the Yubikey as a OpenPGP card, its [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor) function can serve more than simply logging you into Google.  In this article, we'll show how to make the Yubikey a convenient and secure login token for Linux systems, enabling you to log into the system with a plug and a touch, and lock the session when the token is removed.
+It has been a while since [I got my Yubikey from Harry Chen]({filename}/General/yubikey.md).  Now that I'm back working on Gentoo, so it is time to explore functions of the Yubikey on Linux.  Instead of just using the Yubikey as a OpenPGP card, its [U2F](https://en.wikipedia.org/wiki/Universal_2nd_Factor) function can serve more than simply logging you into Google.  In this article, we'll show how to make the Yubikey a convenient and secure login token for Linux systems, enabling you to log into the system with a plug and a touch, and lock the session when the token is removed.
 
 ## U2F capability for PAM
 

@@ -14,7 +14,7 @@ Someone in the TUNA Embedded Telegram group mentioned that there has been a chea
 
 ## Board features
 
-[The board (Edgeboard FZ3)](https://ai.baidu.com/tech/hardware/deepkit) features a handful of low-speed and high-speed I/O ports, along with quite a few peripherals available for use.  Due to its designed usecase of performing FPGA-accelerated AI inference, not too much I/O is connected to the PL part of the Zynq MPSoC.  Fortunately we still have some GPIO pins connected to the PL, and that should be sufficient as we only need a serial port from PL for RISC-V.  The exact features used will be discussed in the [RISC-V Hardware Design - Edgeboard RISC-V Series]({filename}risc-v-hardware-design.md) article.
+[The board (Edgeboard FZ3)](https://ai.baidu.com/tech/hardware/deepkit) features a handful of low-speed and high-speed I/O ports, along with quite a few peripherals available for use.  Due to its designed usecase of performing FPGA-accelerated AI inference, not too much I/O is connected to the PL part of the Zynq MPSoC.  Fortunately we still have some GPIO pins connected to the PL, and that should be sufficient as we only need a serial port from PL for RISC-V.  The exact features used will be discussed in the [RISC-V Hardware Design: System & Block Design - Edgeboard RISC-V Series]({filename}risc-v-hardware-design-part-a.md) article.
 
 Gathering the various I/O and peripheral resources as follows (fabricated peripheral cores in the PS are not listed here):
 
