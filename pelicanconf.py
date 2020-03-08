@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'KireinaHoro'
 SITENAME = 'KireinaHoro (jsteward) \'s place'
-SITEURL = 'jsteward.moe'
+SITEURL = 'http://localhost:8000'
 
 PATH = 'content'
 

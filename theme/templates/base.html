@@ -14,17 +14,17 @@
     <![endif]-->
 
     {% if FEED_RSS %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
     {% endif %}
-    {% if FEED_ATOM %}
-    <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+    {% if FEED_ALL_ATOM %}
+    <link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
     {% endif %}
 
     <!-- Le styles -->
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <link href="{{ SITEURL }}/theme/local.css" rel="stylesheet">
     <link href="{{ SITEURL }}/theme/pygments.css" rel="stylesheet">
-    <link href="{{ SITEURL }}/theme/font-awesome.css" rel="stylesheet">
+    <link href="{{ SITEURL }}/theme/fontawesome/css/all.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Gudea:400,400italic|Alegreya+SC' rel='stylesheet' type='text/css'>
 
     {% endblock head %}
@@ -74,16 +74,16 @@
     <div id="blog-footer">
       <div class="row-fluid">
 	{% if SOCIAL %}
-	<div class="social span2" align="center" id="socialist">
+	<div class="social span2" align="left" id="socialist">
 	  <ul class="nav nav-list">
 	    <li class="nav-header">
 	      Social
 	    </li>
 	    {% for name,link in SOCIAL %}
-	    <li><a href="{{ link }}"><i class="icon-{{ name }}" style="color: #1f334b"></i>{{name}}</a></li>
+	    <li><a href="{{ link }}"><i class="fab fa-{{ name }}" style="color: #1f334b"></i> {{name}}</a></li>
 	    {% endfor %}
             {% if EMAIL%}
-            <a href="mailto:{{ EMAIL}}"><i class="icon-envelope" style="color: #1f334b" ></i> email</a>
+            <a href="mailto:{{ EMAIL}}"><i class="fas fa-envelope" style="color: #1f334b" ></i> email</a>
             {% endif %}
 
 	  </ul>
@@ -91,7 +91,7 @@
 	{% endif %}
 	{% include "colophon.html" %}
         {% if LINKS %}
-        <div class="links span2" align="center">
+        <div class="links span2" align="left">
           <ul class="nav nav-list">
             <li class="nav-header"> 
               Links
@@ -103,27 +103,26 @@
           </ul>
         </div>
         {% endif %}
-	<div class="site-nav span2" align="center">
+	<div class="site-nav span2" align="left">
           <ul class="nav nav-list" id="site-links">
             <li class="nav-header"> 
               Site
             </li>
-            <li><a href="{{ SITEURL }}"><i class="icon-home" style="color: #1f334b">
-                </i>Home</a></li>
-            <li><a href="{{ SITEURL }}/archives.html"><i class="icon-list" style="color: #1f334b">
-                </i>Archives</a></li>
-	    <li><a href="{{ SITEURL }}/tags.html"><i class="icon-tags" style="color: #1f334b">
-                </i>Tags</a></li>
+            <li><a href="{{ SITEURL }}"><i class="fas fa-home" style="color: #1f334b">
+                </i> Home</a></li>
+            <li><a href="{{ SITEURL }}/archives.html"><i class="fas fa-list" style="color: #1f334b">
+                </i> Archives</a></li>
+	    <li><a href="{{ SITEURL }}/tags.html"><i class="fas fa-tags" style="color: #1f334b">
+                </i> Tags</a></li>
 	    
 	    {% if FEED_RSS %}
-	    <li> <a href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" rel="alternate">
-                <i class="icon-rss" style="color: #1f334b"></i>
+	    <li> <a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">
+                <i class="fas fa-rss" style="color: #1f334b"></i>
                 RSS Feed</a></li>
 	    {% endif %}
-	    {% if FEED_ATOM %}
-	    <li> <a href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" rel="alternate">
-                <i class="icon-rss" style="color: #1f334b"></i>
-                Atom Feed</a></li>
+	    {% if FEED_ALL_ATOM %}
+	    <li> <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate">
+                <i class="fas fa-rss" style="color: #1f334b"></i> Atom Feed</a></li>
 	    {% endif %}
 	  </ul>
 
@@ -132,7 +131,7 @@
       </div> <!--end of fluid row-->
     </div> <!--end of blog-footer-->
     <hr />
-    <p align="center"><a href="{{ SITEURL }}">{{ SITENAME }}</a>
+    <p align="left"><a href="{{ SITEURL }}">{{ SITENAME }}</a>
       &copy; {{ AUTHOR }}
     Powered by <a href="https://github.com/getpelican/pelican">Pelican</a> and
         <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>. 
