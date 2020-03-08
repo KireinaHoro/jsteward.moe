@@ -1,9 +1,10 @@
 Title: RISC-V Software Design: PS System - Edgeboard RISC-V Series
 Date: 2020-3-7 21:00
-Modified: 2020-3-7 22:30
+Modified: 2020-3-8 13:00
 Category: RISC-V
 Tags: risc-v, zynq, embedded
 Slug: risc-v-software-design-part-b-edgeboard-series
+Status: published
 
 ## Intro
 
@@ -155,5 +156,89 @@ $ gzip -d < archive.tar.gz | tar xvf -
 
 The real rootfs would be a [generic aarch64 Archlinux ARM](https://archlinuxarm.org/platforms/armv8/generic) snapshot.  As we have network access (onboard Ethernet) and a rather decent CPU (4-core Cortex-A53), Archlinux ARM would provide extreme flexibility over the fixed rootfs solution.  Create a FAT32 partition followed by an EXT4 partition, copy `BOOT.BIN` and `image.ub` to the FAT32 partition, and untar the rootfs image into the EXT4 partition.  Remember to untar the kernel modules acquired from the previous step as well.
 
-## PL reset
+## PL reset & clock
 
+The ZynqMP PS IP block provides up to 4 `pl_resetnx` ports for use to generate reset signals for PL logic besides the Power-On Reset mechanism.  [This AR](https://www.xilinx.com/support/answers/68962.html) clearly states that the reset port from PS IP block is simply a GPIO pin, and can be controlled from PS.  A small script would be sufficient to control the pin status:
+
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+die() {
+        echo $1
+        exit 1
+}
+
+if [ $# -gt 1 ]; then
+        die "usage: $0 [pin value]"
+fi
+
+pin_number=510
+gpio_dir=/sys/class/gpio/gpio${pin_number}
+gpio_export=/sys/class/gpio/export
+
+toggle() {
+	if [ ! -d "${gpio_dir}" ]; then
+	       echo ${pin_number} > ${gpio_export} # enable pin 510 - PL Reset 1
+	fi
+	echo -n Pin direction:\ 
+	cat ${gpio_dir}/direction
+	echo -n Old value:\ 
+	cat ${gpio_dir}/value
+	echo $1 > ${gpio_dir}/value
+	echo -n New value:\ 
+	cat ${gpio_dir}/value
+}
+
+if [ $# -eq 0 ]; then
+	echo Resetting PL...
+	toggle 1
+	sleep 1
+	toggle 0
+else
+	echo Setting reset to $1...
+	toggle $1
+fi
+```
+
+The default polarity of the pin is low-active, but we're actually using it as high-active.  This satisfies our use just well: the RISC-V part stays in reset until we pull down the reset pin.
+
+If you look closely into the block design diagram, you will find out that we do not use `pl_clockx` ports from the PS IP block: this is intended, as Linux's [Common Clock Framework](https://www.kernel.org/doc/Documentation/clk.txt) may mess with the RISC-V clock.  A fixed oscillator output is used instead.
+
+## PS TTC for PWM
+
+The [Triple Time Counter](https://ip.cadence.com/uploads/486/cdn-dsd-sys-design-ip-for-ttc-pdf) inside PS can be used as a PWM source with the [kernel module](https://github.com/XiphosSystemsCorp/cadence-ttc-pwm).  A simple bash script can then be used to control the PWM duty ratio of the fan:
+
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+die() {
+        echo $1
+        exit 1
+}
+
+if [ $# -ne 1 ]; then
+        die "usage: $0 <duty ratio>"
+fi
+
+pwm_number=0
+pwm_dir=/sys/class/pwm/pwm${pwm_number}
+pwm_export=/sys/class/pwm/pwmchip0/export
+pwm_period=1000
+pwm_duty=$(echo "($1 * ${pwm_period}) / 1" | bc)
+
+if [ ! -d "${pwm_dir}" ]; then
+       echo ${pwm_number} > ${pwm_export} # enable pwm #0 - Fan @ B11
+fi
+
+echo ${pwm_period} > ${pwm_dir}/period
+echo ${pwm_duty} > ${pwm_dir}/duty_cycle
+echo 1 > ${pwm_dir}/enable
+
+echo Done.
+```
+
+Note that the PWM duty ratio does not reflect real RPM for a DC fan.  For the Edgeboard FZ3, a mere 3% can keep the chip cool at 40 Celcius, compared to just 35 Celcius with 100%.  To prevent damage in the case of forgetting to set PWM resulting in the fan not turning (without setup TTC will output constant 0), call the script in `rc.local` or some other mechanism.
