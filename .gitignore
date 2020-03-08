@@ -6,3 +6,5 @@ id_ed25519
 */.DS_Store
 **/*~
 *~
+local-test/
+.vscode/
