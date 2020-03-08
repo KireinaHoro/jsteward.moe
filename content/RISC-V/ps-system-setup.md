@@ -16,9 +16,9 @@ Besides [setting up RISC-V bootloader]({filename}risc-v-software-design-part-a.m
 - Provide Internet access
 - Control PWM fan on the board
 
-Note that the system block design has changed since [the previous introducing article]({filename}risc-v-hardware-design-part-a.md).  The updated diagram and [updated PDF]({filename}/images/updated-block-design.pdf) can be found below.
+Note that the system block design has changed since [the previous introducing article]({filename}risc-v-hardware-design-part-a.md).  The updated diagram and [updated PDF]({static}/images/updated-block-design.pdf) can be found below.
 
-![updated img]({filename}/images/updated-block-design.png)
+![updated img]({static}/images/updated-block-design.png)
 
 _Note that this article is not a detailed walkthrough of the entire process, and may subject to missing or inaccurate steps.  You should only take this article as an overall guidance._
 
@@ -80,7 +80,7 @@ The SDHCI1 controller is modified to add quirks to disable voltage switching and
 
 The TTC cell is added for PWM control of the fan attached onboard.  A MOS is connected to the B11 pin in PL, and then drives the fan:
 
-![fan pwm]({filename}/images/fan-pwm.png)
+![fan pwm]({static}/images/fan-pwm.png)
 
 ### U-Boot special configuration
 

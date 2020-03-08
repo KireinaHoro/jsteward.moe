@@ -24,24 +24,24 @@ After visiting @imi415's lab and having the output voltages from the phone measu
 
 FT232RL TTL Board:
 
-![FT232RL TTL Board]({filename}/images/ft232rl.jpg)
+![FT232RL TTL Board]({static}/images/ft232rl.jpg)
 
 FT232RL with voltage converter (but didn't work :/):
 
-![FT232RL with voltage converter (but didn't work :/)]({filename}/images/ft232rl-with-voltage-converter.jpg)
+![FT232RL with voltage converter (but didn't work :/)]({static}/images/ft232rl-with-voltage-converter.jpg)
 
 Bypassing the voltage converter:
 
-![Bypassing the voltage converter]({filename}/images/bypassing-voltage-converter.jpg)
+![Bypassing the voltage converter]({static}/images/bypassing-voltage-converter.jpg)
 
 Before soldering the wires:
 
-![Before soldering the wires]({filename}/images/before-soldering-wires-together.jpg)
+![Before soldering the wires]({static}/images/before-soldering-wires-together.jpg)
 
 Final product:
 
-![Final product]({filename}/images/final-product.jpg)
+![Final product]({static}/images/final-product.jpg)
 
 Console output!
 
-![Console output!]({filename}/images/console-output.jpg)
+![Console output!]({static}/images/console-output.jpg)

@@ -52,11 +52,11 @@ The board needs some additional accessories to work as the platform for the RISC
 
 The order information for the required parts can be found below.
 
-![edgeboard order]({filename}/images/edgeboard-order.png)
+![edgeboard order]({static}/images/edgeboard-order.png)
 
-![jtag cable order]({filename}/images/jtag-cable-order.png)
+![jtag cable order]({static}/images/jtag-cable-order.png)
 
-![male header ttl order]({filename}/images/male-header-ttl-order.png)
+![male header ttl order]({static}/images/male-header-ttl-order.png)
 
 It took about a week to collect all the parts in mail, compared to which would be about three days if it were not for the recent COVID-19 event.  After soldering the GPIO headers and connecting the cables, the ZynqMP system is ready for test.
 
@@ -64,15 +64,15 @@ It took about a week to collect all the parts in mail, compared to which would b
 
 The system was configured to boot from SD card, which comes with a FSBL that holds Baidu's accelerator bitstream, and a root filesystem with self-hosting tools.  Tools like GCC, Clang, and CMake are ready in the image, kudos for the engineers at Baidu.
 
-![ps boot]({filename}/images/zynqmp-ps-boot.png)
+![ps boot]({static}/images/zynqmp-ps-boot.png)
 
 Note for PuTTY users: disabling flow control is necessary for proper console input.
 
-![flow control]({filename}/images/putty-flow-control.png)
+![flow control]({static}/images/putty-flow-control.png)
 
 After starting `hwserver` as described in [the previous article]({filename}dev-system-setup.md) and connecting Vivado to the `hwserver` instance, we can see that the two TAPs are correctly recognized, and data from various on-chip sensors can be read from the two SysMon devices.
 
-![vivado hwserver]({filename}/images/vivado-hwserver.png)
+![vivado hwserver]({static}/images/vivado-hwserver.png)
 
 Further functional tests about the shipped AI core can also be performed following the hardware manual from Baidu and ALINX (designer and manufacturer of PCB), and will not be covered here.
 
@@ -80,21 +80,21 @@ Further functional tests about the shipped AI core can also be performed followi
 
 Main visual of the Edgeboard in working state:
 
-![key visual]({filename}/images/zu3eg-main-view.jpg)
+![key visual]({static}/images/zu3eg-main-view.jpg)
 
 Unsoldered GPIO pads:
 
-![unsoldered]({filename}/images/zu3eg-unsoldered.jpg)
+![unsoldered]({static}/images/zu3eg-unsoldered.jpg)
 
 After soldering:
 
-![soldered]({filename}/images/zu3eg-solder-gpio.jpg)
+![soldered]({static}/images/zu3eg-solder-gpio.jpg)
 
 Solder iron used:
 
-![iron]({filename}/images/cheap-solder-iron.jpg)
+![iron]({static}/images/cheap-solder-iron.jpg)
 
 JTAG cable used:
 
-![jtag]({filename}/images/jtag-cable.jpg)
+![jtag]({static}/images/jtag-cable.jpg)
 

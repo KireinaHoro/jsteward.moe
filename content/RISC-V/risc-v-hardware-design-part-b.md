@@ -24,7 +24,7 @@ Guide for the specific device.
 
 This indicates that we can send JTAG commands to a PL design through the user registers accessible on the PL TAP from the dedicated JTAG port of the ZynqMP chip.  The user chains, specifically `USER1` by default, powers the on-board debug facilities such as ILA, JTAG Master, or VIO:
 
-![debug hub chain]({filename}/images/debug-hub-user-chain.png)
+![debug hub chain]({static}/images/debug-hub-user-chain.png)
 
 Referring to [UG470 7 Series FPGAs Configuration User Guide](https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf) we can find out details about advanced features of JTAG on these devices besides user chains, for example [programming a bitstream with OpenOCD from macOS](https://jiege.ch/hardware/2020/02/09/program-artix7-on-macos/).
 
@@ -43,7 +43,7 @@ There has already been [a mechanism](https://jiege.ch/hardware/2020/02/09/rocket
 
 A picture from the article [「ZYNQ UltraScale+ MPSoCのJTAGのしくみ」](http://nahitafu.cocolog-nifty.com/nahitafu/2018/10/zynq-ultrasca-1.html), which explains the JTAG structure of Zynq UltraScale+ in detail:
 
-![zujtag]({filename}/images/zujtag-nahitafu.png)
+![zujtag]({static}/images/zujtag-nahitafu.png)
 
 ## GDB
 
@@ -64,4 +64,4 @@ After understanding the user chain mechanisms for Zynq UltraScale+, we can final
 
 The following picture shows loading an OpenSBI ELF (which will be covered in the follow-up software articles) to DDR at `0x40000000`:
 
-![gdb load]({filename}/images/gdb-load-opensbi.jpg)
+![gdb load]({static}/images/gdb-load-opensbi.jpg)

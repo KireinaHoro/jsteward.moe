@@ -63,9 +63,9 @@ To save time that would be wasted if every time Rocket Chip needed re-synthesizi
     - Processor System Reset, Clocking Wizard for clock and reset generation
     - Utility Vector Logic, Concat, Constant for manipulating basic signals
 
-The complete block design is as shown below.  [Download PDF]({filename}/images/block-design-rocket-chip.pdf) if you want to examine the details.  Also check out the [TCL script](https://github.com/KireinaHoro/rocket-zynqmp/blob/master/vivado/src/design_1_bd.tcl) for recreating the block design in Vivado.
+The complete block design is as shown below.  [Download PDF]({static}/images/block-design-rocket-chip.pdf) if you want to examine the details.  Also check out the [TCL script](https://github.com/KireinaHoro/rocket-zynqmp/blob/master/vivado/src/design_1_bd.tcl) for recreating the block design in Vivado.
 
-![block design]({filename}/images/block-design-rocket-chip.png)
+![block design]({static}/images/block-design-rocket-chip.png)
 
 With all the setup done, we can now launch the implementation run in Vivado, generate a bitstream, and get ready for on board tests with GDB through JTAG.
 
@@ -75,10 +75,10 @@ During the development process, I've spent a lot of time trying to debug weird p
 
 The debug process went rather extensive, involving trying to memtest from PS and PL, with RISC-V or without RISC-V (with JTAG to AXI master), over different interconnect ports PS has to offer.  Finally, in an orchestrated debug attempt involving both PL and PS, the following pattern was identified:
 
-![mem dump]({filename}/images/riscv-ddr-malfunction.jpg)
+![mem dump]({static}/images/riscv-ddr-malfunction.jpg)
 
 The pattern was that PS wrote continuous `Hello, world!` pattern to DRAM assigned for RISC-V, and RISC-V writing simple memtest incremental patterns word-by-word.  Obviously this is a data width problem.  After changing the AXI slave data width from 64 to 128, everything worked like a charm.
 
-![axi width]({filename}/images/ps-axi-data-width.png)
+![axi width]({static}/images/ps-axi-data-width.png)
 
 This behavior is counter-intuitive and nowhere to be seen in the [Technical Reference Manual](https://www.xilinx.com/support/documentation/user_guides/ug1085-zynq-ultrascale-trm.pdf).  I would appreciate it greatly if someone familiar with the ZynqMP can explain to me why this happened.  If you have any clues, please don't hesitate to contact me.
