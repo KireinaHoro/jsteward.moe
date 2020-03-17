@@ -30,7 +30,7 @@ The PS kernel will be built from the [linux-xlnx](https://github.com/Xilinx/linu
 Create the PetaLinux project and import hardware description exported from Vivado:
 
 ```text
-$ petalinux-create --type project zymqMP --name rocket-zynqmp
+$ petalinux-create --type project --template zynqMP --name rocket-zynqmp
 $ cd rocket-zynqmp
 $ petalinux-config --get-hw-description=..
 ```
