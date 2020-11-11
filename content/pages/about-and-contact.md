@@ -2,6 +2,8 @@ Title: About & Contact
 Date: 2017-03-07 11:40:00
 Status: published
 Slug: about-and-contact
+Template: homepage
+save_as: index.html
 
 Hello, I'm KireinaHoro (a.k.a. jsteward).
 

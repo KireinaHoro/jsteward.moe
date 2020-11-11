@@ -45,5 +45,8 @@ DEFAULT_METADATA = {
     'status': 'draft',
 }
 
+# use index.html for personal introduction and place blog index at a separate place
+INDEX_SAVE_AS = 'blog_index.html'
+
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
