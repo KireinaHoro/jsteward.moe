@@ -44,10 +44,12 @@
     <div class="content">
     <div class="row-fluid">
 
+        <div class="span2">
+            {% block profile %}{% endblock %}
+        </div>
         <div class="span10">
         {% block content %}{% endblock %}
         </div>
-        
         
     </div> {# End row #}
     </div> {# End content #}
