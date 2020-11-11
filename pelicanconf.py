@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = 'KireinaHoro'
-SITENAME = 'KireinaHoro (jsteward) \'s place'
+AUTHOR = 'Pengcheng Xu'
+SITENAME = 'Pengcheng Xu\'s Place'
 SITEURL = 'http://localhost:8000'
 
 PATH = 'content'
