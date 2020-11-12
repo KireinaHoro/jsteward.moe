@@ -23,7 +23,7 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ('About & Contact', '/pages/about-and-contact.html'),
+    ('About & Contact', '/index.html'),
     ('Gentoo', 'https://www.gentoo.org'),
     ('SharkBait', 'https://www.shark-bait.org'),
     ('Pelican', 'http://getpelican.com/'),
