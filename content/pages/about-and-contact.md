@@ -13,7 +13,7 @@ I also keep a blog (updated irregularly) to record experiences when dealing with
 
 You can reach me via the following:
 
- - Email: jsteward#pku.edu.cn / #jsteward.moe (replace # with @)
+ - Email: jsteward#pku.edu.cn / i#jsteward.moe (replace # with @)
     - GPG Key ID: `7250 7913 7D8A 5B65`
  - Telegram: [@jsteward](https://t.me/jsteward)
  - GitHub: [KireinaHoro](https://github.com/KireinaHoro)
