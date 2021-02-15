@@ -201,7 +201,7 @@ RADVD here works in the [so-called](https://docs.opnsense.org/manual/radvd.html)
 
 > Assisted: Stateful configuration, address configuration provided by DHCPv6, although advertised routes can also be used on Stateless Address Autoconfiguration setups (SLAAC).
 
-```
+```text
 # /etc/radvd.conf
 interface wls192 {
         AdvSendAdvert on;
