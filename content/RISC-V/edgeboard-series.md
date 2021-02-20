@@ -1,6 +1,6 @@
 Title: Series on RISC-V on the Baidu Edgeboard ZU3EG
 Date: 2020-2-25 11:00
-Modified: 2020-3-8 15:00
+Modified: 2021-2-20 19:29
 Category: RISC-V
 Tags: risc-v, fpga, embedded
 Slug: edgeboard-series
@@ -22,7 +22,6 @@ This article serves mostly as a catalog for the coming up articles.  If you're i
 - [RISC-V Hardware Design: Debug via BSCAN Chain - Edgeboard RISC-V Series]({filename}risc-v-hardware-design-part-b.md)
 - [RISC-V Software Design: Bootloader - Edgeboard RISC-V Series]({filename}risc-v-software-design-part-a.md)
 - [RISC-V Software Design: PS System - Edgeboard RISC-V Series]({filename}ps-system-setup.md)
-- _placeholder for an upcoming article - whenever this is in place, there are articles planned_
 
 ## The idea
 
