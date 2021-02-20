@@ -2,7 +2,7 @@ Title: Gravity Access Wi-Fi on NUC VM
 Date: 2021-02-15 22:00
 Modified: 2021-02-15 22:00
 Category: Networking
-Tags: networking
+Tags: networking, wifi, vpn
 Slug: nuc-gravity-wifi
 Status: published
 
