@@ -25,7 +25,7 @@ AUTHOR_FEED_RSS = None
 LINKS = (
     ('About & Contact', '/index.html'),
     ('Gentoo', 'https://www.gentoo.org'),
-    ('SharkBait', 'https://www.shark-bait.org'),
+    ('NixOS', 'https://nixos.org/'),
     ('Pelican', 'http://getpelican.com/'),
     ('Tsinghua University TUNA Association',
      'https://tuna.moe/'),

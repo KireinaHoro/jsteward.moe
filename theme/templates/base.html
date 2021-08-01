@@ -54,7 +54,7 @@
     </div> <!-- End of fluid row-->
   </div>   <!-- End of Container-->
 </header>
-    
+
 <div class="container">
     <div class="content">
     <div class="row-fluid">
@@ -62,8 +62,8 @@
         <div class="span10">
         {% block content %}{% endblock %}
         </div>
-        
-        
+
+
     </div> {# End row #}
     </div> {# End content #}
 </div>
@@ -93,10 +93,10 @@
         {% if LINKS %}
         <div class="links span2" align="left">
           <ul class="nav nav-list">
-            <li class="nav-header"> 
+            <li class="nav-header">
               Links
             </li>
-            
+
             {% for name, link in LINKS %}
             <li><a href="{{ link }}">{{ name }}</a></li>
             {% endfor %}
@@ -105,7 +105,7 @@
         {% endif %}
 	<div class="site-nav span2" align="left">
           <ul class="nav nav-list" id="site-links">
-            <li class="nav-header"> 
+            <li class="nav-header">
               Site
             </li>
             <li><a href="{{ SITEURL }}"><i class="fas fa-home" style="color: #1f334b">
@@ -114,7 +114,7 @@
                 </i> Archives</a></li>
 	    <li><a href="{{ SITEURL }}/tags.html"><i class="fas fa-tags" style="color: #1f334b">
                 </i> Tags</a></li>
-	    
+
 	    {% if FEED_RSS %}
 	    <li> <a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">
                 <i class="fas fa-rss" style="color: #1f334b"></i>
@@ -133,9 +133,8 @@
     <hr />
     <p align="left"><a href="{{ SITEURL }}">{{ SITENAME }}</a>
       &copy; {{ AUTHOR }}
-    Powered by <a href="https://github.com/getpelican/pelican">Pelican</a> and
-        <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>. 
-        Icons by <a href="https://fortawesome.github.com/Font-Awesome">Font Awesome</a> and 
+      Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, <a href="https://twitter.github.com/bootstrap">Twitter Bootstrap</a>, and <a href="https://nixos.org/">NixOS</a>.
+        Icons by <a href="https://fortawesome.github.com/Font-Awesome">Font Awesome</a> and
         <a href="https://gregoryloucas.github.com/Font-Awesome-More">Font Awesome More</a></p>
 
   </div> <!--end of well -->
