@@ -1,8 +1,5 @@
-# Source for jsteward.moe [![Travis CI](https://travis-ci.org/KireinaHoro/jsteward.moe.svg?branch=master)](https://travis-ci.org/KireinaHoro/jsteward.moe)
+# Source for jsteward.moe
 
-Live here: https://jsteward.moe 
+Live here: https://jsteward.moe
 
-Remember to get the theme before testing locally:
-
-    git submodule update --init --recursive
-
+The fastest way to build this is as a Nix flake.
