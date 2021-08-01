@@ -8,3 +8,5 @@ id_ed25519
 *~
 local-test/
 .vscode/
+.direnv
+result*
