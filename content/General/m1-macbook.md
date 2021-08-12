@@ -96,6 +96,7 @@ Generally speaking, very well!  A few things are still translated, but they work
 ### Development
 
 Good experience, but can get confusing in complicated cases due to Rosetta messing with the toolchain.
+
 - Homebrew has native M1 support at the time of writing, so most tools are already rebuilt natively (you can still get a few x86 casks though, but they still work just fine).
 - Most IDEs (that I use) now natively support M1, to name a few the JetBrains series, Xcode (of course!), VSCode.  My experience  is now so much better as it can handle much larger projects previously not feasible to use in an IDE (e.g. LLVM in CLion, Chipyard in IntelliJ, etc.) due to index getting too large.
 - Toolchains can get a little bit tricky as it is possible to mix up x86 and arm64 libraries, leading to symbol errors during linking.  This can only be fixed in a case-by-case manner and *may lead to significant frustration*.
@@ -155,4 +156,6 @@ There are a few misc issues that does not belong to any specific category of app
 
 ## Closing Remarks
 
-I'm generally pleased with the M1 MacBook Air as a product: it feels finished (not much rough edges), efficient, and performant.  There are definitely areas to improve, such as the need for a 32GB or 64GB model, a better-designed chassis for cooling, etc, but this has been a great start.  Even though I don't use iDevices, I believe I'll probably buy a M2 or M3 device again.  Even for people not purchasing Apple products at all, as competition lowers prices and promotes innovation, it's always a good thing for consumers that Apple challenges on Intel and AMD in the mobile computing market.  All the best for Apple Silicon!
+I'm generally pleased with the M1 MacBook Air as a product: it feels finished (not much rough edges), efficient, and performant.  There are definitely areas to improve, such as the need for a 32GB or 64GB model, a better-designed chassis for cooling, etc, but this has been a great start.  Even though I don't use iDevices, I believe I'll probably buy a M2 or M3 device again.  Even for people not purchasing Apple products at all, as competition lowers prices and promotes innovation, it's always a good thing for consumers that Apple challenges on Intel and AMD in the mobile computing market.
+
+Finally, **all the best for Apple Silicon!**
