@@ -47,10 +47,9 @@
         buildInputs = [
           python39Packages.pelican
           prev.python39Packages.markdown
-          prev.python39Packages.GitPython
         ];
         buildPhase = ''
-          ${gnumake}/bin/make publish
+          ${gnumake}/bin/make publish COMMIT=${if self ? rev then self.rev else "dirty"}
         '';
         installPhase = ''
           mkdir -p $out

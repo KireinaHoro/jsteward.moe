@@ -1,5 +1,6 @@
 <p align="left">
 Personal details (portrait, CV) &copy; <script>document.write(new Date().getFullYear())</script> {{ AUTHOR }} All Rights Reserved; articles licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode">CC BY-SA 4.0</a>.<br>
 Powered by <a href="https://github.com/getpelican/pelican">Pelican</a>, <a href="https://getbootstrap.com/">Bootstrap</a>, and <a href="https://nixos.org/">NixOS</a>.
-Icons by <a href="https://fortawesome.github.com/Font-Awesome">Font Awesome</a>. Generated from <a href="https://github.com/KireinaHoro/jsteward.moe/tree/{{ COMMIT }}">{{ COMMIT }}</a>.
+Icons by <a href="https://fortawesome.github.com/Font-Awesome">Font Awesome</a>.
+{% if COMMIT != "dirty" %} Generated from <a href="https://github.com/KireinaHoro/jsteward.moe/tree/{{ COMMIT }}">{{ COMMIT }}</a>. {% endif %}
 </p>
