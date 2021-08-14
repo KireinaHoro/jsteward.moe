@@ -1,6 +1,6 @@
-PY?=python3
-PELICAN?=pelican
-PELICANOPTS=
+PY ?= python3
+PELICAN ?= pelican
+PELICANOPTS = -v
 
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content

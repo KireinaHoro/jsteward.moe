@@ -6,8 +6,8 @@ AUTHOR = 'Pengcheng Xu'
 SITENAME = 'Pengcheng Xu\'s Place'
 SITEURL = 'http://localhost:8000'
 
-import git
-COMMIT = git.Repo().head.object.hexsha[:7]
+import os
+COMMIT = os.environ['COMMIT'][:7]
 
 PATH = 'content'
 
