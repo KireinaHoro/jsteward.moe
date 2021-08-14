@@ -47,6 +47,7 @@
         buildInputs = [
           python39Packages.pelican
           prev.python39Packages.markdown
+          prev.python39Packages.GitPython
         ];
         buildPhase = ''
           ${gnumake}/bin/make publish
