@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  bump_job:
+    runs-on: ubuntu-latest
+    name: Bump lock in flakes
+    steps:
+      - name: trigger flake bump lock
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.ACTIONS_PAT }}
+          event-type: bump_dep
+          repository: KireinaHoro/flakes
+          client-payload: '{"input": "blog"}'
