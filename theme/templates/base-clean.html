@@ -13,6 +13,8 @@
     <script src="{{ SITEURL }}/theme/html5.js"></script>
     <![endif]-->
 
+    {% block feed %}{% endblock feed %}
+
     <!-- Le styles -->
     <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <link href="{{ SITEURL }}/theme/local.css" rel="stylesheet">
@@ -29,15 +31,19 @@
 <header class="blog-header">
   <div class="container">
     <div class="row-fluid">
+    {% block brand %}
       <div class="span9">
-	<a href="{{ SITEURL }}" class="brand">{{ AUTHOR }}</a>
+      <a href="{{ SITEURL }}" class="brand">{{ AUTHOR }}</a>
+    {% endblock brand %}
       </div>
 
+      {% block nav %}
       <div class="span3" id="blog-nav">
 	<ul class="nav nav-pills pull-right">
 		<li><a href="/blog_index.html"><b>Blog</b></a></li>
 	</ul>
       </div>
+      {% endblock nav %}
     </div> <!-- End of fluid row-->
   </div>   <!-- End of Container-->
 </header>
@@ -46,10 +52,12 @@
     <div class="content">
     <div class="row-fluid">
 
+        {% block profile_span %}
         <div class="span2">
             {% block profile %}{% endblock %}
         </div>
         <div class="span10">
+        {% endblock profile_span %}
         {% block content %}{% endblock %}
         </div>
 
