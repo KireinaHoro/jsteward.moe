@@ -1,4 +1,41 @@
 {% extends "base-clean.html" %}
+
+{% block title %}{{ SITENAME }}{% endblock title %}
+
+{% block feed %}
+    {% if FEED_RSS %}
+    <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    {% endif %}
+    {% if FEED_ALL_ATOM %}
+    <link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+    {% endif %}
+{% endblock feed %}
+
+{% block profile_span %}
+<div class="span10">
+{% endblock profile_span %}
+
+{% block brand %}
+  <div class="span7">
+  <a href="{{ SITEURL }}" class="brand">{{SITENAME}}</a>
+{% endblock brand %}
+
+{% block nav %}
+      <div class="span5" id="blog-nav">
+	<ul class="nav nav-pills pull-right">
+	  {% if DISPLAY_PAGES_ON_MENU %}
+          {% for page in PAGES %}
+            <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+            {% endif %}
+	   {% for cat, null in categories %}
+	    <li {% if cat == category %} class="active" {% endif %}>
+	      <a href="{{ SITEURL }}/{{ cat.url }} ">{{ cat }}</a>
+	   {% endfor %}
+	</ul>
+      </div>
+{% endblock nav %}
+
 {% block links %}
     <div id="blog-footer">
       <div class="row-fluid">
@@ -60,4 +97,4 @@
       </div> <!--end of fluid row-->
     </div> <!--end of blog-footer-->
     <hr />
-{% endblock %}
+{% endblock links %}
