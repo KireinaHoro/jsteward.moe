@@ -10,3 +10,4 @@ local-test/
 .vscode/
 .direnv
 result*
+*.orig
