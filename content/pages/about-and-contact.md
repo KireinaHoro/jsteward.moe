@@ -1,11 +1,12 @@
 Title: Homepage
 Template: homepage
 Date: 2017-03-07 11:40:00
+Modified: 2021-12-12 11:50:00
 Status: published
 Slug: about-and-contact
 save_as: index.html
 
-I'm currently a senior student at Peking University majoring in Computer Science and Technology and a member of the _Turing Class_ honor program at Peking University.  My advisor is [Prof. Yun Liang](https://ericlyun.github.io) at CECA, Peking University.
+I'm currently a first-year [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) student at ETH Zürich.  I'm a member of the [Scalable Parallel Computing Lab](https://spcl.inf.ethz.ch/index.php) lead by [Prof. Torsten Hoefler](http://htor.inf.ethz.ch/).
 
 My research interests span the broad area of Computer Systems, especially in Computer Architecture, Embedded Systems, and High Performance Computing.  I enjoy building highly performant and efficient systems via software and hardware approaches.  My experience in FPGAs, system programming, and parallel programming, enables me to effectively solve many problems in these fields.  You can find my full CV [here](/images/cv.pdf).
 
@@ -13,7 +14,8 @@ I also keep a blog (updated irregularly) to record experiences when dealing with
 
 You can reach me via the following:
 
- - Email: jsteward#pku.edu.cn / i#jsteward.moe (replace # with @)
+ - Email: pengxu#ethz.ch / i#jsteward.moe (replace # with @)
     - GPG Key ID: `7250 7913 7D8A 5B65`
+ - LinkedIn: [Pengcheng Xu](https://www.linkedin.com/in/pengcheng-xu-6a241a9a/)
  - Telegram: [@jsteward](https://t.me/jsteward)
  - GitHub: [KireinaHoro](https://github.com/KireinaHoro)
