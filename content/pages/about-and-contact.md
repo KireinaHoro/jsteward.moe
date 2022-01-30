@@ -6,7 +6,7 @@ Status: published
 Slug: about-and-contact
 save_as: index.html
 
-I'm currently a first-year [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) student at ETH Zürich.  I'm a member of the [Scalable Parallel Computing Lab](https://spcl.inf.ethz.ch/index.php) lead by [Prof. Torsten Hoefler](http://htor.inf.ethz.ch/).
+I'm currently a first-year [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) student at ETH Zürich.  I'm a member of the [Scalable Parallel Computing Lab](https://spcl.inf.ethz.ch/index.php) led by [Prof. Torsten Hoefler](http://htor.inf.ethz.ch/).
 
 My research interests span the broad area of Computer Systems, especially in Computer Architecture, Embedded Systems, and High Performance Computing.  I enjoy building highly performant and efficient systems via software and hardware approaches.  My experience in FPGAs, system programming, and parallel programming, enables me to effectively solve many problems in these fields.  You can find my full CV [here](/images/cv.pdf).
 
