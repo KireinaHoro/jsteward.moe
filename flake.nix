@@ -6,7 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs = inputs@{ self, nixpkgs, flake-utils }:
-  flake-utils.lib.eachDefaultSystem (system: let
+  with flake-utils.lib; eachSystem (defaultSystems ++ ["aarch64-darwin"]) (system: let
     pkgs = import nixpkgs { inherit system; overlays = [ self.overlay ]; };
   in rec {
     defaultPackage = pkgs.jstewardMoe;
