@@ -4,10 +4,10 @@
 
 {% block feed %}
     {% if FEED_RSS %}
-    <link href="{{ SITEURL }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+    <link href="/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
     {% endif %}
     {% if FEED_ALL_ATOM %}
-    <link href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+    <link href="/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
     {% endif %}
 {% endblock feed %}
 
@@ -17,7 +17,7 @@
 
 {% block brand %}
   <div class="span7">
-  <a href="{{ SITEURL }}" class="brand">{{SITENAME}}</a>
+  <a href="/" class="brand">{{SITENAME}}</a>
 {% endblock brand %}
 
 {% block nav %}
@@ -25,12 +25,12 @@
 	<ul class="nav nav-pills pull-right">
 	  {% if DISPLAY_PAGES_ON_MENU %}
           {% for page in PAGES %}
-            <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+            <li><a href="/{{ page.url }}">{{ page.title }}</a></li>
             {% endfor %}
             {% endif %}
 	   {% for cat, null in categories %}
 	    <li {% if cat == category %} class="active" {% endif %}>
-	      <a href="{{ SITEURL }}/{{ cat.url }} ">{{ cat }}</a>
+	      <a href="/{{ cat.url }} ">{{ cat }}</a>
 	   {% endfor %}
 	</ul>
       </div>
@@ -74,20 +74,20 @@
             <li class="nav-header">
               Site
             </li>
-            <li><a href="{{ SITEURL }}"><i class="fas fa-home" style="color: #1f334b">
+            <li><a href=""><i class="fas fa-home" style="color: #1f334b">
                 </i> Home</a></li>
-            <li><a href="{{ SITEURL }}/archives.html"><i class="fas fa-list" style="color: #1f334b">
+            <li><a href="/archives.html"><i class="fas fa-list" style="color: #1f334b">
                 </i> Archives</a></li>
-	    <li><a href="{{ SITEURL }}/tags.html"><i class="fas fa-tags" style="color: #1f334b">
+	    <li><a href="/tags.html"><i class="fas fa-tags" style="color: #1f334b">
                 </i> Tags</a></li>
 
 	    {% if FEED_RSS %}
-	    <li> <a href="{{ SITEURL }}/{{ FEED_RSS }}" rel="alternate">
+	    <li> <a href="/{{ FEED_RSS }}" rel="alternate">
                 <i class="fas fa-rss" style="color: #1f334b"></i>
                 RSS Feed</a></li>
 	    {% endif %}
 	    {% if FEED_ALL_ATOM %}
-	    <li> <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" rel="alternate">
+	    <li> <a href="/{{ FEED_ALL_ATOM }}" rel="alternate">
                 <i class="fas fa-rss" style="color: #1f334b"></i> Atom Feed</a></li>
 	    {% endif %}
 	  </ul>

@@ -28,7 +28,7 @@ The Android system is started as a guest in LXC in Gentoo.  As the Android files
 
 ## Toolchain for Android system target
 
-Toolchains that run on different host architectures is important for building the Android system natively on the device.  [GCC](https://jsteward.moe/toolchain-for-aarch64-linux-android.html) and [LLVM](https://jsteward.moe/toolchain-clang-llvm-with-sanitiazers-for-android.html) cross-compile toolchains for Android `aarch64-linux-android` target have been produced without Google's obscured scripts, which greatly helps in building Android on an AArch64 host--the Android device itself.
+Toolchains that run on different host architectures is important for building the Android system natively on the device.  [GCC](/toolchain-for-aarch64-linux-android.html) and [LLVM](/toolchain-clang-llvm-with-sanitiazers-for-android.html) cross-compile toolchains for Android `aarch64-linux-android` target have been produced without Google's obscured scripts, which greatly helps in building Android on an AArch64 host--the Android device itself.
 
 ## Documentation Work
 
@@ -80,7 +80,7 @@ Currently, the Portage-powered Android project only supports two devices: Huawei
 
 ## GSoC reports archive
 
-[Category GSoC 2018 on jsteward.moe](https://jsteward.moe/category/gsoc-2018.html)
+[Category GSoC 2018 on jsteward.moe](/category/gsoc-2018.html)
 
 ## Acknowledgment
 

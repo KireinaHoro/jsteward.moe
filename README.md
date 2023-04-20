@@ -10,6 +10,7 @@ Build the project:
 
 ```shell
 $ nix build
+$ python3 -m http.server --directory result --bind 127.0.0.1
 ```
 
 The deployment root is located in `result/`.

@@ -75,7 +75,7 @@ Attach the UART cable to see what's going on.  If the kernel can't launch init, 
 
 ## Tweaks in Gentoo to get ready to start Android in LXC later on
 
-Though the system is up and running, we need to tweak a few things to make it suit our later launching Android in LXC.  In case a shell is not yet available on serial console (which is most likely the case by default), boot into Android and `chroot` into Gentoo root as described in [this article](https://jsteward.moe/building-gentoo-chroot-in-android.html) to configure the following.
+Though the system is up and running, we need to tweak a few things to make it suit our later launching Android in LXC.  In case a shell is not yet available on serial console (which is most likely the case by default), boot into Android and `chroot` into Gentoo root as described in [this article](/building-gentoo-chroot-in-android.html) to configure the following.
 
 You'll notice that we don't have a `getty` on the serial console: `sysvinit` does not start `getty` on `ttyHSL0` by default.  Edit `/etc/inittab` in Gentoo root, comment out `tty*` lines (which Android devices definitely don't have) and add the following line:
 
