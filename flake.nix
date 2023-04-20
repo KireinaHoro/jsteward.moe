@@ -13,6 +13,7 @@
     checks = { site = pkgs.jstewardMoe; };
   }) // {
     overlay = final: prev: {
+      /*
       python = prev.python.override {
         packageOverrides = self: super: {
           pelican = super.pelican.overrideAttrs (oldAttrs: rec {
@@ -44,7 +45,7 @@
             '';
           });
         };
-      };
+      }; */
       jstewardMoe = with final; stdenv.mkDerivation {
         name = "jsteward.moe";
         src = lib.cleanSource ./.;
