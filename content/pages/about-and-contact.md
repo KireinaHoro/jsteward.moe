@@ -6,7 +6,7 @@ Status: published
 Slug: about-and-contact
 save_as: index.html
 
-I'm currently a second-year [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) student at ETH Zürich.
+I'm currently a second-year [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) student at ETH Zürich.  I am a member of the [Systems Group](https://systems.ethz.ch) with [Prof. Timothy Roscoe](https://people.inf.ethz.ch/troscoe/).
 
 My research interests span the broad area of Computer Systems, especially in Operating Systems, Computer Architecture, and Embedded Systems.  I enjoy building highly performant and efficient systems via software and hardware approaches.  My experience in FPGAs, system programming, and parallel programming, enables me to effectively solve many problems in these fields.  You can find my full CV [here](/images/cv.pdf).
 
