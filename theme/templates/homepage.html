@@ -2,7 +2,7 @@
 {% block title %}{{ page.title }}- {{ SITENAME }}{%endblock%}
 {% block content %}
 <section id="content" class="body span10">    
-    {% if PDF_PROCESSOR %}<a href="{{ SITEURL }}/pdf/{{ page.slug }}.pdf">get
+    {% if PDF_PROCESSOR %}<a href="/pdf/{{ page.slug }}.pdf">get
     the pdf</a>{% endif %}
     {{ page.content }}
 </section>
