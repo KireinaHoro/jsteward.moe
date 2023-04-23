@@ -1,84 +1,84 @@
 <!DOCTYPE html>
 <html lang="{{ DEFAULT_LANG }}">
-<head>
-    {% block head %}
+    <head>
+        {% block head %}
 
-    <meta charset="utf-8">
-    <title>{% block title %}{{ AUTHOR }}{% endblock title %}</title>
-    <meta name="description" content="">
-    <meta name="author" content="{{ AUTHOR }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-    <script src="/theme/html5.js"></script>
-    <![endif]-->
+        <meta charset="utf-8">
+        <title>{% block title %}{{ AUTHOR }}{% endblock title %}</title>
+        <meta name="description" content="">
+        <meta name="author" content="{{ AUTHOR }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+        <!--[if lt IE 9]>
+            <script src="/theme/html5.js"></script>
+        <![endif]-->
 
-    {% block feed %}{% endblock feed %}
+        {% block feed %}{% endblock feed %}
 
-    <!-- Le styles -->
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
-    <link href="/theme/local.css" rel="stylesheet">
-    <link href="/theme/pygments.css" rel="stylesheet">
-    <link href="/theme/fontawesome/css/all.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC&family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        <!-- Le styles -->
+        <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+        <link href="/theme/local.css" rel="stylesheet">
+        <link href="/theme/pygments.css" rel="stylesheet">
+        <link href="/theme/fontawesome/css/all.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC&family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    {% endblock head %}
-</head>
+        {% endblock head %}
+    </head>
 
-<body>
-<header class="blog-header">
-  <div class="container">
-    <div class="row-fluid">
-    {% block brand %}
-      <div class="span9">
-      <a href="/" class="brand">{{ AUTHOR }}</a>
-    {% endblock brand %}
-      </div>
+    <body>
+        <header class="blog-header">
+            <div class="container">
+                <div class="row-fluid">
+                    {% block brand %}
+                    <div class="span9">
+                        <a href="/" class="brand">{{ AUTHOR }}</a>
+                        {% endblock brand %}
+                    </div>
 
-      {% block nav %}
-      <div class="span3" id="blog-nav">
-	<ul class="nav nav-pills pull-right">
-		<li><a href="/blog_index.html"><b>Blog</b></a></li>
-	</ul>
-      </div>
-      {% endblock nav %}
-    </div> <!-- End of fluid row-->
-  </div>   <!-- End of Container-->
-</header>
+                    {% block nav %}
+                    <div class="span3" id="blog-nav">
+                        <ul class="nav nav-pills pull-right">
+                            <li><a href="/blog_index.html"><b>Blog</b></a></li>
+                        </ul>
+                    </div>
+                    {% endblock nav %}
+                </div> <!-- End of fluid row-->
+            </div>   <!-- End of Container-->
+        </header>
 
-<div class="container">
-    <div class="content">
-    <div class="row-fluid">
+        <div class="container">
+            <div class="content">
+                <div class="row-fluid">
 
-        {% block profile_span %}
-        <div class="span2">
-            {% block profile %}{% endblock %}
+                    {% block profile_span %}
+                    <div class="span2">
+                        {% block profile %}{% endblock %}
+                    </div>
+                    <div class="span10">
+                        {% endblock profile_span %}
+                        {% block content %}{% endblock %}
+                    </div>
+
+                </div> {# End row #}
+            </div> {# End content #}
         </div>
-        <div class="span10">
-        {% endblock profile_span %}
-        {% block content %}{% endblock %}
-        </div>
 
-    </div> {# End row #}
-    </div> {# End content #}
-</div>
+        <!--footer-->
+        <div class="container">
+            <div class="well" style="background-color: #E9EFF6">
+                {% block links %}{% endblock %}
+                {% include "footnote.html" %}
+            </div> <!--end of well -->
+        </div> <!--end of container -->
 
-<!--footer-->
-<div class="container">
-  <div class="well" style="background-color: #E9EFF6">
-    {% block links %}{% endblock %}
-    {% include "footnote.html" %}
-  </div> <!--end of well -->
-</div> <!--end of container -->
-
-<!--/footer-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+        <!--/footer-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 
 
-{% include "analytics.html" %}
+        {% include "analytics.html" %}
 
-</body>
+    </body>
 </html>
