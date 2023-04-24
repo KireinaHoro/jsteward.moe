@@ -24,6 +24,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC&family=Gudea:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
+        {% block extra_head %}{% endblock extra_head %}
+
         {% endblock head %}
     </head>
 
@@ -41,6 +43,7 @@
                     <div class="span3" id="blog-nav">
                         <ul class="nav nav-pills pull-right">
                             <li><a href="/blog_index.html"><b>Blog</b></a></li>
+                            <li><a href="/gallery_index.html"><b>Gallery</b></a></li>
                         </ul>
                     </div>
                     {% endblock nav %}
@@ -76,6 +79,8 @@
         <!--/footer-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+
+        {% block extra_body %}{% endblock extra_body %}
 
 
         {% include "analytics.html" %}
