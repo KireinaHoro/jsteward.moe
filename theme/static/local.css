@@ -44,7 +44,10 @@ h1,h2,h3,h4,h5,h6 { color: #000001; margin-bottom: 0px}
 .content-title { margin-bottom: 30px; }
 .article a:hover { text-decoration: none; } 
 
-
+/* Styling for galleries */
+.gallery { padding-bottom:15px; padding-right: 40px; }
+.content-title-gallery { margin-bottom: 30px; }
+.gallery a:hover { text-decoration: none; } 
 
 /* Styling for the "other entries" section */
 /* Metadata */

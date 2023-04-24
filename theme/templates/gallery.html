@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="/theme/photoswipe/photoswipe.css">
+{% endblock extra_head %}
+
+{% block extra_body %}
+<script type="module">
+import PhotoSwipeLightBox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js';
+const lightbox = new PhotoSwipeLightBox({
+    gallery: '#the-gallery',
+    children: 'a',
+    pswpModule: () => import('/theme/photoswipe/photoswipe.esm.min.js')
+});
+lightbox.init();
+</script>
+{% endblock extra_body %}
+
+{% block title %}{{ article.title|striptags }} - {{ SITENAME }}{%endblock%}
+{% block content %}
+<div class='gallery'>
+    <div class="row-fluid">
+        <div class="content-title-gallery span9">
+            <h1>{{ article.title }}</h1>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2">
+            {% include "article-sidebar.html" %}
+        </div>
+
+        <div class="span10">
+            {{ article.content }}
+            <hr />
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2"></div>
+        <div class="span10">
+            <h3>Comments</h3>
+
+            {% include 'disqus.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
