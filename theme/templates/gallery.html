@@ -5,6 +5,7 @@
 {% endblock extra_head %}
 
 {% block extra_body %}
+<script src="/theme/isotope.pkgd.min.js"></script>
 <script type="module">
 import PhotoSwipeLightBox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js';
 const lightbox = new PhotoSwipeLightBox({
@@ -17,6 +18,7 @@ lightbox.init();
 {% endblock extra_body %}
 
 {% block title %}{{ article.title|striptags }} - {{ SITENAME }}{%endblock%}
+{% block profile_span %}{% endblock profile_span %}
 {% block content %}
 <div class='gallery'>
     <div class="row-fluid">
@@ -25,22 +27,7 @@ lightbox.init();
         </div>
     </div>
     <div class="row-fluid">
-        <div class="span2">
-            {% include "article-sidebar.html" %}
-        </div>
-
-        <div class="span10">
-            {{ article.content }}
-            <hr />
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span2"></div>
-        <div class="span10">
-            <h3>Comments</h3>
-
-            {% include 'disqus.html' %}
-        </div>
+        {{ article.content }}
     </div>
 </div>
 {% endblock %}
