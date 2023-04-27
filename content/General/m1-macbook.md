@@ -8,7 +8,7 @@ Status: published
 
 It's been over half a year since I accepted the donation of a M1 MacBook Air from [@jiegec](https://t.me/jiegec) and I've been procrastinating for the promised use report.  I finally got some free time to sum up the overall experience and rough edges during daily use, so here we are!  While this post mainly focuses on the experience of the Apple Silicon-equipped version of 2020 MacBook Air, some reviews will probably be more about macOS and Apple itself since this is the first Mac I've extensively used.  Let's get started!
 
-![About this Mac]({static}/images/m1-ueber-diesen-mac.png)
+![About this Mac](/images/m1-ueber-diesen-mac.png)
 
 **Note**: this article is written on the M1 MacBook Air using Vim inside iTerm.
 

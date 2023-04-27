@@ -6,7 +6,7 @@ Tags: risc-v, fpga, embedded
 Slug: edgeboard-series
 Status: published
 
-![RISC-V logo]({static}/images/RISC-V-logo.svg)
+![RISC-V logo](/images/RISC-V-logo.svg)
 
 ## Intro
 
