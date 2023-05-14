@@ -6,6 +6,20 @@
 
 {% block extra_body %}
 <script src="/theme/isotope.pkgd.min.js"></script>
+<script src="/theme/imagesloaded.pkgd.min.js"></script>
+<script>
+var elem = document.querySelector('.grid');
+var iso = new Isotope(elem, {
+    itemSelector: '.grid-item',
+    percentPosition: true,
+    masonry: {
+        columnWidth: '.grid-sizer'
+    }
+});
+imagesLoaded(elem).on('progress', function() {
+    iso.layout();
+});
+</script>
 <script type="module">
 import PhotoSwipeLightBox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js';
 const lightbox = new PhotoSwipeLightBox({
