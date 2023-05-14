@@ -93,8 +93,11 @@ h1,h2,h3,h4,h5,h6 { color: #000001; margin-bottom: 0px}
 #sitelinks { display: table-footer-group;}
 }
 
-.grid-item {
+.grid-sizer, .grid-item {
     width: 25%;
+}
+
+.grid-item {
     padding: 3px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
