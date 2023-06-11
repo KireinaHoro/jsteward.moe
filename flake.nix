@@ -50,8 +50,8 @@
         name = "jsteward.moe";
         src = lib.cleanSource ./.;
         buildInputs = [
-          python39Packages.pelican
-          prev.python39Packages.markdown
+          python3Packages.pelican
+          prev.python3Packages.markdown
         ];
         buildPhase = ''
           ${gnumake}/bin/make publish COMMIT=${if self ? rev then self.rev else "dirty"}
