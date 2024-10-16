@@ -11,6 +11,19 @@
   in rec {
     defaultPackage = pkgs.jstewardMoe;
     checks = { site = pkgs.jstewardMoe; };
+    apps.default = let
+      serve = pkgs.writeShellApplication {
+        # serve the built local tree on port 8080
+        name = "serve";
+        runtimeInputs = [pkgs.caddy];
+        text = ''
+          caddy file-server --listen localhost:8080 --root ${pkgs.jstewardMoe}
+        '';
+      };
+    in {
+      type = "app";
+      program = "${serve}/bin/serve";
+    };
   }) // {
     overlay = final: prev: {
       jstewardMoe = with final; stdenv.mkDerivation {

@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Pengcheng Xu'
 SITENAME = 'Pengcheng Xu\'s Place'
-SITEURL = 'http://localhost:8000'
+SITEURL = 'http://localhost:8080'
 
 import os
 COMMIT = os.environ['COMMIT'][:7]
