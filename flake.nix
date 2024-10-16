@@ -29,10 +29,7 @@
       jstewardMoe = with final; stdenv.mkDerivation {
         name = "jsteward.moe";
         src = lib.cleanSource ./.;
-        buildInputs = [
-          python3Packages.pelican
-          prev.python3Packages.markdown
-        ];
+        buildInputs = with python3Packages; [ pelican markdown ];
         buildPhase = ''
           ${gnumake}/bin/make publish COMMIT=${if self ? rev then self.rev else "dirty"}
         '';
