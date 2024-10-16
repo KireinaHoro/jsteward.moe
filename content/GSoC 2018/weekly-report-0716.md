@@ -20,7 +20,7 @@ The last week's work sums up into the following two articles:
 
   * [Enabling aarch64 as a host architecture for Android Build (WIP)]({filename}/Android/aarch64-build-host.md): logs modifications made to accomodate system toolchains for `aarch64` into the build system.
     * This is necessary as Google doesn't provide prebuilt toolchains for `aarch64` hosts; the build system assumes `x86` here and there as well.
-  * [Using distcc to speed up builds on phone]({filename}/Gentoo/distcc-speed-up.md): speed up Portage builds on phone with `distccd` running on the laptop.
+  * [Using distcc to speed up builds on phone]({filename}/SysAdmin/distcc-speed-up.md): speed up Portage builds on phone with `distccd` running on the laptop.
   * [C/C++ Toolchain for Android Build on aarch64 (WIP)]({filename}/Android/toolchain-for-android.md): attempt to get the set of toolchains for building Android on aarch64.
 
 This week did not achieve any significant milestones; instead, several obstacles are discovered.  They are discussed in the relative articles.

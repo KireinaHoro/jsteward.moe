@@ -8,7 +8,7 @@ Status: published
 
 ## What happened
 
-The trusty SPARC machine I obtained from someone on the Gentoo mailing list quietly had its SAS 10k RPM HDD failed; the machine has been running Solaris 11.3 for over two years since I've blown up the [Gentoo setup]({filename}/Gentoo/dual-disk-lvm.md).  As the machine is co-located inside PKU and I do not have access to the server room, which is located on campus, due to the pandemic, the only possible way to revive the machine for probably some good is via netboot.  Fortunately, the SPARC OpenBoot PROM supports netbooting via RARP/TFTP (or DHCP) and I have other machines that can serve as a boot server in the same broadcast domain.  Let's get started!
+The trusty SPARC machine I obtained from someone on the Gentoo mailing list quietly had its SAS 10k RPM HDD failed; the machine has been running Solaris 11.3 for over two years since I've blown up the [Gentoo setup]({filename}/SysAdmin/dual-disk-lvm.md).  As the machine is co-located inside PKU and I do not have access to the server room, which is located on campus, due to the pandemic, the only possible way to revive the machine for probably some good is via netboot.  Fortunately, the SPARC OpenBoot PROM supports netbooting via RARP/TFTP (or DHCP) and I have other machines that can serve as a boot server in the same broadcast domain.  Let's get started!
 
 ## The boot protocol
 

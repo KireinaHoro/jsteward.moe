@@ -16,7 +16,7 @@ As it is quite a nuisance to write an article for every single purpose of the sy
 
 ## The host operating system
 
-After quite long struggling with Arch Linux and Gentoo, especially [with the desktop experience]({filename}/Gentoo/install-gentoo-in-hyper-v.md), I turned to the well-known Microsoft Windows operating system in 2018.  After several iterations of reinstallation, the current installation has been serving since July 2019 (confirmed via battery report of OS).  The specific system variant as of writing is shown as follows.
+After quite long struggling with Arch Linux and Gentoo, especially [with the desktop experience]({filename}/SysAdmin/install-gentoo-in-hyper-v.md), I turned to the well-known Microsoft Windows operating system in 2018.  After several iterations of reinstallation, the current installation has been serving since July 2019 (confirmed via battery report of OS).  The specific system variant as of writing is shown as follows.
 
 ![winver screenshot](/images/winver-20200225.png)
 

@@ -8,7 +8,7 @@ Status: published
 
 ## Preface
 
-After successfully booting Gentoo on Nexus 6P [in the previous article]({filename}/Gentoo/booting-gentoo-on-nexus-6p.md), we can move on to launching Android in LXC, which is the last mission in the first period of my GSoC 2018 project.  This article documents the process to bring up Android successfully with most of its functions working; only a few things don't work by now, and they're recorded in the Known Problems section at the end of this article.  Note that while this article strives to provide easy-to-follow instructions, it may not be suitable as a step-by-step tutorial. That is to say, you may encounter problems due to mistakes or things that the author didn't notice.  The author appreciates your understanding when such things happen; meanwhile, feel free to contact the author by the means listed in the page linked at the bottom of this page.
+After successfully booting Gentoo on Nexus 6P [in the previous article]({filename}/SysAdmin/booting-gentoo-on-nexus-6p.md), we can move on to launching Android in LXC, which is the last mission in the first period of my GSoC 2018 project.  This article documents the process to bring up Android successfully with most of its functions working; only a few things don't work by now, and they're recorded in the Known Problems section at the end of this article.  Note that while this article strives to provide easy-to-follow instructions, it may not be suitable as a step-by-step tutorial. That is to say, you may encounter problems due to mistakes or things that the author didn't notice.  The author appreciates your understanding when such things happen; meanwhile, feel free to contact the author by the means listed in the page linked at the bottom of this page.
 
 ## Legends
 
