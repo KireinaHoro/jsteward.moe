@@ -10,7 +10,7 @@ Status: published
 
 This is my first week back on GSoC from the final exams, and, according to the proposal, the second part of the project should get started in this week.  This week's work sums up into the following two articles:
 
-  * [Integrating Android kernel source into Portage]({filename}/Gentoo/android-kernel-source-portage.md)
+  * [Integrating Android kernel source into Portage]({filename}/SysAdmin/android-kernel-source-portage.md)
 	Introduces how the three components, `preinit`, `installkernel`, and `${BOARD_NAME}-sources` works together to provide a kernel source package that enables users to build and install kernels just like normal Gentoo Linux systems on a Portage-powered Android system.
   * [Brief introduction to the (post-8.0) Android Build System]({filename}/Android/android-build-system.md)
     Summarizes the information I collected via searching and reading sources in AOSP about the current Android build system that came into action at present (Android 8.0 and later).  Attempts to dissect the build system also included.

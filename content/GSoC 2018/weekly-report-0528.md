@@ -13,10 +13,10 @@ This week was planned as the last week for the first (Preparation) and second (G
 Reading and following the instructions in the following articles in order would form a complete, detailed tutorial to reproduce the work up to this point:
 
   * Article written in the week before this week:
-    * [Building a Gentoo chroot in Android]({filename}/Gentoo/building-gentoo-chroot-in-android.md)
+    * [Building a Gentoo chroot in Android]({filename}/SysAdmin/building-gentoo-chroot-in-android.md)
   * Articles I've written this week:
 	* [UART on Nexus 6P]({filename}/GSoC 2018/nexus-6p-uart.md)
-	* [Booting Gentoo on Nexus 6P]({filename}/Gentoo/booting-gentoo-on-nexus-6p.md)
+	* [Booting Gentoo on Nexus 6P]({filename}/SysAdmin/booting-gentoo-on-nexus-6p.md)
 	* [Buidling a LXC-ready Android kernel with Gentoo toolchain]({filename}/Android/building-lxc-ready-kernel.md)
 	* [Starting Android in LXC]({filename}/Android/starting-android-in-lxc.md)
 	
