@@ -1,7 +1,7 @@
 Title: Netbooting OpenBSD on SPARC64
 Date: 2020-9-6 20:35
 Modified: 2020-9-6 20:35
-Category: OS
+Category: SysAdmin
 Tags: os, sparc, openbsd
 Slug: sparc-openbsd-netboot
 Status: published
@@ -15,12 +15,12 @@ The trusty SPARC machine I obtained from someone on the Gentoo mailing list quie
 The OpenBSD [netboot protocol `diskless(8)`](https://man.openbsd.org/diskless) explains the boot process quite well:
 
 > When booting a system over the network, there are three phases of interaction between client and server:
-> 
+>
 > - The PROM (or stage-1 bootstrap) loads a **boot program**.
 > - The boot program loads a **kernel**.
 > - The kernel does NFS mounts for root and swap.
 
-The first and second phases, on SPARC, relies on the early environment provided by [OpenBoot](https://tldp.org/HOWTO/SPARC-HOWTO-14.html) for network access.  
+The first and second phases, on SPARC, relies on the early environment provided by [OpenBoot](https://tldp.org/HOWTO/SPARC-HOWTO-14.html) for network access.
 
 ### The first stage
 

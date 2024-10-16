@@ -1,7 +1,7 @@
 Title: Dual Disk LVM with Loopback Files
 Date: 2018-02-05 12:00
 Modified: 2018-02-05 12:00
-Category: Gentoo
+Category: SysAdmin
 Tags: gentoo, lvm, sparc
 Slug: dual-disk-lvm-with-loopback
 Status: published
