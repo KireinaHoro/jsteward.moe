@@ -121,3 +121,8 @@ h1,h2,h3,h4,h5,h6 { color: #000001; margin-bottom: 0px}
 	font-size: 95%;
     display: inline-block;
 }
+
+.codehilite pre {
+    white-space: pre;
+    overflow-x: auto;
+}
