@@ -67,7 +67,11 @@ suggested by @harry_chen.
         - temporary fix by duplicating name
         - ubuntu &lt;bug url&gt;
     - issues with ports archive -> custom sources.list
-```
+    - `sbuild-update --chroot-mode=unshare -udcar` to update the chroot
+        - `sbuild` on Ubuntu 22.04 doesn't recognise tar.zst-compressed tarballs, despite the [Debian wiki][2] recommending it
+        - Using lz4 since it's the fastest according to [this benchmark][4]
+
+```text
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
@@ -78,9 +82,6 @@ deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restri
 deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ focal-backports main restricted universe multiverse
 deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ focal-security main restricted universe multiverse
 ```
-        - `sbuild-update --chroot-mode=unshare -udcar` to update the chroot
-            - `sbuild` on Ubuntu 22.04 doesn't recognise tar.zst-compressed tarballs, despite the [Debian wiki][2] recommending it
-            - Using lz4 since it's the fastest according to [this benchmark][4]
 
 ubuntu kernel still doesn't cross compile: mix-up between build and host dependencies (`libssl-dev` is main offender but other ones like `pahole` also fails but does not abort build)
 
