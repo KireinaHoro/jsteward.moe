@@ -107,3 +107,17 @@ h1,h2,h3,h4,h5,h6 { color: #000001; margin-bottom: 0px}
 .grid-item.grid-item-wide {
     width: 100%;
 }
+
+.toctitle {
+    font-weight: bold;
+}
+
+.toc {
+    /* stolen from Gentoo wiki */
+	border: 1px solid #a2a9b1;
+    box-sizing: border-box;
+	background-color: #f8f9fa;
+	padding: 8px;
+	font-size: 95%;
+    display: inline-block;
+}
