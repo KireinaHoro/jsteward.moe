@@ -49,6 +49,13 @@ DEFAULT_METADATA = {
     'status': 'draft',
 }
 
+MARKDOWN = {
+    'output_format': 'html5',
+    'extension_configs': {
+        'markdown.extensions.toc': {'title': 'Table of Contents'},
+    }
+}
+
 # use index.html for personal introduction and place blog index at a separate place
 INDEX_SAVE_AS = 'blog_index.html'
 
