@@ -50,6 +50,7 @@ DEFAULT_METADATA = {
 }
 
 MARKDOWN = {
+    'extensions': [f'markdown.extensions.{x}' for x in ['codehilite', 'fenced_code', 'meta']],
     'output_format': 'html5',
     'extension_configs': {
         'markdown.extensions.toc': {'title': 'Table of Contents'},
