@@ -7,21 +7,103 @@ Slug: cross-compile-tickless-ubuntu-kernel
 
 ## Preface
 
-trial-and-error, not working yet.  Get familiar with the Debian/Ubuntu packaging infrastructure, for future custom packages for debian
+This article documents the trial-and-error process of me trying to
+cross-compile the Ubuntu kernel for `arm64`, for use with [Enzians][8] at the
+[Systems Group at ETH][9].  So far building natively on the Enzians work (see
+[native build below](#create-variant-and-build-natively-on-enzian)), but
+unfortunately none of the cross-compile approaches works.  I have submitted a
+couple bug reports and will (hopefully) update accordingly when things change.
+
+With that said, this whole process has been quite a journey: I learned a lot
+about the Debian and Ubuntu packaging infrastructure.  This should serve as a
+good starting point for later, when I would want to create my own, custom
+Debian packages.
 
 [TOC]
 
 ## Motivation
 
-Tickless setup: CONFIG_NO_HZ_FULL, HZ=100 for focal.  Used for arm64 Enzian for experiments
+### Why custom kernel?
 
-Possible to use upstream tree directly, as of [Enzian wiki][5], but feels dirty:
-- divergence from stock ubuntu kernel -- no vendor patches
-- unhygenic installation of modules, untracked by dpkg
+The core idea is very simple: when doing performance measurements for a
+user-space application, one would want as little disruption as possible.  This
+is traditionally handled by _pinning_ a task to a specific CPU core, to avoid
+the scheduler moving it willy-nilly across cores.  Say we have our Design Under
+Test `pionic-test` (from my [PIO NIC project][10] and we want to run it on core
+#47 (last CPU core on Enzians):
 
-[Official instruction][1] or with `dpkg-buildpackage` works to build on the Enzian, but disk space limit and old CPU -> slow
+```console
+$ sudo taskset -c 47 ./pionic-test
+```
 
-Conclusion: try to cross compile
+However, doing so isn't nearly enough: we also need to ensure that there are no
+other tasks, both user-space and __kernel space__ (kthreads), running on core
+#47.  Failing to evacuate these tasks will still result in the scheduler
+stepping in, descheduling us, and scheduling these other tasks.  There are also
+other concerns, like device IRQs, timer interrupts (_cough cough_), RCU
+callbacks, bla bla.  Most of these can be moved off the core with some kernel
+command-line options:
+
+```
+isolcpus=nohz,domain,managed_irq,47 rcu_nocbs=47 irqaffinity=0-46 kthread_cpus=0-46 rcu_nocb_poll
+```
+
+Many guides on the Internet detail on how to tune the kernel for real-time
+applications (here's [one from the Ubuntu blog][11], for example).  I won't go
+into the details of what each of these options mean since it's not related to
+this article.
+
+However, no matter how _quiet_ you try to make the kernel to be, the stock,
+`-generic` kernel has its limits.  The default Ubuntu `-generic` kernel is
+_tickful_ (I coined this as opposed to the more commonly used word
+_tickless_--you'll see in a minute).  This means that even if _absolutely
+nothing_ other than the user task is running on the core, and that you moved
+all irrelevant IRQ processing etc. off the core, there still would be a
+constant __timer interrupt__ (usually at 250 Hz; defined via the `HZ` config
+option) going off on that core.  Measurements on the Enzian show that handling
+this interrupt takes around _10 us_: not a lot of time, but enough to appear as
+a large __tail latency__ if your application latency is sub-microsecond.
+
+The kernel is _capable_ to be completely tickless [since 3.10][12], through the
+compile-time config `CONFIG_NO_HZ_FULL`.  Enabling this option, along with
+specifying `nohz_full=47` on the kernel command-line, will finally make this
+250 Hz timer interrupt go away.  However, the feature still has some rough
+edges, with potential performance impacts for specific workloads (since it
+changes how time-keeping works), it is not generally deployed.  It certainly
+isn't available in the Ubuntu archive for us to directly install.
+
+### Why Ubuntu (vendor) kernel?
+
+Hopefully that explains why I want a custom kernel.  But why do I have to use
+the _Ubuntu_ kernel?  Well, yeah it's true that I can use the upstream tree
+directly (it's the method for a custom kernel documented on the [Enzian
+wiki][5]).  However, there are two catches:
+
+- the stock Ubuntu kernel has a lot of patches; using the upstream tree would
+  mean deviating _a lot_ from the vanilla setup (which is just stock Ubuntu)
+- installing a upstream kernel is __unhygenic__: the installed kernel images
+  and modules won't be tracked by `dpkg`, making it a pain to uninstall,
+  reinstall, or package and redistribute
+
+The distribution/vendor (Ubuntu) makes a nice kernel package that we should be
+able to easily customize (_cough cough_) and rebuild.  This way, we can make
+sure that there's as little divergence as possible from the _vanilla_ Ubuntu
+kernel, for the sake of clean experiment results.
+
+### Why cross-compile?
+
+It stands that native-compiling is always easier than cross-compiling: no need
+to carefully differentiate if you're compiling something that will execute on
+the _host machine_ (i.e. the machine you're building __for__), or a tool that
+you need during the build, for the _build machine_ (i.e. the machine you're
+building __on__).  This is especially tricky when _dependencies_ are involved,
+since binaries for wrong architecture won't execute (easily).
+
+With that said, the old benefits of cross-compiling apply.  The Enzian has a
+rather old [Cavium ThunderX-1][13] CPU that is not particularly fast.  In
+addition, all machines are booted through iSCSI (5 GB image) with a NFS scratch
+space, so storage is very limited (either slow or small).  It would be great if
+we can cross-compile.
 
 ## Create variant and build natively on Enzian
 
@@ -100,3 +182,9 @@ Keep an eye on the bugs, once they get fixed we can do this!
 [5]: https://unlimited.ethz.ch/x/36omD
 [6]: https://git-scm.com/book/en/v2/Git-Tools-Replace
 [7]: https://github.com/KireinaHoro/linux-focal-variants/compare/8adb6ccd..5.4-tickless?diff=unified&w=
+[8]: https://enzian.systems/
+[9]: https://systems.ethz.ch/
+[10]: https://github.com/KireinaHoro/enzian-pio-nic
+[11]: https://ubuntu.com/blog/real-time-kernel-tuning
+[12]: https://lwn.net/Articles/549580/
+[13]: https://en.wikichip.org/wiki/cavium/microarchitectures/thunderx1
