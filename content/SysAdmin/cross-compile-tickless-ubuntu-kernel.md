@@ -1,6 +1,6 @@
 Title: Cross-compiling a Tickless Ubuntu Kernel
 Date: 2024-10-16T11:55+02:00
-Modified: 2024-10-16T11:55+02:00
+Modified: 2024-10-19T22:41+02:00
 Category: SysAdmin
 Tags: ubuntu, linux, kernel
 Slug: cross-compile-tickless-ubuntu-kernel
@@ -419,25 +419,78 @@ $ mmdebstrap --arch="amd64 arm64" focal ~/.cache/sbuild/focal-amd64.tar.lz4 ~/my
 $ sbuild-update --chroot-mode=unshare -udcar # test access by sbuild
 ```
 
-We should now be able to do `sbuild -aarm64`
+We should now be able to do `sbuild --host=arm64 -d focal` to cross-compile the
+entire kernel package...  only if would be that easy :)  This time the build
+process fails really early, when compiling the `scripts/sign-file` tool shipped
+by the Linux kernel upstream.  It turns out that the Ubuntu kernel mixes build
+and host dependencies without marking them correctly with `:native` (as
+described in [the Debian cross-compile guidelines]).  The Debian kernel
+(correctly) [defines `Build-Depends` as follows][19]:
 
-ubuntu kernel still doesn't cross compile: mix-up between build and host dependencies
-- `libssl-dev` missing on build prevents `sign-file` from building
-- other ones like `pahole` also fails to execute on build (host version is pulled in), but does not abort build
-    - does this affect correctness?
+```plain
+Section: kernel
+[...]
+Build-Depends:
+[...]
+# used by upstream to build signing tools and to process certificates
+ libssl-dev:native <!pkg.linux.nokernel>,
+ libssl-dev <!pkg.linux.notools>,
+```
 
-- Asked on #kernel:ubuntu.com (Matrix), Timo Aaltonen (@tjaalton:ubuntu.com) confirmed that this is not ideal and I should file a bug
-    - &lt;bug url&gt;
+You can see the correct way here is to depend on the __build-native__
+`libssl-dev` for building the `sign-file` tool, unless the `pkg.linux.nokernel`
+profile is selected (meaning that we are not building the kernel after all).
+We would depend on the __host-native__ `libssl-dev` when we are building
+`linux-tools`, unless the `pkg.linux.notools` profile is selected.  In
+comparison, Ubuntu's kernel rules does [something way cruder][20]:
+
+```plain
+[...]
+Build-Depends:
+[...]
+ libssl-dev <!stage1>,
+```
+
+We can see that Ubuntu didn't differentiate between __build__ and __host__ at
+all when declaring build dependencies.  The same issue is also present for
+other tools like `pahole` -- they fail to execute on the build machine due to
+the incorrect version being installed.  Those failure didn't fail the entire
+build, meaning that a small patchwork for `libssl-dev` allowed the build to
+actually produce `.deb` packages.  However, I really wouldn't trust the
+packages compiled this way.
+
+I asked on `#kernel:ubuntu.com` on Matrix about if this lack of awareness of
+cross-compiling is intended.  The answer from Timo Aaltonen
+(`@tjaalton:ubuntu.com`), one of Ubuntu's core devs, is no:
+
+> __Timo__: ack. btw, do file a bug against the kernel so it's not forgotten. I
+> don't think there's a reason why this is like it is. We might just as well do
+> what debian does here
+
+So here's the bug report: __WIP__
 
 ## Emulated native build with `qemu-user-static` and `binfmt_misc`
 
-Timo from Ubuntu used a arm64 schroot (foreign)--therefore it's emulated "native" build
+My conversation with Timo actually revealed the fact that a separate route of
+building the kernel on a beefy amd64 machine being possible:
 
-Theoretically would work fine, supported by `mmdebstrap`, but lots of lost performance.  Probably the way to go for now
+> __Timo__: then again I created a schroot for armhf, so you're using the amd64
+> chroot? <br />
+> __Me__: ah yes, I have a focal-amd64. If you have a schroot for armhf, does
+> that mean you're using qemu-user with binfmt? <br />
+> __Timo__: probably
+
+An `armhf` schroot on an `amd64` build machine is essentially what I would call
+_emulated native build_ -- execution of `armhf` binaries is emulated through
+`qemu-user-static` (static since we are inside a chroot).  `mmdebstrap` has
+support for this pattern, so it might be worth a go.  Until Ubuntu fixes the
+kernel dependency declarations, this might be the only way to "cross-compile" a
+`arm64` Ubuntu kernel on `amd64`.
 
 ## Closing remarks
 
-Keep an eye on the bugs, once they get fixed we can do this!
+I've explored in somewhat detail how the Ubuntu kernel rules work, opened some
+bugs, and found a plausible way to proceed.  Let's stay tuned on the bugs!
 
 [1]: https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel
 [2]: https://wiki.debian.org/sbuild
@@ -456,3 +509,6 @@ Keep an eye on the bugs, once they get fixed we can do this!
 [15]: https://stackoverflow.com/a/76102264/5520728
 [16]: https://www.debian.org/doc/debian-policy/ch-controlfields.html
 [17]: https://www.debian.org/doc/manuals/maint-guide/build.en.html
+[18]: https://wiki.debian.org/Multiarch/HOWTO#When_to_use_:native_and_when_to_use_:any.3F
+[19]: https://salsa.debian.org/kernel-team/linux/-/blob/8941549ed01ecdd8b9d2f84f2fb1d46507b76861/debian/templates/source.control.in#L19-21
+[20]: https://github.com/KireinaHoro/linux-focal-variants/blob/8adb6ccde3615be4787b1583d4cb231d123d0fd1/debian.master/control.stub.in#L28
