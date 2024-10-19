@@ -8,11 +8,12 @@ Slug: cross-compile-tickless-ubuntu-kernel
 ## Preface
 
 This article documents the trial-and-error process of me trying to
-cross-compile the Ubuntu kernel for `arm64`, for use with [Enzians][8] at the
+cross-compile the Ubuntu kernel for `arm64` for use with [Enzians][8] at the
 [Systems Group at ETH][9].  So far building natively on the Enzians work (see
 [native build below](#create-flavour-and-build-natively-on-enzian)), but
-unfortunately none of the cross-compile approaches works.  I have submitted a
-couple bug reports and will (hopefully) update accordingly when things change.
+unfortunately none of the cross-compile approaches produce reliable `.deb`
+packages.  I have submitted a couple bug reports and will (hopefully) update
+accordingly when things change.
 
 With that said, this whole process has been quite a journey: I learned a lot
 about the Debian and Ubuntu packaging infrastructure.  This should serve as a
@@ -56,14 +57,14 @@ this article.
 
 However, no matter how _quiet_ you try to make the kernel to be, the stock,
 `-generic` kernel has its limits.  The default Ubuntu `-generic` kernel is
-_tickful_ (I coined this as opposed to the more commonly used word
-_tickless_--you'll see in a minute).  This means that even if _absolutely
-nothing_ other than the user task is running on the core, and that you moved
-all irrelevant IRQ processing etc. off the core, there still would be a
-constant __timer interrupt__ (usually at 250 Hz; defined via the `HZ` config
-option) going off on that core.  Measurements on the Enzian show that handling
-this interrupt takes around _10 us_: not a lot of time, but enough to appear as
-a large __tail latency__ if your application latency is sub-microsecond.
+_tickful_ (I coined this as opposed to the more commonly used word _tickless_
+-- you'll see in a minute).  This means that even if _absolutely nothing_ other
+than the user task is running on the core, and that you moved all irrelevant
+IRQ processing etc. off the core, there still would be a constant __timer
+interrupt__ (usually at 250 Hz; defined via the `HZ` config option) going off
+on that core.  Measurements on the Enzian show that handling this interrupt
+takes around _10 us_: not a lot of time, but enough to appear as a large __tail
+latency__ if your application latency is sub-microsecond.
 
 The kernel is _capable_ to be completely tickless [since 3.10][12], through the
 compile-time config `CONFIG_NO_HZ_FULL`.  Enabling this option, along with
@@ -85,6 +86,9 @@ wiki][5]).  However, there are two catches:
 - installing a upstream kernel is __unhygenic__: the installed kernel images
   and modules won't be tracked by `dpkg`, making it a pain to uninstall,
   reinstall, or package and redistribute
+  - @Harry_Chen mentioned that the upstream Makefiles are _capable_ of
+    producing `.deb` packages; however due to the fear that they might not
+    conform to Ubuntu conventions, I didn't explore in this direction
 
 The distribution/vendor (Ubuntu) makes a nice kernel package that we should be
 able to easily customize (_cough cough_) and rebuild.  This way, we can make
@@ -224,23 +228,25 @@ $ ls -sh ../*.deb
 5.1M ../linux-tools-5.4.0-200_5.4.0-200.220+pengxu_arm64.deb
 ```
 
+I tested these packages on the Enzian -- they seem to work just fine.
+
 ## Cross compile
 
 Now that we can build our kernel flavour natively, we can start attempting to
-cross-compile it.  I have to reiterate here: none of the following actually
-worked reliably!  Even though `sbuild` managed to produce `.deb` packages in
-the end, I don't think they are built correctly and didn't bother to test the
-resulting packages--something is fundamentally wrong with the build.  Don't say
-that I told you it would work :)
+cross-compile it.  I have to reiterate here: __none of the following__ actually
+worked (i.e. produced packages that _could_ work)!  Even though `sbuild`
+managed to produce `.deb` packages in the end, I don't think they are built
+correctly and didn't bother to test the resulting packages -- something is
+fundamentally wrong with the build.  Don't say that I told you it would work :)
 
 With that said, I'm fairly confident that I am on the right track.  Provided
 that the Ubuntu kernel team rework the dependency declarations, there's quite
-good chance that my approach will work.
+good chance that `sbuild` will be able to produce correct packages.
 
 ### Attempt \#1: invoking the rule with `arch=arm64`
 
 I bumped into this by searching for `arch` in all the Makefiles inside
-`debian/`--documentation was really scarce on how to cross compile the Ubuntu
+`debian/` -- documentation was really scarce on how to cross compile the Ubuntu
 kernel after all.  Quoting from `debian/rules.d/0-common-vars.mk`:
 
 ```makefile
@@ -263,23 +269,48 @@ $ fakeroot debian/rules clean
 $ fakeroot debian/rules binary-headers binary-tickless binary-perarch arch=arm64
 ```
 
-The kernel did seem to compile--I saw lots of familiar `CC [M] ....` lines roll
-by, but what came as a surprise is that the rule didn't generate a `*.deb`
-package for the kernel image:
+The kernel did seem to _compile_ -- I saw lots of familiar `CC [M] ....` lines
+roll by.  However, I was hit too many times with missing dependencies during
+the build, including this very cryptic one about Python:
 
-```plain
+```console
+checking for python3... python3
+checking for python version... 3.1
+checking for python platform... linux
+checking for python script directory... ${prefix}/local/lib/python3.10/dist-packages
+checking for python extension module directory... ${exec_prefix}/local/lib/python3.10/dist-packages
+configure: error: "Python >= 3.4 is required"
 
+Building module:
+cleaning build area...(bad exit status: 2)
+make -j12 KERNELRELEASE=5.4.0-200-tickless...(bad exit status: 2)
+Error! Bad return status for module build on kernel: 5.4.0-200-tickless (x86_64)
+Consult /local/home/pengxu/work-local/bare-test/bare-rules-build/debian/build/build-tickless/___________dkms/build/zfs/0.8.3/build/make.log for more information.
+DKMS make.log for zfs-0.8.3 for kernel 5.4.0-200-tickless (x86_64)
+Sat Oct 19 08:30:07 CEST 2024
+make[1]: Entering directory '<<DKMSDIR>>/build/zfs/0.8.3/build'
+make[1]: *** No targets specified and no makefile found.  Stop.
+make[1]: Leaving directory '<<DKMSDIR>>/build/zfs/0.8.3/build'
+make: *** [debian/rules.d/2-binary-arch.mk:234: install-tickless] Error 1
 ```
 
-Seems like not all required `dpkg` environment variables for cross-compiling
-were set correctly, resulting in `dpkg-*` skipping the `arm64` packages.  This
-is the time @shankerwangmiao pointed out that it's time to try
-`dpkg-buildpackage -aarm64`--a lot of times it "just works" automagically.
+Apparently the build rules didn't recognize that Python 3.10 is newer than 3.4;
+I just gave up at this point.  It didn't come as a surprise is that the rule
+didn't generate useful `*.deb` kernel packages.
+
+In hindsight this looked awfully apparent that I had to use a `chroot`, such
+that we have all the dependencies fixed to the version that the rule expects.
+In fact the above error is differnet from the one I was looking at back then --
+`dpkg-deb` complained about all packages being skipped, so I thought maybe not
+all required `dpkg` environment variables for cross-compiling were set
+correctly.  Together with the comment from @shankerwangmiao that usually
+`dpkg-buildpackage -aarm64` "just works" automagically, I went on with my
+second attempt.
 
 ### Attempt \#2: `dpkg-buildpackage`
 
-The recommendation is definitely not unfounded.  Quoting from
-`debian/rules.d/0-common-vars.mk` again:
+The recommendation of using `dpkg-buildpackage` is definitely not unfounded.
+Quoting from `debian/rules.d/0-common-vars.mk` again:
 
 ```makefile
 #
@@ -292,34 +323,75 @@ ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 endif
 ```
 
-This time we do get the
+So we attempt to run the same command as on Enzian, with the addition of
+`-aarm64` to specify cross-compiling:
 
-- attempt the same thing for building directly on Enzian
-- command: `dpkg-buildpackage -uc -us -d -a arm64 -T 'binary-headers,binary-tickless,binary-perarch' --as-root`
-- since we are not running in a chroot, `dh_shlibdeps` picked up the wrong `libc6` version
-    - @Harry_Chen
+```console
+$ dpkg-buildpackage -uc -us -d -aarm64 -T 'binary-headers,binary-tickless,binary-perarch' --as-root
+```
+
+This time we do get some `.deb` packages, namely the _per-arch_
+`linux-headers`, flavoured `linux-headers-tickless`, `linux-image-unsigned`,
+and `linux-modules-tickless`.  However, both the _per-arch_ and flavoured
+`linux-tools` are missing, meaning that some packages didn't build.  Even
+worse, the built packages have bad dependency versions:
+
+```console
+$ dpkg -I ../linux-headers-5.4.0-200-tickless_5.4.0-200.220+pengxu_arm64.deb
+[...]
+ Package: linux-headers-5.4.0-200-tickless
+ Source: linux
+ Version: 5.4.0-200.220+pengxu
+ Architecture: arm64
+[...]
+ Depends: linux-headers-5.4.0-200, libc6 (>= 2.34), libssl3 (>= 3.0.0~~alpha1)
+[...]
+```
+
+Ubuntu focal (20.04 LTS) doesn't have `libc6 (>= 2.34)` at all!  The correct
+dependencies, from packages built natively on the Enzian, should be:
+
+```console
+dpkg -I debs/linux-headers-5.4.0-200-tickless_5.4.0-200.220+pengxu_arm64.deb
+[...]
+ Package: linux-headers-5.4.0-200-tickless
+ Source: linux
+ Version: 5.4.0-200.220+pengxu
+ Architecture: arm64
+[...]
+ Depends: linux-headers-5.4.0-200, libc6 (>= 2.17), libssl1.1 (>= 1.1.0)
+[...]
+```
+
+Turns out my build machine is running jammy (22.04 LTS) instead of 20.04, and
+`dh_shlibdeps` captured the wrong, newer symbol versions, thus generating the
+newer `libc6` and `libssl` dependencies.  This was pointed out by @Harry_Chen
+-- now it is really apparent that I have to use a `chroot` for building.
 
 ### Attempt \#3: set up [sbuild][2] and a focal chroot
 
-suggested by @harry_chen.
+Debian offers pbuilder and sbuild for building packages in a clean fashion.
+They are said to have very similar feature sets, but it seems like sbuild
+supports a pure _rootless_ operation through `unshare` using `mmdebstrap`.
+This will be handy if I want to use the build farm from the Enzian project
+(where I don't have root access), so I went with sbuild.
 
-- rootless to use build infra in the group -> mmdebstrap instead of schroot
-    - setup for the blades (to Roman)
-        - dependencies: lz4 sbuild mmdebstrap, uidmap
-        - setup `/etc/subgid` for rootless (with mmdebstrap workaround below)
-    - `mmdebstrap --arch="amd64 arm64" focal ~/.cache/sbuild/focal-amd64.tar.lz4 ~/0000sources.list`
-        - do not use the `buildd` profile since `apt-get` is missing there
-    - ubuntu 22.04 mmdebstrap checks for groupname instead of username in `/etc/subgid`
-        - ETH LDAP have different user and group name (`pengxu` vs `pengxu-group`)
-        - fixed by [upstream][3] but not included in 22.04 (0.8.4-1ubuntu0.1)
-        - temporary fix by duplicating name
-        - ubuntu &lt;bug url&gt;
-    - issues with ports archive -> custom sources.list
-    - `sbuild-update --chroot-mode=unshare -udcar` to update the chroot
-        - `sbuild` on Ubuntu 22.04 doesn't recognise tar.zst-compressed tarballs, despite the [Debian wiki][2] recommending it
-        - Using lz4 since it's the fastest according to [this benchmark][4]
+The steps to set up sbuild with `mmdebstrap` is mostly already documented on
+[the Debian wiki page][2], so I'll just note down the catches that I wasted
+some time on:
+
+- `mmdebstrap` shipped with Ubuntu 22.04 checks for groupname instead of
+  username in `/etc/subgid`
+    - ETH LDAP have different user and group name (`pengxu` vs `pengxu-group`)
+    - fixed by [upstream][3] but not included in 22.04 (0.8.4-1ubuntu0.1)
+    - temporary fix: list both `pengxu` and `pengxu-group` in `/etc/subgid` to
+      satisfy `mmdebstrap`; I've opened a bug (__WIP__)
+- the main Ubuntu archive (`archive.ubuntu.com/ubuntu`) does not include `arm64`
+    - `arm64` is in the ports archive (`ports.ubuntu.com/ubuntu-ports`)
+    - fix by supplying the following custom `sources.list` to `mmdebstrap`
 
 ```text
+# ~/my-sources.list
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
@@ -330,6 +402,24 @@ deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ focal-updates main restri
 deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ focal-backports main restricted universe multiverse
 deb [arch=arm64] http://ports.ubuntu.com/ubuntu-ports/ focal-security main restricted universe multiverse
 ```
+
+- do not use the `buildd` profile: `apt-get` is missing yet `mmdebstrap`
+  depends on it
+- `sbuild` on Ubuntu 22.04 doesn't recognise `tar.zst`-compressed tarballs,
+  despite the [Debian wiki][2] recommending it
+    - Using lz4 since it's the fastest according to [this benchmark][4]
+
+Final commands:
+
+```console
+$ sudo apt install lz4 mmdebstrap uidmap sbuild
+$ echo "pengxu:1000000:65536\npengxu-group:1000000:65536" | sudo tee -a /etc/subgid
+$ mkdir -p ~/.cache/sbuild
+$ mmdebstrap --arch="amd64 arm64" focal ~/.cache/sbuild/focal-amd64.tar.lz4 ~/my-sources.list
+$ sbuild-update --chroot-mode=unshare -udcar # test access by sbuild
+```
+
+We should now be able to do `sbuild -aarm64`
 
 ubuntu kernel still doesn't cross compile: mix-up between build and host dependencies
 - `libssl-dev` missing on build prevents `sign-file` from building
