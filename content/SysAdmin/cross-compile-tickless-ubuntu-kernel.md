@@ -1,9 +1,10 @@
 Title: Cross-compiling a Tickless Ubuntu Kernel
 Date: 2024-10-16T11:55+02:00
-Modified: 2024-10-19T22:41+02:00
+Modified: 2024-10-20T16:52+02:00
 Category: SysAdmin
 Tags: ubuntu, linux, kernel
 Slug: cross-compile-tickless-ubuntu-kernel
+Status: published
 
 ## Preface
 
@@ -385,7 +386,7 @@ some time on:
     - ETH LDAP have different user and group name (`pengxu` vs `pengxu-group`)
     - fixed by [upstream][3] but not included in 22.04 (0.8.4-1ubuntu0.1)
     - temporary fix: list both `pengxu` and `pengxu-group` in `/etc/subgid` to
-      satisfy `mmdebstrap`; I've opened a bug (__WIP__)
+      satisfy `mmdebstrap`; I've opened a [bug for Ubuntu][21]
 - the main Ubuntu archive (`archive.ubuntu.com/ubuntu`) does not include `arm64`
     - `arm64` is in the ports archive (`ports.ubuntu.com/ubuntu-ports`)
     - fix by supplying the following custom `sources.list` to `mmdebstrap`
@@ -467,7 +468,7 @@ cross-compiling is intended.  The answer from Timo Aaltonen
 > don't think there's a reason why this is like it is. We might just as well do
 > what debian does here
 
-So here's the bug report: __WIP__
+So I've submitted [a bug][22] for this.
 
 ## Emulated native build with `qemu-user-static` and `binfmt_misc`
 
@@ -512,3 +513,5 @@ bugs, and found a plausible way to proceed.  Let's stay tuned on the bugs!
 [18]: https://wiki.debian.org/Multiarch/HOWTO#When_to_use_:native_and_when_to_use_:any.3F
 [19]: https://salsa.debian.org/kernel-team/linux/-/blob/8941549ed01ecdd8b9d2f84f2fb1d46507b76861/debian/templates/source.control.in#L19-21
 [20]: https://github.com/KireinaHoro/linux-focal-variants/blob/8adb6ccde3615be4787b1583d4cb231d123d0fd1/debian.master/control.stub.in#L28
+[21]: https://bugs.launchpad.net/ubuntu/+source/mmdebstrap/+bug/2085004
+[22]: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2085030
