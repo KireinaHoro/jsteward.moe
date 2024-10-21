@@ -1,6 +1,6 @@
 Title: Cross-compiling a Tickless Ubuntu Kernel
 Date: 2024-10-16T11:55+02:00
-Modified: 2024-10-20T16:52+02:00
+Modified: 2024-10-21T11:10+02:00
 Category: SysAdmin
 Tags: ubuntu, linux, kernel
 Slug: cross-compile-tickless-ubuntu-kernel
@@ -484,9 +484,12 @@ building the kernel on a beefy amd64 machine being possible:
 An `armhf` schroot on an `amd64` build machine is essentially what I would call
 _emulated native build_ -- execution of `armhf` binaries is emulated through
 `qemu-user-static` (static since we are inside a chroot).  `mmdebstrap` has
-support for this pattern, so it might be worth a go.  Until Ubuntu fixes the
-kernel dependency declarations, this might be the only way to "cross-compile" a
-`arm64` Ubuntu kernel on `amd64`.
+support for this pattern.  Install necessary dependencies and set up chroot
+
+```console
+$ sudo apt install binfmt-support qemu-user-static
+$ mmdebstrap --arch=arm64 focal ~/.cache/sbuild/focal-arm64.tar.lz4
+```
 
 ## Closing remarks
 
