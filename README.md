@@ -6,6 +6,12 @@ The fastest way to build this is as a Nix flake.  Pushes to this repo will trigg
 
 ## Development demo
 
+Enable the git hook to automatically update `Modified` field of articles:
+
+```shell
+$ git config --local core.hooksPath .githooks/
+```
+
 Build the project:
 
 ```shell
