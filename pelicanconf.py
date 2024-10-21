@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Pengcheng Xu'
-SITENAME = 'Pengcheng Xu\'s Place'
+SITENAME = 'Pengcheng Xu'
 SITEURL = 'http://localhost:8080'
 
 import os

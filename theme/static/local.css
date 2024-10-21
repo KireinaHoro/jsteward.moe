@@ -28,16 +28,17 @@ ul#sitelinks.nav.nav-list > li > a >i {
     color: #1f334b;}
 /* Styling for elements */
 a {color: #0A5693}
-body {font-family: 'Gudea', 'Gill Sans', 'Arial'; font-size: 16px; line-height: 1.2em}
-p { font-family: 'Gudea', 'Gill Sans', 'Arial'; font-size: 16px; line-height: 1.2em; margin-top: 0.8em; margin-bottom: 0.8em; text-align: justify}
+body {font-family: 'IBM Plex Sans', 'sans-serif'; font-size: 16px; line-height: 1.2em}
+p { font-family: 'IBM Plex Sans', 'sans-serif'; font-size: 16px; line-height: 1.2em; margin-top: 0.8em; margin-bottom: 0.8em; text-align: justify}
 li { line-height: 1.6em; }
-h3 { font-family: 'Alegreya SC', 'Garamond', 'Georgia'; font-weight: normal}
-h2 { font-family: 'Alegreya SC', 'Garamond', 'Georgia' ; font-weight: normal;}
-h1 { font-family: 'Alegreya SC', 'Garamond', 'Georgia' ; font-weight: normal;}
+h3 { font-family: 'IBM Plex Serif', 'serif'; font-weight: 500;}
+h2 { font-family: 'IBM Plex Serif', 'serif'; font-weight: 500;}
+h1 { font-family: 'IBM Plex Serif', 'serif'; font-weight: 500;}
 h1,h2,h3,h4,h5,h6 { color: #000001; margin-bottom: 0px}
+code { font-family: 'IBM Plex Mono', 'monospace'; }
 .table th, .table td { line-height: 1.3em; }
 
-.brand { font-family: 'Alegreya SC', 'Garamond', 'Georgia'; font-weight: normal; font-size: 42px; line-height:40px; margin-top: 10px; display: block; color:#000001; }
+.brand { font-family: 'IBM Plex Mono', 'monospace'; font-size: 42px; line-height:40px; margin-top: 10px; display: block; color:#000001; }
 
 /* Styling for articles */
 .article { padding-bottom:15px; padding-right: 40px; }
