@@ -1,6 +1,6 @@
 Title: Cross-compiling a Tickless Ubuntu Kernel
 Date: 2024-10-16T11:55+02:00
-Modified: 2024-10-21T11:10+02:00
+Modified: 2024-10-21T11:39+02:00
 Category: SysAdmin
 Tags: ubuntu, linux, kernel
 Slug: cross-compile-tickless-ubuntu-kernel
@@ -491,6 +491,30 @@ $ sudo apt install binfmt-support qemu-user-static
 $ mmdebstrap --arch=arm64 focal ~/.cache/sbuild/focal-arm64.tar.lz4
 ```
 
+After the chroot is set up, we can then request sbuild to build with __both
+build and host set to arm64__ via `--arch=arm64`:
+
+```console
+$ sbuild --arch=arm64 -d focal
+```
+
+However, it seems like the kernel rule lists several old `Build-Depends`
+packages that are not in the focal archive any more:
+
+```plain
+The following packages have unmet dependencies:
+ sbuild-build-depends-main-dummy : Depends: dh-systemd but it is not installable
+                                   Depends: dwarves but it is not installable
+                                   Depends: xmlto but it is not installable
+                                   Depends: docbook-utils but it is not installable
+                                   Depends: fig2dev but it is not installable
+                                   Depends: asciidoc but it is not installable
+                                   Depends: python3-sphinx-rtd-theme but it is not installable
+```
+
+I'm not sure how to proceed here any more.  Looks like the [newer kernel
+trees][23] don't have these stale dependencies...
+
 ## Closing remarks
 
 I've explored in somewhat detail how the Ubuntu kernel rules work, opened some
@@ -518,3 +542,4 @@ bugs, and found a plausible way to proceed.  Let's stay tuned on the bugs!
 [20]: https://github.com/KireinaHoro/linux-focal-variants/blob/8adb6ccde3615be4787b1583d4cb231d123d0fd1/debian.master/control.stub.in#L28
 [21]: https://bugs.launchpad.net/ubuntu/+source/mmdebstrap/+bug/2085004
 [22]: https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2085030
+[23]: https://git.launchpad.net/~ubuntu-kernel/ubuntu/+source/linux/+git/noble/tree/debian.master/control.stub.in
