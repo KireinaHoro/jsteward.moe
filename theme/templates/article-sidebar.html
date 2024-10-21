@@ -1,11 +1,12 @@
-<p>{{ article.locale_date }} </p>
+<p>Created on <br /> {{ article.locale_date }} </p>
+<p>Modified on <br /> {{ article.locale_modified }} </p>
 
 <p style="text-align: left;">
-Filed under <a href="/{{ article.category.url }}">{{ article.category }}</a>
+Filed under <br /> <a href="/{{ article.category.url }}">{{ article.category }}</a>
 </p>
 <p style="text-align: left;">
-{% if article.tags %} 
-    Tags {% for tag in article.tags %}<a href="/{{ tag.url }}">{{ tag }}</a> {% endfor %}
+{% if article.tags %}
+    Tags <br /> {% for tag in article.tags %}<a href="/{{ tag.url }}">{{ tag }}</a> {% endfor %}
 {% endif %}
 </p>
 <p>

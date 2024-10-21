@@ -62,3 +62,6 @@ INDEX_SAVE_AS = 'blog_index.html'
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+# use short date format
+DEFAULT_DATE_FORMAT = '%d/%m/%y %H:%M'
