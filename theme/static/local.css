@@ -131,3 +131,8 @@ ul.double-column {
     -webkit-columns: 2;
     -moz-columns: 2;
 }
+
+.well hr {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: none;
+}
