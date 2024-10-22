@@ -110,13 +110,13 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 .toctitle {
     font-weight: bold;
 }
-
 .toc {
     /* stolen from Gentoo wiki */
     border: 1px solid #a2a9b1;
     box-sizing: border-box;
     background-color: #f8f9fa;
     padding: 8px;
+    padding-right: 20px;
     font-size: 95%;
     display: inline-block;
 }
