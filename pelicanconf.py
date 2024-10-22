@@ -30,8 +30,7 @@ LINKS = (
     ('Gentoo', 'https://www.gentoo.org'),
     ('NixOS', 'https://nixos.org/'),
     ('Pelican', 'http://getpelican.com/'),
-    ('Tsinghua University TUNA Association',
-     'https://tuna.moe/'),
+    ('TUNA @ THU', 'https://tuna.moe/'),
 )
 
 # Social widget

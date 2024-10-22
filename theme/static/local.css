@@ -41,14 +41,12 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 .brand { font-family: 'IBM Plex Mono', 'monospace'; font-size: 42px; line-height:40px; margin-top: 10px; display: block; color:#000001; }
 
 /* Styling for articles */
-.article { padding-bottom:15px; padding-right: 40px; }
+.article { padding-bottom:15px; }
 .content-title { margin-bottom: 30px; }
-.article a:hover { text-decoration: none; }
 
 /* Styling for galleries */
-.gallery { padding-bottom:15px; padding-right: 40px; }
+.gallery { padding-bottom:15px; }
 .content-title-gallery { margin-bottom: 30px; }
-.gallery a:hover { text-decoration: none; }
 
 /* Styling for the "other entries" section */
 /* Metadata */
@@ -126,4 +124,10 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 .codehilite pre {
     white-space: pre;
     overflow-x: auto;
+}
+
+ul.double-column {
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
 }

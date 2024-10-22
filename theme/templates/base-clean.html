@@ -36,8 +36,8 @@
                     {% block brand %}
                     <div class="span9">
                         <a href="/" class="brand">{{ AUTHOR }}</a>
-                        {% endblock brand %}
                     </div>
+                    {% endblock brand %}
 
                     {% block nav %}
                     <div class="span3" id="blog-nav">
@@ -59,8 +59,9 @@
                     <div class="span2">
                         {% block profile %}{% endblock %}
                     </div>
+                    {% endblock profile_span %}
+
                     <div class="span10">
-                        {% endblock profile_span %}
                         {% block content %}{% endblock %}
                     </div>
 
