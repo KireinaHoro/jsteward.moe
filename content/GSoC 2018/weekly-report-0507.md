@@ -14,6 +14,6 @@ This week was about getting the Gentoo stage3 to work on Android (as a subsystem
   * [Installing Gentoo in Hyper-V][2]
   * [Replace Android init with test script][3]
   
-[1]: {filename}/Gentoo/building-gentoo-chroot-in-android.md
-[2]: {filename}/Gentoo/install-gentoo-in-hyper-v.md
+[1]: {filename}/SysAdmin/building-gentoo-chroot-in-android.md
+[2]: {filename}/SysAdmin/install-gentoo-in-hyper-v.md
 [3]: {filename}replace-android-init-with-test-script.md

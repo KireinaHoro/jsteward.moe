@@ -1,11 +1,12 @@
 Title: Test Gallery
 Template: gallery
 Date: 2023-05-01 09:59:14
-Modified: 2023-05-01 09:59:14
-Status: hidden
-Slug: test-gallery
+Modified: 2024-10-22T10:03+02:00
+Status: published
+Slug: main-gallery
+save_as: gallery_index.html
 
-
+## Coming soon!
 
 <div class="grid" id="the-gallery">
 <div class="grid-sizer"></div>
@@ -15,7 +16,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00372.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01109.jpg"
@@ -23,7 +24,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01109.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00306.jpg"
@@ -31,7 +32,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00306.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00267.jpg"
@@ -39,7 +40,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00267.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00753.jpg"
@@ -47,7 +48,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00753.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC08982.jpg"
@@ -55,7 +56,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC08982.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC03578.jpg"
@@ -63,7 +64,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC03578.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02337.jpg"
@@ -71,7 +72,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02337.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00314.jpg"
@@ -79,7 +80,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00314.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00438.jpg"
@@ -87,7 +88,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00438.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC03685-HDR.jpg"
@@ -95,7 +96,7 @@ Slug: test-gallery
     data-pswp-height="3970"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC03685-HDR.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01112.jpg"
@@ -103,7 +104,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01112.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00076.jpg"
@@ -111,7 +112,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00076.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09307.jpg"
@@ -119,7 +120,7 @@ Slug: test-gallery
     data-pswp-height="5350"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09307.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01245.jpg"
@@ -127,7 +128,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01245.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02235.jpg"
@@ -135,7 +136,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02235.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00964.jpg"
@@ -143,7 +144,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00964.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01293.jpg"
@@ -151,7 +152,7 @@ Slug: test-gallery
     data-pswp-height="3803"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01293.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02652.jpg"
@@ -159,7 +160,7 @@ Slug: test-gallery
     data-pswp-height="3855"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02652.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01095.jpg"
@@ -167,7 +168,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01095.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00284.jpg"
@@ -175,7 +176,7 @@ Slug: test-gallery
     data-pswp-height="3901"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00284.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00202.jpg"
@@ -183,7 +184,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00202.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00056.jpg"
@@ -191,7 +192,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00056.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01025.jpg"
@@ -199,7 +200,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01025.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02301.jpg"
@@ -207,7 +208,7 @@ Slug: test-gallery
     data-pswp-height="2451"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02301.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09013.jpg"
@@ -215,7 +216,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09013.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02175.jpg"
@@ -223,7 +224,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02175.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01090.jpg"
@@ -231,7 +232,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01090.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC03866.jpg"
@@ -239,7 +240,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC03866.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01226.jpg"
@@ -247,7 +248,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01226.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00074.jpg"
@@ -255,7 +256,7 @@ Slug: test-gallery
     data-pswp-height="3782"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00074.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09635.jpg"
@@ -263,7 +264,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09635.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09029.jpg"
@@ -271,7 +272,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09029.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00322.jpg"
@@ -279,7 +280,7 @@ Slug: test-gallery
     data-pswp-height="3568"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00322.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00152.jpg"
@@ -287,7 +288,7 @@ Slug: test-gallery
     data-pswp-height="3539"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00152.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00271.jpg"
@@ -295,7 +296,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00271.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02319.jpg"
@@ -303,7 +304,7 @@ Slug: test-gallery
     data-pswp-height="5361"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02319.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC03560-HDR.jpg"
@@ -311,7 +312,7 @@ Slug: test-gallery
     data-pswp-height="3979"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC03560-HDR.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00259.jpg"
@@ -319,7 +320,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00259.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02187.jpg"
@@ -327,7 +328,7 @@ Slug: test-gallery
     data-pswp-height="3796"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02187.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00311.jpg"
@@ -335,7 +336,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00311.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00308.jpg"
@@ -343,7 +344,7 @@ Slug: test-gallery
     data-pswp-height="3619"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00308.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02966.jpg"
@@ -351,7 +352,7 @@ Slug: test-gallery
     data-pswp-height="3943"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02966.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00253.jpg"
@@ -359,7 +360,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00253.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02194.jpg"
@@ -367,7 +368,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02194.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02440.jpg"
@@ -375,7 +376,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02440.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00049.jpg"
@@ -383,7 +384,7 @@ Slug: test-gallery
     data-pswp-height="5802"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00049.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00395.jpg"
@@ -391,7 +392,7 @@ Slug: test-gallery
     data-pswp-height="3289"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00395.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02289.jpg"
@@ -399,7 +400,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02289.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item grid-item-wide">
   <a href="/images/gallery/DSC00398-Pano.jpg"
@@ -407,7 +408,7 @@ Slug: test-gallery
     data-pswp-height="1871"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00398-Pano.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00461.jpg"
@@ -415,7 +416,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00461.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01197.jpg"
@@ -423,7 +424,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01197.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00297.jpg"
@@ -431,7 +432,7 @@ Slug: test-gallery
     data-pswp-height="3783"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00297.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01252.jpg"
@@ -439,7 +440,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01252.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09393.jpg"
@@ -447,7 +448,7 @@ Slug: test-gallery
     data-pswp-height="5526"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09393.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01243.jpg"
@@ -455,7 +456,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01243.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00126.jpg"
@@ -463,7 +464,7 @@ Slug: test-gallery
     data-pswp-height="5413"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00126.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09514.jpg"
@@ -471,7 +472,7 @@ Slug: test-gallery
     data-pswp-height="3443"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09514.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00999.jpg"
@@ -479,7 +480,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00999.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC01282.jpg"
@@ -487,7 +488,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC01282.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02802.jpg"
@@ -495,7 +496,7 @@ Slug: test-gallery
     data-pswp-height="5675"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02802.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC03786.jpg"
@@ -503,7 +504,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC03786.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00727.jpg"
@@ -511,7 +512,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00727.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00171.jpg"
@@ -519,7 +520,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00171.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00976.jpg"
@@ -527,7 +528,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00976.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02671.jpg"
@@ -535,7 +536,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02671.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00045.jpg"
@@ -543,7 +544,7 @@ Slug: test-gallery
     data-pswp-height="3969"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00045.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC02403.jpg"
@@ -551,7 +552,7 @@ Slug: test-gallery
     data-pswp-height="6000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC02403.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00440.jpg"
@@ -559,7 +560,7 @@ Slug: test-gallery
     data-pswp-height="3183"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00440.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09173.jpg"
@@ -567,7 +568,7 @@ Slug: test-gallery
     data-pswp-height="5468"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09173.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00354.jpg"
@@ -575,7 +576,7 @@ Slug: test-gallery
     data-pswp-height="3905"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00354.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00885.jpg"
@@ -583,7 +584,7 @@ Slug: test-gallery
     data-pswp-height="4000"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00885.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC09200.jpg"
@@ -591,7 +592,7 @@ Slug: test-gallery
     data-pswp-height="4945"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC09200.jpg" alt="" />
-  
+
 </a></div>
 <div class="grid-item">
   <a href="/images/gallery/DSC00359.jpg"
@@ -599,7 +600,7 @@ Slug: test-gallery
     data-pswp-height="3760"
     target="_blank">
   <img src="/images/gallery/thumbnails/DSC00359.jpg" alt="" />
-  
+
 </a></div>
 
 </div>

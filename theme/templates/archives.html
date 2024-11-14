@@ -1,9 +1,10 @@
 {% extends "base.html" %}
-{% block title %}{{ SITENAME }} [archive]{% endblock %}
+{% block title %}Archive - {{ SITENAME }}{% endblock %}
 {% block content %}
 
-<h2>Archives</h2>
+<div class="content-title span9"><h1>Archive</h1></div>
 
+<div class="article">
 <table class="table table-striped">
     <tbody>
     {% for article in dates %}
@@ -14,5 +15,6 @@
     {% endfor %}
     </tbody>
 </table>
+</div>
 
 {% endblock %}
