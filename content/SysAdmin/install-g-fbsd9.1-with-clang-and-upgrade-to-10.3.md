@@ -1,7 +1,7 @@
 Title: Install Gentoo/FreeBSD 9.1 with Clang and Update to 10.3
 Date: 2017-09-01 0:00
 Modified: 2017-09-01 0:00
-Category: Gentoo
+Category: SysAdmin
 Tags: system, gentoo, freebsd, clang
 Slug: gfbsd-clang-9.1-to-10.3
 
@@ -9,7 +9,7 @@ Slug: gfbsd-clang-9.1-to-10.3
 
 As a result of simple stupidity of deleting the wrong virtual machine snapshot
 thus losing the already-configured G-FBSD Clang environment, I have to start
-over again. This article is for future reference and (probably?) save the 
+over again. This article is for future reference and (probably?) save the
 future headaches and nightmares.
 
 ## Install 9.1
@@ -103,7 +103,7 @@ what you're doing!
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     PYTHON_TARGETS="python2_7" emerge -a1 dev-lang/python-exec
     PYTHON_TARGETS="python2_7" emerge -a1 sys-apps/portage
-    
+
 We need to temporarily disable `dev-libs/ncurses[cxx]` as it will cause
 problems with the current toolchain.
 
@@ -269,7 +269,7 @@ and then upgrade the FreeBSD userland.
 We need to rebuild the packages as sime packages require newer packages.
 
     CC=gcc CXX=g++ CXXFLAGS="-O2 -pipe" emerge -1a boot0 freebsd-bin freebsd-lib freebsd-libexec freebsd-mk-defs freebsd-pam-modules freebsd-sbin freebsd-share freebsd-ubin freebsd-usbin
-    
+
 Do some clean-up.
 
     rm /var/run/utmp /var/log/lastlog /var/log/wtmp*
@@ -295,7 +295,7 @@ to hold the modified ebuild. Here's the patch of the ebuild:
 	+++ b/rhash-1.3.5.ebuild	2017-08-28 04:13:51.176520000 +0800
 	@@ -54,6 +54,7 @@
 		)
-	 
+
 		local ADDLDFLAGS=(
 	+		$(use userland_GNU || echo -lintl)
 			$(use openssl && echo -ldl)
@@ -328,7 +328,7 @@ LLVM needs `-lcxxrt` in its `LDFLAGS` to link correctly. Do the following:
     echo "LDFLAGS=\"-lcxxrt\"" > /etc/portage/env/link-cxxrt
     echo "sys-devel/llvm link-cxxrt" >> /etc/portage/package.env
 
-We can now upgrade LLVM and Clang. 
+We can now upgrade LLVM and Clang.
 
     emerge -au1 sys-devel/llvm sys-devel/clang
 

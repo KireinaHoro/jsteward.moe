@@ -1,7 +1,7 @@
 # Built Texts
 
 A simple theme with text as focus for pelican using Google Web Fonts
-(Gudea and Alegreya SC) the awesome Font awesome project and Twitter
+(IBM Plex) the awesome Font awesome project and Twitter
 Bootstrap. It is responsive as supported by Twitter Bootstrap, and
 hopefully doesn't give an eyesore on mobile devices.
 It is built atop of existing pelican theme tuxlite-tbs and actually

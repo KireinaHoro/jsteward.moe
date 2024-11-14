@@ -1,7 +1,7 @@
 Title: Installing Gentoo in Hyper-V
 Date: 2018-05-05 00:00
 Modified: 2018-05-05 00:00
-Category: Gentoo
+Category: SysAdmin
 Tags: gentoo, linux, virtualization
 Slug: install-gentoo-in-hyper-v
 Status: published
@@ -22,7 +22,7 @@ Locate and open the Hyper-V Manager on Windows (hint: use Windows Search). Creat
 
 Before starting the virtual machine, we need to configure several things. Right click on the newly-created virtual machine and select Settings.
 
-  * Select the Processor page from the left sidebar, and adjust the number of cores you wish to grant to the Gentoo guest. 
+  * Select the Processor page from the left sidebar, and adjust the number of cores you wish to grant to the Gentoo guest.
   * Select the Network page from the left sidebar, and choose the adapter type. The default switch is configured to do NAT for the virtual machine. If you want to access the virtual machine from outside the host OS, create a new Switch by selecting the Virtual Switch Manager from the right sidebar in the Hyper-V Manager main window and creating a new switch that bridges the virtual machines' NICs with the interface you choose on the host.
 
 **NOTE:** for Gen 1 virtual machines to boot, the boot drive (virtual disk on which the OS sits) has to be an IDE drive. SCSI drives won't work as boot drives; they'll function as data drives only. Double-check your configuration to make sure that you'll install Gentoo (at least the bootloader) on an IDE drive, otherwise you'll encounter cryptic errors (such as garbled text in VM firmware).
@@ -52,7 +52,7 @@ This is the point of having Gentoo as the guest OS, instead of just using Ubuntu
 
 	localhost / # emerge -v crossdev
 	localhost / # crossdev -S -P -v -t aarch64
-	
+
 Verify that the newly-created toolchain works fine by compiling a simple "Hello, world!" program and executing it on the target machine:
 
 	localhost ~ # cat > hello.cc << EOF

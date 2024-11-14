@@ -1,12 +1,10 @@
 {% extends "base-clean.html" %}
-{% block title %}{{ page.title }}- {{ SITENAME }}{%endblock%}
+{% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
 {% block content %}
-<section id="content" class="body span10">    
-    {% if PDF_PROCESSOR %}<a href="/pdf/{{ page.slug }}.pdf">get
-    the pdf</a>{% endif %}
+<section id="content" class="body span10">
     {{ page.content }}
 </section>
 {% endblock %}
 {% block profile %}
-<img src="/images/profile.jpg" style="margin-top: 1em;" />
+<img src="/images/profile.jpg" style="margin-top: 0.8em;" />
 {% endblock %}

@@ -1,7 +1,7 @@
 Title: Integrating Android kernel source into Portage
 Date: 2018-07-05 2:00
 Modified: 2018-07-05 3:30
-Category: Gentoo
+Category: SysAdmin
 Tags: gentoo, android, gsoc
 Slug: android-kernel-source-portage
 Status: published
@@ -23,9 +23,9 @@ The Android kernel sources are no different in form factor from normal kernel so
   * [`sys-kernel/preinit`](https://github.com/KireinaHoro/preinit): offers device-specific initramfs files and `boot.img` parameters (kernel & initramfs offsets and boot commandline)
   * [`sys-kernel/installkernel`](https://github.com/KireinaHoro/installkernel): installs the correct kernel image (with dtb on ARM) to `/boot`, creates `boot.img`, and flashing it to the correct partition
   * [`sys-kernel/${DEVICE}-sources`](https://github.com/KireinaHoro/android_kernel_huawei_angler): kernel source with necessary patches and `defconfig` to work on a Portage-powered system
-  
+
 Preinit offers an `eselect` module for choosing the device's model.  The package's `pkg_postinst` will try to detect the current device via `androidboot.hardware` value in `/proc/cmdline`; if it failed to get a match, the user would have to manually select a device for the `preinit` files, or use the `custom` device (in which the user manually implement the preinit files).
-  
+
 The above three components have their ebuilds available [in the `sys-kernel` category in this overlay](https://github.com/KireinaHoro/android/tree/master/sys-kernel).  Add the overlay and emerge `sys-kernel/${DEVICE}-sources`; Portage will automatically pull in the dependencies.  After that, one can install kernel just like on a Linux system:
 
 ```bash
@@ -34,7 +34,7 @@ $ make ${DEFCONFIG} && make -j$(($(nproc)+1))
 $ sudo make modules_install
 $ sudo make install
 ```
-	
+
 The `boot.img` will be automatically created and flashed to the boot partition.
 
 ## Porting guide

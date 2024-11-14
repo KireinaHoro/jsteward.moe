@@ -1,7 +1,7 @@
 Title: Using Yubikey as a login token
 Date: 2018-07-18 15:00
 Modified: 2018-07-18 15:00
-Category: Gentoo
+Category: SysAdmin
 Tags: gentoo, yubikey
 Slug: yubikey-as-login-token
 Status: published

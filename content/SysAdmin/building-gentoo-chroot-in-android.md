@@ -1,7 +1,7 @@
 Title: Building a Gentoo chroot in Android
 Date: 2018-05-04 11:00
 Modified: 2018-05-05 23:00
-Category: Gentoo
+Category: SysAdmin
 Tags: android, gentoo, gsoc
 Slug: building-gentoo-chroot-in-android
 Status: published
@@ -34,7 +34,7 @@ Unpack the tarball:
 	angler:/data/gentoo # ls
 	bin boot dev etc home lib lib64 media mnt opt proc root run sbin sys tmp usr var
 	angler:/data/gentoo #
-	
+
 Clean up the bogus device nodes in stage3 tarball, and mount the necessary psuedo-filesystems:
 
 	angler:/data/gentoo # rm -rf dev/* tmp/*
@@ -44,7 +44,7 @@ Clean up the bogus device nodes in stage3 tarball, and mount the necessary psued
 	angler:/data/gentoo # mount -t tmpfs tmpfs dev/shm
 	angler:/data/gentoo # mount -t devpts -o gid=5 devpts dev/pts # requirement of portage's configure
 	angler:/data/gentoo # mount -t tmpfs tmpfs tmp
-	
+
 Change root into `/data/gentoo`, set up timezone, `resolv.conf`, ssh public keys, and edit `make.conf` so we have an environment that works properly.
 
 	angler:/data/gentoo # chroot . /bin/su
@@ -58,7 +58,7 @@ Change root into `/data/gentoo`, set up timezone, `resolv.conf`, ssh public keys
 	( ... lines of output elided ... )
 	localhost / # ssh-keygen -A
 	ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519
-	
+
 We can now connect to the chroot environment via `mosh`. For ease of starting the environment, we create the following script `/data/gentoo/start_chroot`:
 
 ```bash
@@ -85,7 +85,7 @@ After the system reboots, we can issue the following to bring up the sshd inside
 	restarting adbd as root
 	$ adb shell /data/gentoo/start_chroot
 	$
-	
+
 And, as a bonus, we can restart `adbd` on the phone to kill all process spawned by it, including the entire chroot:
 
 	$ adb unroot
