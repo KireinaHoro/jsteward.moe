@@ -1,7 +1,7 @@
 Title: Homepage
 Template: homepage
 Date: 2017-03-07 11:40:00
-Modified: 2024-11-15T11:03+01:00
+Modified: 2024-11-28T14:41+01:00
 Status: published
 Slug: about-and-contact
 save_as: index.html
@@ -18,3 +18,19 @@ You can reach me via the following:
     - GPG Key ID: `7250 7913 7D8A 5B65`
  - LinkedIn: [Pengcheng Xu](https://www.linkedin.com/in/pengcheng-xu-6a241a9a/)
  - GitHub: [KireinaHoro](https://github.com/KireinaHoro)
+
+### Publications
+
+_Rethinking Programmed I/O for Fast Devices, Cheap Cores, and Coherent Interconnects_, Anastasiia Ruzhanskaia, **Pengcheng Xu**, David Cock, Timothy Roscoe, [arXiv](https://arxiv.org/abs/2409.08141), 2024.
+
+_Full-System Evaluation of the sPIN In-Network-Compute Architecture_, **Pengcheng Xu**, [ETH Library](https://www.research-collection.ethz.ch/handle/20.500.11850/637676), 2023.
+
+_Enzian Firmware Resource Interface_, **Pengcheng Xu**, [ETH Library](https://www.research-collection.ethz.ch/handle/20.500.11850/603460), 2023.
+
+_Critique of "MemXCT: Memory-Centric X-Ray CT Reconstruction With Massive Parallelization" by SCC Team From Peking University_, Zejia Fan, Yuchen Gu, Zhewen Hao, Yueyang Pan, **Pengcheng Xu**, Yuxuan Yan, Fangyuan Yang, Zhenxin Fu, Yun Liang, [IEEE TPDS](https://ieeexplore.ieee.org/document/9464698), 2022.
+
+_HASCO: Towards Agile HArdware and Software CO-design for Tensor Computation_, Qingcheng Xiao, Size Zheng, Bingzhe Wu, **Pengcheng Xu**, Xuehai Qian, Yun Liang, [ISCA](https://dl.acm.org/doi/10.1109/ISCA52012.2021.00086), 2021.
+
+_Critique of "Planetary Normal Mode Computation: Parallel Algorithms, Performance, and Reproducibility" by SCC Team From Peking University_, Yihua Cheng, Zejia Fan, Jing Mai, Yifan Wu, **Pengcheng Xu**, Yuxuan Yan, Zhenxin Fu, Yun Liang, [IEEE TPDS](https://ieeexplore.ieee.org/document/9314073), 2021.
+
+_Automatic Code Generation for Rocket Chip RoCC Accelerators_, **Pengcheng Xu**, Yun Liang, [CARRV](https://carrv.github.io/2020/papers/CARRV2020_paper_3_Xu.pdf), 2020.
