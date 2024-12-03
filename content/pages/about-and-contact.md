@@ -1,7 +1,7 @@
 Title: Homepage
 Template: homepage
 Date: 2017-03-07 11:40:00
-Modified: 2024-11-28T14:41+01:00
+Modified: 2024-12-03T15:37+01:00
 Status: published
 Slug: about-and-contact
 save_as: index.html
@@ -22,6 +22,8 @@ You can reach me via the following:
 ### Publications
 
 _Rethinking Programmed I/O for Fast Devices, Cheap Cores, and Coherent Interconnects_, Anastasiia Ruzhanskaia, **Pengcheng Xu**, David Cock, Timothy Roscoe, [arXiv](https://arxiv.org/abs/2409.08141), 2024.
+
+_FPsPIN: An FPGA-based Open-Hardware Research Platform for Processing in the Network_, Timo Schneider, **Pengcheng Xu**, Torsten Hoefler, [arXiv](https://arxiv.org/abs/2405.16378), 2024.
 
 _Full-System Evaluation of the sPIN In-Network-Compute Architecture_, **Pengcheng Xu**, [ETH Library](https://www.research-collection.ethz.ch/handle/20.500.11850/637676), 2023.
 
