@@ -36,10 +36,10 @@ LINKS = (
 # Social widget
 SOCIAL = (
     ('github', 'https://github.com/KireinaHoro'),
+    ('instagram', 'https://www.instagram.com/khjsteward/'),
     ('linkedin', 'https://www.linkedin.com/in/pengcheng-xu-6a241a9a/'),
-    ('telegram', 'https://telegram.me/jsteward'),
-    ('twitter', 'https://twitter.com/KireinaHoro'),
-    ('keybase', 'https://keybase.io/jsteward'),
+    ('google scholar', 'https://scholar.google.com/citations?hl=de&user=h6ZFXyEAAAAJ'),
+    ('orcid', 'https://orcid.org/0000-0002-2724-7893'),
 )
 
 DEFAULT_PAGINATION = 5
