@@ -1,7 +1,7 @@
 Title: Homepage
 Template: homepage
 Date: 2017-03-07 11:40:00
-Modified: 2024-12-04T11:05+01:00
+Modified: 2025-01-24T10:19+01:00
 Status: published
 Slug: about-and-contact
 save_as: index.html
@@ -20,6 +20,8 @@ You can reach me via the following:
  - GitHub: [KireinaHoro](https://github.com/KireinaHoro)
 
 ### Publications
+
+_The NIC should be part of the OS._, **Pengcheng Xu**, Timothy Roscoe, [arXiv](https://arxiv.org/abs/2501.10138), 2025.
 
 _Rethinking Programmed I/O for Fast Devices, Cheap Cores, and Coherent Interconnects_, Anastasiia Ruzhanskaia, **Pengcheng Xu**, David Cock, Timothy Roscoe, [arXiv](https://arxiv.org/abs/2409.08141), 2024.
 
