@@ -1,7 +1,7 @@
 Title: Homepage
 Template: homepage
 Date: 2017-03-07 11:40:00
-Modified: 2025-06-10T11:13+02:00
+Modified: 2025-06-12T09:51+02:00
 Status: published
 Slug: about-and-contact
 save_as: index.html
@@ -20,6 +20,8 @@ You can reach me via the following:
  - GitHub: [KireinaHoro](https://github.com/KireinaHoro)
 
 ### Publications
+
+_Mainframe-style channel controllers for modern disaggregated memory systems_, Zikai Liu, Jasmin Schult, **Pengcheng Xu**, Timothy Roscoe, [arXiv](https://arxiv.org/abs/2506.09758), 2025.
 
 _The NIC should be part of the OS._, **Pengcheng Xu**, Timothy Roscoe, [HotOS](https://dl.acm.org/doi/10.1145/3713082.3730388), 2025.
 
