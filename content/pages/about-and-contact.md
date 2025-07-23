@@ -1,14 +1,16 @@
 Title: Homepage
 Template: homepage
 Date: 2017-03-07 11:40:00
-Modified: 
+Modified:
 Status: published
 Slug: about-and-contact
 save_as: index.html
 
 I'm currently a second-year PhD student in the [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) program at ETH Zürich.  I am a member of the [Systems Group](https://systems.ethz.ch) with [Prof. Timothy Roscoe](https://people.inf.ethz.ch/troscoe/).
 
-My research interests span the broad area of computer systems, especially in operating systems, high-performance networking, and computer architecture.  I enjoy building highly performant and efficient systems via software and hardware approaches.  My experience in FPGAs, system programming, and parallel programming, enables me to effectively solve many problems in these fields.  You can find my full CV [here](/images/cv.pdf).
+My research interests span the broad area of computer systems, especially in operating systems, high-performance networking, and computer architecture.  I enjoy building highly performant and efficient systems via software and hardware approaches.  My experience in FPGAs, system programming, and parallel programming, enables me to effectively solve many problems in these fields.
+
+You can find my full CV [here](/images/cv.pdf).
 
 I also keep a [blog](/blog_index.html) (updated irregularly) to record experiences when dealing with various interesting systems, from old-school Unix to Android to RISC-V-on-FPGA endeavors.  Don't hesitate to comment or contact me to discuss on topics I've covered!
 
