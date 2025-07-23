@@ -24,7 +24,7 @@ exec 1>&2
 if [ "$noupdatemodified" != "true" ]; then
     for f in content/*/*.md; do
         if ! git diff --cached --quiet "$f"; then
-            sed -ri -e "s/^(Modified: ).*$/\1$(date -Imin)/g" "$f"
+            sed -ri -e "s/^(Modified:).*$/\1 $(date -Imin)/g" "$f"
             git add "$f"
         fi
     done
