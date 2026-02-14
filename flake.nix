@@ -17,7 +17,7 @@
         name = "serve";
         runtimeInputs = [pkgs.caddy];
         text = ''
-          caddy file-server --listen localhost:8080 --root ${pkgs.jstewardMoe} --access-log
+          caddy file-server --listen localhost:8880 --root ${pkgs.jstewardMoe} --access-log
         '';
       };
     in {
