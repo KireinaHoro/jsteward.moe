@@ -110,11 +110,16 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 }
 
 .grid-sizer, .grid-item {
-    width: 25%;
+    width: calc(100% / 5);
+}
+@media(max-width: 768px){
+    .grid-sizer, .grid-item {
+        width: calc(100% / 3);
+    }
 }
 
 .grid-item {
-    padding: 3px;
+    padding: 2px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */

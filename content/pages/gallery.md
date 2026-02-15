@@ -1,12 +1,10 @@
 Title: Test Gallery
 Template: gallery
 Date: 2023-05-01 09:59:14
-Modified: 2024-10-22T10:03+02:00
+Modified: 2026-02-16T00:15+08:00
 Status: published
 Slug: main-gallery
 save_as: gallery_index.html
-
-## Coming soon!
 
 <div class="grid" id="the-gallery">
 <div class="grid-sizer"></div>
