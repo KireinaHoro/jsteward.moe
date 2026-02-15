@@ -154,6 +154,12 @@ ul.double-column {
     border-bottom: none;
 }
 
+img {
+    width: 95%;
+    margin: 0.5em auto;
+    display: block;
+}
+
 .side-img {
     float: right;
     width: 50%;
@@ -167,7 +173,7 @@ ul.double-column {
 @media(max-width: 768px){
     .side-img {
         float: none;
-        width: 90%;
+        width: 95%;
         margin: 0.5em auto;
         display: block;
     }
