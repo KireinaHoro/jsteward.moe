@@ -48,10 +48,17 @@ p:lang(ja) {
 }
 
 li { line-height: 1.6em; }
-h3 { font-family: 'IBM Plex Serif', 'serif'; font-weight: 500;}
-h2 { font-family: 'IBM Plex Serif', 'serif'; font-weight: 500;}
-h1 { font-family: 'IBM Plex Serif', 'serif'; font-weight: 500;}
-h1,h2,h3,h4,h5,h6 { color: #000001; margin-bottom: 0px}
+
+h1, h2, h3 {
+    font-family: 'IBM Plex Serif', 'serif';
+    font-weight: 500;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #000001;
+    margin-bottom: 0px;
+    clear: both;
+}
+
 code { font-family: 'IBM Plex Mono', 'monospace'; }
 .table th, .table td { line-height: 1.3em; }
 
