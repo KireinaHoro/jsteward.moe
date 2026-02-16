@@ -43,6 +43,26 @@ lightbox.init();
     </div>
     <div class="row-fluid">
         {{ page.content }}
+
+        {% if page.gallery_id %}
+        <div class="grid" id="the-gallery">
+            <div class="grid-sizer"></div>
+
+            {% set images = get_gallery_images(page.gallery_id) %}
+            {% set is_wide = false %}
+
+            {% for img in images %}
+            <div class="grid-item{% if is_wide %} grid-item-wide{% endif %}">
+                <a href="/images/gallery/{{ page.gallery_id }}/{{ img.name }}.avif"
+                   data-pswp-width="{{ img.width }}"
+                   data-pswp-height="{{ img.height }}"
+                   target="_blank">
+                    <img src="/images/gallery/{{ page.gallery_id }}/thumbnails/{{ img.name }}.jpg" alt="">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
