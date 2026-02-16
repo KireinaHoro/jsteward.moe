@@ -27,7 +27,7 @@ Slug: japan-2026
 ３０日チューリッヒからカタール経由で、成田に到着したのは３１日の午後１時くらい。
 入国審査の行列に驚いたんだけど、予想以上に早く進んで、４０分後にはもう成田の改札についた。
 
-![shinjuku yakitori party](/images/shinjuku-yakitori.jpg){.side-img}
+![三人で新宿駅前の鳥貴族へ。](/images/fuji-2026/shinjuku-yakitori.avif){.side-img}
 
 初めに日本の電車に乗るんだから、特急券とか全然わからなくて、一度間違って京急の改札に入ってしまった。
 京急の駅員さんはとても親切で、特急券売機のまえが並んでで、現金も持ってないと聞いたら、入場記録を取り消してもらえた。
@@ -38,7 +38,7 @@ Slug: japan-2026
 何を食うか散々迷ったあと、新宿近くの焼き鳥の店にした。
 ケートと三ヶ月ほど会ってないから、また顔を見れてめっちゃ嬉しかった。
 
-![shinjuku breakfast buffet](/images/shinjuku-breakfast.jpeg){.side-img}
+![とても上品な朝食ビュッフェ。](/images/fuji-2026/shinjuku-breakfast.avif){.side-img}
 
 ホテルの朝飯はめちゃ美味しかった。種類が多くて、どれもとても上品な味だった。
 陳が「これでもう食べたいもの全て食べた」とか言って、俺も大満足。
@@ -49,7 +49,7 @@ Slug: japan-2026
 
 ### 静岡、車を手に
 
-![fuji view on shinkansen to shizuoka](/images/shinkansen-fuji.jpeg){.side-img}
+![新幹線ひかりから見た富士山。](/images/fuji-2026/shinkansen-fuji.avif){.side-img}
 
 朝飯の後、早速東京駅に行って新幹線で静岡へ出発。
 
@@ -64,7 +64,7 @@ Slug: japan-2026
 
 ちょっと寂しいけど、これから何日も富士山眺められるから全然平気って、自分に言い聞かせた。
 
-![selfie with the little yaris](/images/yaris-selfie.jpeg){.side-img}
+![我がヤリス。](/images/fuji-2026/yaris-selfie.avif){.side-img}
 
 静岡についたらすぐレンタカーの店を探し始めた。
 豪華朝飯のおかげで、昼ごはんを省いても全然平気だった。
@@ -80,7 +80,7 @@ Slug: japan-2026
 
 ### 富士山と初対面
 
-![touristy stuff at the fujikawa rakuza](/images/fujikawa-rakuza.jpg)
+![富士川楽座で、観光客らしいことをたくさんした。](/images/fuji-2026/fujikawa-rakuza.avif)
 
 静岡市を出て、最初の目的地は富士宮市だった。
 けど、日本の高速道路はまだ走り慣れなくて、間違って富士川楽座という道の駅に迷い込んだ。
@@ -103,7 +103,7 @@ Slug: japan-2026
 具体的にどこに行って、何を見ようか、さっぱりだった。
 宿泊も、肝心の静岡・富士五湖周へんの二泊は陳に任せた。
 
-![visiting the fujisan honmiya sengen](/images/fujinomiya-sengentaisha.jpeg){.side-img}
+![富士山本宮浅間大社。](/images/fuji-2026/fujinomiya-sengentaisha.avif){.side-img}
 
 ということで、条件は「夜に精進湖の宿に着く」だけで、かなり余裕が出た。
 地図を見たら、目にかかったのはまず富士山本宮浅間大社。
@@ -129,7 +129,7 @@ Slug: japan-2026
 
 ここが初めて訪れた神社でよかった。
 
-![playing with perspectives of the mt fuji](/images/fujisan-perspectives.jpeg){.side-img}
+![遠近法で遊んで富士山を写しまくった。](/images/fuji-2026/fujisan-perspectives.avif){.side-img}
 
 神社を後にして、旅館に向かうのはまだ早いと感じたんで、すぐ近くにある「静岡県富士山世界遺産センター」に向かった。
 富士山の成り立ちや地理、登山の歴史、観光の発展、水墨絵や詩歌など、様々なテーマを詳しく展示された。
@@ -146,7 +146,7 @@ Slug: japan-2026
 博物館から出て、もう４時くらいになってて、もう宿に向かわないとならなかった。
 元は日が暮れる前に宿に着いて、日没を宿の露天風呂で楽しもうと思ったけど、ちょっとのんびりしすぎた。
 
-![fujisan from the bedroom](/images/fujisan-bedroom.jpeg){.side-img}
+![和室から見た富士山。](/images/fuji-2026/fujisan-bedroom.avif){.side-img}
 
 車でスイスドイツ語の曲を流しながら、山梨県境を入った。
 まず気づいたのはどこにも見える「スリップ注意」「チェーン携行」の標識だった。
@@ -162,7 +162,7 @@ Slug: japan-2026
 
 そして陳が灯を消して、この落ち着いた写真一枚を撮った。
 
-![meals at yamadaya](/images/yamadaya-meals.jpeg){.side-img}
+![めっちゃ綺麗に盛り付けた会席料理。](/images/fuji-2026/yamadaya-meals.avif){.side-img}
 
 晩飯はすごく綺麗に盛り付けた会席料理だった。
 まあ、綺麗だけでなく、味もしっかり決まっていて、どれも美味しかった。
@@ -178,7 +178,7 @@ Slug: japan-2026
 早速試してみようと思ったら、この時の俺は、一つだけかけられる番号を持っていた。
 ケートが東京で渡してくれた、日本での携帯番号だ。
 
-![calling cate on the green phone](/images/green-phone-shoujiko.jpeg){.side-img}
+![レトロ方式で愛を伝える。](/images/fuji-2026/green-phone-shoujiko.avif){.side-img}
 
 百円玉を入れ、何度も番号を打ち間違えたあと、ついに電話は百円玉を呑み込んだ。
 繋がったと思ったら、留守電だった。
@@ -202,7 +202,7 @@ Slug: japan-2026
 
 ### お寺と饅頭とほうとう
 
-![yawning in the golden sunrise at shoujiko](/images/shoujiko-morning.jpeg){.side-img}
+![精進湖畔での黄金色の欠伸。](/images/fuji-2026/shoujiko-morning.avif){.side-img}
 
 時差のせいで、なかなか寝つけなかった。
 朝３時、まだ暗い部屋で日の出の時間を調べていた。
@@ -224,7 +224,7 @@ Slug: japan-2026
 
 身延山を登る車道　急
 
-![minobu manju and houtou](/images/minobu-manju-houtou.jpeg){.side-img}
+![身延でお腹いっぱいに。](/images/fuji-2026/minobu-manju-houtou.avif){.side-img}
 
 饅頭美味しかった、店主がとても親切
 
