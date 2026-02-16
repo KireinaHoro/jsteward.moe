@@ -25,6 +25,7 @@ import PhotoSwipeLightBox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js
 const lightbox = new PhotoSwipeLightBox({
     gallery: '#the-gallery',
     children: 'a',
+    showHideAnimationType: 'fade',
     pswpModule: () => import('/theme/photoswipe/photoswipe.esm.min.js')
 });
 lightbox.init();
