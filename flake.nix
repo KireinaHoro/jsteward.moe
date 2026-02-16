@@ -26,17 +26,19 @@
     };
   }) // {
     overlay = final: prev: {
-      jstewardMoe = with final; stdenv.mkDerivation {
+      jstewardMoe = with final; stdenvNoCC.mkDerivation {
         name = "jsteward.moe";
         src = lib.cleanSource ./.;
-        buildInputs = with python3Packages; [ pelican markdown ];
+        buildInputs = with python3Packages; [
+          pelican
+          markdown
+          pillow
+        ];
         buildPhase = ''
-          ${gnumake}/bin/make publish COMMIT=${if self ? rev then self.rev else "dirty"}
-        '';
-        installPhase = ''
           mkdir -p $out
-          mv output/* $out/
+          pelican content/ -o $out -s publishconf.py
         '';
+        COMMIT = if self ? rev then self.rev else "dirty";
       };
     };
   };
