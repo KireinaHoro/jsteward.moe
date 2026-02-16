@@ -13,7 +13,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00372.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00372.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -21,7 +21,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01109.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01109.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -29,7 +29,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00306.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00306.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -37,7 +37,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00267.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00267.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -45,7 +45,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00753.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00753.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -53,7 +53,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC08982.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC08982.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -61,7 +61,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC03578.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC03578.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -69,7 +69,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02337.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02337.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -77,7 +77,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00314.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00314.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -85,7 +85,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00438.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00438.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -93,7 +93,7 @@ save_as: gallery_index.html
     data-pswp-width="5955"
     data-pswp-height="3970"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC03685-HDR.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC03685-HDR.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -101,7 +101,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01112.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01112.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -109,7 +109,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00076.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00076.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -117,7 +117,7 @@ save_as: gallery_index.html
     data-pswp-width="3567"
     data-pswp-height="5350"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09307.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09307.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -125,7 +125,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01245.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01245.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -133,7 +133,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02235.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02235.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -141,7 +141,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00964.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00964.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -149,7 +149,7 @@ save_as: gallery_index.html
     data-pswp-width="5705"
     data-pswp-height="3803"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01293.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01293.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -157,7 +157,7 @@ save_as: gallery_index.html
     data-pswp-width="5783"
     data-pswp-height="3855"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02652.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02652.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -165,7 +165,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01095.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01095.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -173,7 +173,7 @@ save_as: gallery_index.html
     data-pswp-width="5852"
     data-pswp-height="3901"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00284.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00284.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -181,7 +181,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00202.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00202.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -189,7 +189,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00056.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00056.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -197,7 +197,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01025.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01025.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -205,7 +205,7 @@ save_as: gallery_index.html
     data-pswp-width="3676"
     data-pswp-height="2451"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02301.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02301.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -213,7 +213,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09013.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09013.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -221,7 +221,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02175.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02175.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -229,7 +229,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01090.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01090.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -237,7 +237,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC03866.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC03866.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -245,7 +245,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01226.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01226.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -253,7 +253,7 @@ save_as: gallery_index.html
     data-pswp-width="5673"
     data-pswp-height="3782"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00074.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00074.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -261,7 +261,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09635.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09635.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -269,7 +269,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09029.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09029.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -277,7 +277,7 @@ save_as: gallery_index.html
     data-pswp-width="5352"
     data-pswp-height="3568"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00322.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00322.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -285,7 +285,7 @@ save_as: gallery_index.html
     data-pswp-width="5308"
     data-pswp-height="3539"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00152.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00152.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -293,7 +293,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00271.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00271.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -301,7 +301,7 @@ save_as: gallery_index.html
     data-pswp-width="3574"
     data-pswp-height="5361"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02319.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02319.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -309,7 +309,7 @@ save_as: gallery_index.html
     data-pswp-width="5969"
     data-pswp-height="3979"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC03560-HDR.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC03560-HDR.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -317,7 +317,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00259.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00259.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -325,7 +325,7 @@ save_as: gallery_index.html
     data-pswp-width="5694"
     data-pswp-height="3796"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02187.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02187.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -333,7 +333,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00311.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00311.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -341,7 +341,7 @@ save_as: gallery_index.html
     data-pswp-width="5428"
     data-pswp-height="3619"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00308.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00308.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -349,7 +349,7 @@ save_as: gallery_index.html
     data-pswp-width="5915"
     data-pswp-height="3943"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02966.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02966.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -357,7 +357,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00253.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00253.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -365,7 +365,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02194.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02194.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -373,7 +373,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02440.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02440.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -381,7 +381,7 @@ save_as: gallery_index.html
     data-pswp-width="3868"
     data-pswp-height="5802"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00049.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00049.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -389,7 +389,7 @@ save_as: gallery_index.html
     data-pswp-width="4933"
     data-pswp-height="3289"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00395.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00395.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -397,7 +397,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02289.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02289.jpg" alt="" />
 
 </a></div>
 <div class="grid-item grid-item-wide">
@@ -405,7 +405,7 @@ save_as: gallery_index.html
     data-pswp-width="33360"
     data-pswp-height="1871"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00398-Pano.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00398-Pano.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -413,7 +413,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00461.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00461.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -421,7 +421,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01197.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01197.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -429,7 +429,7 @@ save_as: gallery_index.html
     data-pswp-width="5675"
     data-pswp-height="3783"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00297.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00297.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -437,7 +437,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01252.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01252.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -445,7 +445,7 @@ save_as: gallery_index.html
     data-pswp-width="3684"
     data-pswp-height="5526"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09393.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09393.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -453,7 +453,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01243.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01243.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -461,7 +461,7 @@ save_as: gallery_index.html
     data-pswp-width="3609"
     data-pswp-height="5413"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00126.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00126.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -469,7 +469,7 @@ save_as: gallery_index.html
     data-pswp-width="5165"
     data-pswp-height="3443"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09514.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09514.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -477,7 +477,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00999.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00999.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -485,7 +485,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC01282.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC01282.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -493,7 +493,7 @@ save_as: gallery_index.html
     data-pswp-width="3783"
     data-pswp-height="5675"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02802.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02802.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -501,7 +501,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC03786.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC03786.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -509,7 +509,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00727.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00727.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -517,7 +517,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00171.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00171.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -525,7 +525,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00976.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00976.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -533,7 +533,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02671.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02671.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -541,7 +541,7 @@ save_as: gallery_index.html
     data-pswp-width="5953"
     data-pswp-height="3969"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00045.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00045.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -549,7 +549,7 @@ save_as: gallery_index.html
     data-pswp-width="4000"
     data-pswp-height="6000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC02403.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC02403.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -557,7 +557,7 @@ save_as: gallery_index.html
     data-pswp-width="4774"
     data-pswp-height="3183"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00440.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00440.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -565,7 +565,7 @@ save_as: gallery_index.html
     data-pswp-width="3645"
     data-pswp-height="5468"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09173.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09173.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -573,7 +573,7 @@ save_as: gallery_index.html
     data-pswp-width="5857"
     data-pswp-height="3905"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00354.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00354.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -581,7 +581,7 @@ save_as: gallery_index.html
     data-pswp-width="6000"
     data-pswp-height="4000"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00885.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00885.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -589,7 +589,7 @@ save_as: gallery_index.html
     data-pswp-width="3297"
     data-pswp-height="4945"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC09200.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC09200.jpg" alt="" />
 
 </a></div>
 <div class="grid-item">
@@ -597,7 +597,7 @@ save_as: gallery_index.html
     data-pswp-width="5640"
     data-pswp-height="3760"
     target="_blank">
-  <img src="/images/gallery/thumbnails/DSC00359.avif" alt="" />
+  <img src="/images/gallery/thumbnails/DSC00359.jpg" alt="" />
 
 </a></div>
 
