@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
+from photoswipe_images import PhotoSwipeImageExtension
 
 AUTHOR = 'Pengcheng Xu'
 SITENAME = 'Pengcheng Xu'
@@ -59,7 +60,9 @@ MARKDOWN = {
         'meta',
         'attr_list',
         'md_in_html',
-    ]],
+    ]] + [
+        PhotoSwipeImageExtension(inputdir=PATH),
+    ],
     'output_format': 'html5',
     'extension_configs': {
         'markdown.extensions.toc': {'title': 'Table of Contents'},
@@ -78,7 +81,7 @@ DEFAULT_DATE_FORMAT = '%d/%m/%y %H:%M'
 # automatically scan photos for galleries
 from PIL import Image
 def get_gallery_images(gallery_id):
-    print(f'>>> Scanning images for {gallery_id}...')
+    print(f'>>> Scanning images for gallery {gallery_id}...')
 
     base_path = Path(PATH) / 'images' / 'gallery' / gallery_id
     if not base_path.exists():
