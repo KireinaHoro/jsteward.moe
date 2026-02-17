@@ -65,7 +65,3 @@ class PhotoSwipeImageExtension(Extension):
             "photoswipe_images",
             15,
         )
-
-
-def makeExtension(**kwargs):
-    return PhotoSwipeImageExtension(kwargs["inputdir"])

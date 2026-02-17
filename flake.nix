@@ -36,7 +36,7 @@
         ];
         buildPhase = ''
           mkdir -p $out
-          pelican content/ -o $out -s publishconf.py
+          pelican -o $out
         '';
         COMMIT = if self ? rev then self.rev else "dirty";
       };
