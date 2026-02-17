@@ -36,7 +36,7 @@
         ];
         buildPhase = ''
           mkdir -p $out
-          pelican -o $out
+          pelican
         '';
         COMMIT = if self ? rev then self.rev else "dirty";
       };

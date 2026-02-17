@@ -17,6 +17,7 @@ SITEURL = 'https://jsteward.moe'
 COMMIT = os.environ['COMMIT'][:7]
 
 PATH = 'content'
+OUTPUT_PATH = os.environ['out']
 
 TIMEZONE = 'Asia/Shanghai'
 
@@ -67,7 +68,7 @@ MARKDOWN = {
         'attr_list',
         'md_in_html',
     ]] + [
-        PhotoSwipeImageExtension(inputdir=PATH),
+        PhotoSwipeImageExtension(inputdir=PATH, outputdir=OUTPUT_PATH),
     ],
     'output_format': 'html5',
     'extension_configs': {
@@ -85,5 +86,5 @@ INDEX_SAVE_AS = 'blog_index.html'
 DEFAULT_DATE_FORMAT = '%d/%m/%y %H:%M'
 
 JINJA_GLOBALS = {
-    "get_gallery_images": image_getter(PATH),
+    "get_gallery_images": image_getter(PATH, OUTPUT_PATH),
 }

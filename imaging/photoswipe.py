@@ -4,11 +4,14 @@ from xml.etree import ElementTree as ET
 from pathlib import Path
 from PIL import Image
 
+from .thumbnailgen import gen_thumbnail
+
 
 class PhotoSwipeImageProcessor(Treeprocessor):
-    def __init__(self, md, inputdir):
+    def __init__(self, md, inputdir, outputdir):
         super().__init__(md)
         self.inputdir = Path(inputdir)
+        self.outputdir = Path(outputdir)
 
     def run(self, root):
         print(f'>>> Scanning images for article...')
@@ -51,17 +54,28 @@ class PhotoSwipeImageProcessor(Treeprocessor):
             index = list(parent).index(img)
             parent.remove(img)
             parent.insert(index, a)
+
+            thumb_src = gen_thumbnail(
+                inputdir=self.inputdir,
+                outputdir=self.outputdir,
+                src=src,
+                max_width=1600,
+                quality=50,
+            )
+            img.set('src', thumb_src)
+
             a.append(img)
 
 
 class PhotoSwipeImageExtension(Extension):
-    def __init__(self, inputdir):
+    def __init__(self, inputdir, outputdir):
         super().__init__()
         self.inputdir = inputdir
+        self.outputdir = outputdir
 
     def extendMarkdown(self, md):
         md.treeprocessors.register(
-            PhotoSwipeImageProcessor(md, self.inputdir),
+            PhotoSwipeImageProcessor(md, self.inputdir, self.outputdir),
             "photoswipe_images",
             15,
         )

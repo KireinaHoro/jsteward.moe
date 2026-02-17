@@ -1,13 +1,19 @@
 # automatically scan photos for galleries
 from PIL import Image
 from pathlib import Path
+from os.path import basename
+
+from .thumbnailgen import gen_thumbnail
 
 
-def image_getter(inputdir):
-    return lambda gallery_id: get_images(inputdir, gallery_id)
+def image_getter(inputdir, outputdir):
+    return lambda gallery_id: get_images(
+            inputdir=Path(inputdir),
+            outputdir=Path(outputdir),
+            gallery_id=gallery_id)
 
 
-def get_images(inputdir, gallery_id):
+def get_images(inputdir, outputdir, gallery_id):
     print(f'>>> Scanning images for gallery {gallery_id}...')
 
     base_path = Path(inputdir) / 'images' / 'gallery' / gallery_id
@@ -26,8 +32,19 @@ def get_images(inputdir, gallery_id):
             continue
 
         print(f'... {file} ({width} x {height})')
+
+        src = f'/images/gallery/{gallery_id}/{basename(file)}'
+        thumb_src = gen_thumbnail(
+            inputdir=inputdir,
+            outputdir=outputdir,
+            src=src,
+            max_width=500,
+            quality=45,
+        )
+
         images.append({
-            'name': file.stem,
+            'full': src,
+            'thumb': thumb_src,
             'width': width,
             'height': height,
         })
