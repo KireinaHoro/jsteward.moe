@@ -11,3 +11,4 @@ local-test/
 .direnv
 result*
 *.orig
+image-export.app/
