@@ -33,12 +33,14 @@ def get_images(inputdir, outputdir, gallery_id):
 
         print(f'... {file} ({width} x {height})')
 
+        max_width = 500 if width < height * 6 else 3200
+
         src = f'/images/gallery/{gallery_id}/{basename(file)}'
         thumb_src = gen_thumbnail(
             inputdir=inputdir,
             outputdir=outputdir,
             src=src,
-            max_width=500,
+            max_width=max_width,
             quality=45,
         )
 
