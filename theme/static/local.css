@@ -167,7 +167,7 @@ ul.double-column {
 }
 
 /* only apply to images inside articles, not gallery grids */
-img:not(.grid-item img) {
+img:not(.grid-item img, .side-img) {
     width: 95%;
     margin: 0.5em auto;
     display: block;

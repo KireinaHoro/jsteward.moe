@@ -1,5 +1,5 @@
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageOps
 
 
 def gen_thumbnail(
@@ -39,7 +39,7 @@ def gen_thumbnail(
     resized_rel = str(Path(rel_src).with_name(resized_name))
     resized_output_path = outputdir / resized_rel
 
-    print(f'... {src} -> {resized_rel}')
+    print(f'... thumbnail: {resized_rel}')
 
     # If already exists, don’t regenerate
     if resized_output_path.exists():
@@ -49,6 +49,7 @@ def gen_thumbnail(
 
     with Image.open(input_path) as im:
         width, height = im.size
+        im = ImageOps.exif_transpose(im)  # some pictures has exif rotation
 
         if width <= max_width:
             # Just copy original
