@@ -137,8 +137,18 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 }
 
 .toctitle {
+    display: block;
     font-weight: bold;
+    margin-bottom: 0.5em;
 }
+:lang(ja) .toctitle {
+    visibility: hidden;
+}
+:lang(ja) .toctitle::before {
+    visibility: initial;
+    content: "目次";
+}
+
 .toc {
     /* stolen from Gentoo wiki */
     border: 1px solid #a2a9b1;
