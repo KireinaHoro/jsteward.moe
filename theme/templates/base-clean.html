@@ -24,7 +24,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        {% block extra_head %}{% endblock extra_head %}
+        <link rel="stylesheet" href="/theme/photoswipe/photoswipe.css">
 
         {% endblock head %}
     </head>
@@ -88,5 +88,35 @@
 
         {% include "analytics.html" %}
 
+        <script type="module">
+        import PhotoSwipeLightBox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js';
+        const lightbox = new PhotoSwipeLightBox({
+            gallery: '#the-gallery',
+            children: 'a',
+            showHideAnimationType: 'fade',
+            pswpModule: () => import('/theme/photoswipe/photoswipe.esm.min.js')
+        });
+        lightbox.on('uiRegister', function() {
+            lightbox.pswp.ui.registerElement({
+                name: 'custom-caption',
+                order: 9,
+                isButton: false,
+                appendTo: 'root',
+                html: 'Caption text',
+                onInit: (el, pswp) => {
+                    lightbox.pswp.on('change', () => {
+                        const currSlideElement = lightbox.pswp.currSlide.data.element;
+                        let captionHTML = '';
+                        if (currSlideElement) {
+                        // get caption from alt attribute
+                            captionHTML = currSlideElement.querySelector('img').getAttribute('alt');
+                        }
+                        el.innerHTML = captionHTML || '';
+                    });
+                }
+            });
+        });
+        lightbox.init();
+        </script>
     </body>
 </html>
