@@ -24,6 +24,9 @@
       type = "app";
       program = "${serve}/bin/serve";
     };
+    devShells.default = pkgs.mkShell {
+      buildInputs = with pkgs; [ getopt ];
+    };
   }) // {
     overlay = final: prev: {
       jstewardMoe = with final; stdenvNoCC.mkDerivation {
