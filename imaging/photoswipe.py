@@ -45,6 +45,7 @@ class PhotoSwipeImageProcessor(Treeprocessor):
             # Create anchor
             a = ET.Element("a", {
                 "href": src,
+                "class": "lightbox-img",
                 "data-pswp-width": str(width),
                 "data-pswp-height": str(height),
                 "target": "_blank",

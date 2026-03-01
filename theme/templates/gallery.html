@@ -38,7 +38,8 @@ imagesLoaded(elem).on('progress', function() {
 
             {% for img in images %}
             <div class="grid-item{% if img.width > img.height * 6 %} grid-item-wide{% endif %}">
-                <a href="{{ img.full }}"
+                <a class="lightbox-img"
+                   href="{{ img.full }}"
                    data-pswp-width="{{ img.width }}"
                    data-pswp-height="{{ img.height }}"
                    target="_blank">
