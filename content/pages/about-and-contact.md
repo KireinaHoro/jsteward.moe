@@ -6,13 +6,15 @@ Status: published
 Slug: about-and-contact
 save_as: index.html
 
-I'm currently a second-year PhD student in the [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) program at ETH Zürich.  I am a member of the [Systems Group](https://systems.ethz.ch) with [Prof. Timothy Roscoe](https://people.inf.ethz.ch/troscoe/).
+I am a third-year PhD student in the [Direct Doctorate in Computer Science](https://inf.ethz.ch/doctorate/direct-doctorate-computer-science.html) program at ETH Zürich.  I am a member of the [Systems Group](https://systems.ethz.ch) with [Prof. Timothy Roscoe](https://people.inf.ethz.ch/troscoe/).
 
-My research interests span the broad area of computer systems, especially in operating systems, high-performance networking, and computer architecture.  I enjoy building highly performant and efficient systems via software and hardware approaches.  My experience in FPGAs, system programming, and parallel programming, enables me to effectively solve many problems in these fields.  I am also interest in formal verification to ensure that the systems I build are actually reliable and trustworthy.
+My research interests span the broad area of computer systems, especially in operating systems, high-performance networking, and computer architecture.  I enjoy building highly performant and efficient systems via software and hardware approaches.  My experience in FPGA and systems programming enables me to effectively solve problems in these fields.  I am also interested in formal verification to ensure that the systems I build are actually reliable and trustworthy.
 
 You can find my full CV [here](/images/cv.pdf).
 
-I also keep a [blog](/blog_index.html) (updated irregularly) to record experiences when dealing with various interesting systems, from old-school Unix to Android to RISC-V-on-FPGA endeavors.  Don't hesitate to comment or contact me to discuss on topics I've covered!
+I keep a [blog](/blog_index.html) to record experiences when dealing with various interesting systems, from old-school Unix to Android to RISC-V-on-FPGA endeavors.  From time to time, I also write about various life experiences.  Don't hesitate to comment or contact me to discuss on topics I've covered!
+
+Since March 2026, I am a licensed amateur operator in Switzerland with callsign [HB9ISZ](https://www.qrz.com/db/HB9ISZ).
 
 You can reach me via the following:
 
