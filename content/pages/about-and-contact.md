@@ -25,9 +25,11 @@ You can reach me via the following:
 
 ### Publications
 
-_Mainframe-style channel controllers for modern disaggregated memory systems_, Zikai Liu, Jasmin Schult, **Pengcheng Xu**, Timothy Roscoe, APSys (to appear; [arXiv](https://arxiv.org/abs/2506.09758)), 2025.
+_Proxics: an efficient programming model for far memory accelerators_, Zikai Liu, Niels Pressel, Jasmin Schult, Roman Meier, **Pengcheng Xu**, Timothy Roscoe, [arXiv](https://arxiv.org/abs/2604.18120), 2026.
 
-_FPsPIN: An FPGA-based Open-Hardware Research Platform for Processing in the Network_, Timo Schneider, **Pengcheng Xu**, Torsten Hoefler, HotI (to appear; [arXiv](https://arxiv.org/abs/2405.16378)), 2025.
+_Mainframe-style channel controllers for modern disaggregated memory systems_, Zikai Liu, Jasmin Schult, **Pengcheng Xu**, Timothy Roscoe, [APSys](https://dl.acm.org/doi/10.1145/3725783.3764403), 2025.
+
+_FPsPIN: An FPGA-based Open-Hardware Research Platform for Processing in the Network_, Timo Schneider, **Pengcheng Xu**, Torsten Hoefler, [HOTI](https://ieeexplore.ieee.org/document/11244766), 2025.
 
 _The NIC should be part of the OS._, **Pengcheng Xu**, Timothy Roscoe, [HotOS](https://dl.acm.org/doi/10.1145/3713082.3730388), 2025.
 
