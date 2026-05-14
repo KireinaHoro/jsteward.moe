@@ -124,7 +124,8 @@
                             const currSlideElement = pswp.currSlide.data.element;
                             let captionHTML = '';
                             if (currSlideElement) {
-                                captionHTML = currSlideElement.querySelector('img').getAttribute('alt');
+                                const img = currSlideElement.querySelector('img');
+                                captionHTML = img.getAttribute('data-caption') || img.getAttribute('alt');
                             }
                             el.textContent = captionHTML || '';
                         });

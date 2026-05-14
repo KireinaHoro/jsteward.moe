@@ -1,28 +1,69 @@
 {% extends "base-clean.html" %}
 
+{% macro gallery_item(img, priority=false) %}
+<div class="grid-item{% if img.width > img.height * 6 %} grid-item-wide{% endif %}">
+    <a class="lightbox-img"
+       href="{{ img.full }}"
+       data-pswp-src="{{ img.full }}"
+       data-pswp-width="{{ img.width }}"
+       data-pswp-height="{{ img.height }}">
+        <img src="{{ img.thumb }}" srcset="{{ img.thumb_srcset }}" sizes="{% if img.width > img.height * 6 %}100vw{% else %}(max-width: 768px) 33vw, 20vw{% endif %}" width="{{ img.thumb_width }}" height="{{ img.thumb_height }}"{% if img.alt %} data-caption="{{ img.alt|e }}"{% endif %} decoding="async" loading="lazy"{% if not priority %} fetchpriority="low"{% endif %}>
+    </a>
+</div>
+{% endmacro %}
+
+{% macro gallery_more_item(href, label, direction) %}
+<div class="grid-item gallery-more-item">
+    <a class="gallery-more-link gallery-more-{{ direction }}" href="{{ href }}">
+        <span>{{ label }}</span>
+    </a>
+</div>
+{% endmacro %}
+
 {% block extra_body %}
 <script src="/theme/isotope.pkgd.min.js"></script>
 <script src="/theme/imagesloaded.pkgd.min.js"></script>
 <script>
-var elem = document.querySelector('.grid');
-var iso = new Isotope(elem, {
-    itemSelector: '.grid-item',
-    percentPosition: true,
-    masonry: {
-        columnWidth: '.grid-sizer'
-    }
-});
-imagesLoaded(elem).on('progress', function(instance, image) {
-    if (image.img) {
-        image.img.classList.add('is-loaded');
-    }
-    iso.layout();
+document.querySelectorAll('.grid').forEach(function(elem) {
+    var iso = new Isotope(elem, {
+        itemSelector: '.grid-item',
+        percentPosition: true,
+        masonry: {
+            columnWidth: '.grid-sizer'
+        }
+    });
+    imagesLoaded(elem).on('progress', function(instance, image) {
+        if (image.img) {
+            image.img.classList.add('is-loaded');
+        }
+        iso.layout();
+    }).on('always', function() {
+        elem.querySelectorAll('.gallery-more-item').forEach(function(item) {
+            item.classList.add('is-loaded');
+        });
+        iso.layout();
+    });
 });
 </script>
 {% endblock extra_body %}
 
 {% block title %}{{ page.title }} - {{ SITENAME }}{% endblock %}
 {% block body_class %}gallery-page{% endblock %}
+{% block brand %}
+<div class="span7">
+    <a href="/" class="brand">{{ AUTHOR }}</a>
+</div>
+{% endblock brand %}
+{% block nav %}
+<div class="span5" id="blog-nav">
+    <ul class="nav nav-pills pull-right">
+        <li{% if page.save_as == 'gallery_index.html' %} class="active"{% endif %}><a href="/gallery_index.html">Overview</a></li>
+        {% for category in get_gallery_categories() %}
+        <li{% if category.id == page.gallery_id %} class="active"{% endif %}><a href="{{ category.url }}">{{ category.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock nav %}
 {% block profile_span %}{% endblock %}
 {% block content_span %}
 <div class='gallery'>
@@ -34,23 +75,33 @@ imagesLoaded(elem).on('progress', function(instance, image) {
     <div class="row-fluid">
         {{ page.content }}
 
-        {% if page.gallery_id %}
+        {% if page.gallery_id == 'landing' %}
+        <div id="the-gallery" class="gallery-sections">
+            {% for category in get_gallery_categories() %}
+            <section class="gallery-section">
+                <div class="grid">
+                    <div class="grid-sizer"></div>
+
+                    {% set images = get_gallery_images(category.id, limit=8) %}
+
+                    {% for img in images %}
+                    {{ gallery_item(img, loop.index <= 3) }}
+                    {% endfor %}
+                    {{ gallery_more_item(category.url, category.title, 'next') }}
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+        {% elif page.gallery_id %}
         <div class="grid" id="the-gallery">
             <div class="grid-sizer"></div>
 
             {% set images = get_gallery_images(page.gallery_id) %}
 
             {% for img in images %}
-            <div class="grid-item{% if img.width > img.height * 6 %} grid-item-wide{% endif %}">
-                <a class="lightbox-img"
-                   href="{{ img.full }}"
-                   data-pswp-src="{{ img.full }}"
-                   data-pswp-width="{{ img.width }}"
-                   data-pswp-height="{{ img.height }}">
-                    <img src="{{ img.thumb }}" srcset="{{ img.thumb_srcset }}" sizes="{% if img.width > img.height * 6 %}100vw{% else %}(max-width: 768px) 33vw, 20vw{% endif %}" width="{{ img.thumb_width }}" height="{{ img.thumb_height }}"{% if img.alt %} alt="{{ img.alt|e }}"{% endif %} decoding="async" loading="lazy"{% if loop.index > 9 %} fetchpriority="low"{% endif %}>
-                </a>
-            </div>
+            {{ gallery_item(img, loop.index <= 9) }}
             {% endfor %}
+            {{ gallery_more_item('/gallery_index.html', 'Overview', 'back') }}
         </div>
         {% endif %}
     </div>

@@ -1,5 +1,6 @@
 # automatically scan photos for galleries
 import sys
+import re
 
 from PIL import ExifTags, Image
 from pathlib import Path
@@ -93,13 +94,39 @@ def _gallery_alt(exif):
 
 
 def image_getter(inputdir, outputdir):
-    return lambda gallery_id: get_images(
+    return lambda gallery_id, limit=None: get_images(
             inputdir=Path(inputdir),
             outputdir=Path(outputdir),
-            gallery_id=gallery_id)
+            gallery_id=gallery_id,
+            limit=limit)
 
 
-def get_images(inputdir, outputdir, gallery_id):
+def category_getter(inputdir):
+    return lambda: get_categories(Path(inputdir))
+
+
+def get_categories(inputdir):
+    gallery_path = Path(inputdir) / 'images' / 'gallery'
+    categories = []
+
+    for path in sorted(gallery_path.iterdir()):
+        if path.name.startswith('.') or not path.is_dir():
+            continue
+        if not list(path.glob('*.avif')):
+            continue
+
+        slug = re.sub(r'^\d+-', '', path.name)
+        categories.append({
+            'id': path.name,
+            'slug': slug,
+            'title': slug.replace('-', ' ').title(),
+            'url': f'/gallery_{slug}.html',
+        })
+
+    return categories
+
+
+def get_images(inputdir, outputdir, gallery_id, limit=None):
     print(f'>>> Scanning images for gallery {gallery_id}...')
 
     base_path = Path(inputdir) / 'images' / 'gallery' / gallery_id
@@ -109,7 +136,7 @@ def get_images(inputdir, outputdir, gallery_id):
 
     images = []
 
-    for file in sorted(base_path.glob("*.avif")):
+    for file in sorted(base_path.glob("*.avif"))[:limit]:
         try:
             with Image.open(file) as img:
                 width, height = img.size

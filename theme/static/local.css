@@ -71,6 +71,64 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 /* Styling for galleries */
 .gallery { padding-bottom:15px; }
 .content-title-gallery { margin-bottom: 30px; }
+.gallery-section {
+    margin-bottom: 44px;
+}
+.gallery-more-item {
+    opacity: 1;
+    transition: opacity 180ms ease-out;
+}
+.gallery-more-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45em;
+    aspect-ratio: 3 / 2;
+    min-height: 96px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #EEE;
+    color: #0A5693;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.25;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+.gallery-more-link span {
+    display: block;
+    min-width: 0;
+    max-width: 100%;
+}
+.gallery-more-link:before,
+.gallery-more-link:after {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 0.5em;
+    flex: 0 0 auto;
+    border-color: currentColor;
+}
+.gallery-more-next:before,
+.gallery-more-back:after {
+    content: none;
+}
+.gallery-more-next:after {
+    border-style: solid solid none none;
+    border-width: 2px;
+    transform: rotate(45deg);
+}
+.gallery-more-back:before {
+    border-style: none none solid solid;
+    border-width: 2px;
+    transform: rotate(45deg);
+}
+.gallery-more-link:hover {
+    color: #0A5693;
+    text-decoration: none;
+    background: #E3E3E3;
+}
 
 /* Styling for the "other entries" section */
 /* Metadata */
@@ -148,6 +206,16 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 
 .js .gallery-page .grid img[loading="lazy"].is-loaded {
     opacity: 1;
+}
+
+.js .gallery-page .gallery-more-item {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.js .gallery-page .gallery-more-item.is-loaded {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .grid-item.grid-item-wide {
