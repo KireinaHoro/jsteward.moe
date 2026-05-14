@@ -49,7 +49,6 @@ class PhotoSwipeImageProcessor(Treeprocessor):
                 "data-pswp-src": src,
                 "data-pswp-width": str(width),
                 "data-pswp-height": str(height),
-                "target": "_blank",
             })
             print(f'... {src} ({width} x {height})')
 

@@ -17,8 +17,19 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Serif:wght@500&display=swap">
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Serif:wght@500&display=swap" rel="stylesheet">
+
+        <script>
+        document.documentElement.className += ' js';
+        window.__photoSwipeReady = false;
+        window.__pendingPhotoSwipeLink = null;
+        document.addEventListener('click', function(event) {
+            const link = event.target.closest && event.target.closest('a.lightbox-img');
+            if (link && link.closest('#the-gallery') && !window.__photoSwipeReady) {
+                window.__pendingPhotoSwipeLink = link;
+                event.preventDefault();
+            }
+        }, true);
+        </script>
 
         <!-- Le styles -->
         <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
@@ -26,6 +37,10 @@
         <link href="/theme/pygments.css" rel="stylesheet">
         <link href="/theme/fontawesome/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="/theme/photoswipe/photoswipe.css">
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Serif:wght@500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;700&family=IBM+Plex+Serif:wght@500&display=swap" rel="stylesheet"></noscript>
+        <link rel="modulepreload" href="/theme/photoswipe/photoswipe-lightbox.esm.min.js">
+        <link rel="modulepreload" href="/theme/photoswipe/photoswipe.esm.min.js">
 
         {% endblock head %}
     </head>
@@ -86,11 +101,9 @@
 
         {% block extra_body %}{% endblock extra_body %}
 
-
-        {% include "analytics.html" %}
-
         <script type="module">
         import PhotoSwipeLightbox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js';
+
         const gallery = document.querySelector('#the-gallery');
         if (gallery) {
             const lightbox = new PhotoSwipeLightbox({
@@ -120,7 +133,21 @@
                 });
             });
             lightbox.init();
+            window.__photoSwipeReady = true;
+
+            if (window.__pendingPhotoSwipeLink) {
+                const link = window.__pendingPhotoSwipeLink;
+                window.__pendingPhotoSwipeLink = null;
+                link.dispatchEvent(new MouseEvent('click', {
+                    bubbles: true,
+                    cancelable: true,
+                    view: window
+                }));
+            }
         }
         </script>
+
+        {% include "analytics.html" %}
+
     </body>
 </html>
