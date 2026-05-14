@@ -110,15 +110,34 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 
 #blog-footer{ display: table; width: 100%}
 
-.grid-sizer, .grid-item {
+.grid {
+    position: relative;
+}
+
+.grid-sizer {
+    position: absolute;
     width: calc(100% / 5);
 }
 
+.grid:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 .grid-item {
+    float: left;
+    width: calc(100% / 5);
     padding: 3px;
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.gallery-page .grid img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .grid-item.grid-item-wide {
@@ -252,7 +271,8 @@ img:not(.grid-item img, .side-img) {
     #colophon { display: table-header-group; }
     #sitelinks { display: table-footer-group; }
 
-    .gallery-page .grid-sizer, .gallery-page .grid-item {
+    .gallery-page .grid-sizer,
+    .gallery-page .grid-item:not(.grid-item-wide) {
         width: calc(100% / 3);
     }
 
