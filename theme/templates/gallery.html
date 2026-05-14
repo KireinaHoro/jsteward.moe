@@ -47,7 +47,7 @@ imagesLoaded(elem).on('progress', function(instance, image) {
                    data-pswp-src="{{ img.full }}"
                    data-pswp-width="{{ img.width }}"
                    data-pswp-height="{{ img.height }}">
-                    <img src="{{ img.thumb }}" width="{{ img.thumb_width }}" height="{{ img.thumb_height }}" alt="" decoding="async" loading="lazy"{% if loop.index > 9 %} fetchpriority="low"{% endif %}>
+                    <img src="{{ img.thumb }}" srcset="{{ img.thumb_srcset }}" sizes="{% if img.width > img.height * 6 %}100vw{% else %}(max-width: 768px) 33vw, 20vw{% endif %}" width="{{ img.thumb_width }}" height="{{ img.thumb_height }}" alt="" decoding="async" loading="lazy"{% if loop.index > 9 %} fetchpriority="low"{% endif %}>
                 </a>
             </div>
             {% endfor %}

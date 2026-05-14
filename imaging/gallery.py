@@ -33,21 +33,34 @@ def get_images(inputdir, outputdir, gallery_id):
 
         print(f'... {file} ({width} x {height})')
 
-        max_width = 500 if width < height * 6 else 3200
-        thumb_width, thumb_height = thumbnail_dimensions(width, height, max_width)
-
         src = f'/images/gallery/{gallery_id}/{basename(file)}'
-        thumb_src = gen_thumbnail(
-            inputdir=inputdir,
-            outputdir=outputdir,
-            src=src,
-            max_width=max_width,
-            quality=45,
-        )
+        is_wide = width > height * 6
+        thumb_widths = [3200] if is_wide else [320, 500]
+        default_thumb_width = thumb_widths[-1]
+        thumb_width, thumb_height = thumbnail_dimensions(
+            width, height, default_thumb_width)
+
+        thumbs = []
+        for thumb_max_width in thumb_widths:
+            thumb_src = gen_thumbnail(
+                inputdir=inputdir,
+                outputdir=outputdir,
+                src=src,
+                max_width=thumb_max_width,
+                quality=45,
+            )
+            generated_width, _ = thumbnail_dimensions(
+                width, height, thumb_max_width)
+            thumbs.append({
+                'src': thumb_src,
+                'width': generated_width,
+            })
 
         images.append({
             'full': src,
-            'thumb': thumb_src,
+            'thumb': thumbs[-1]['src'],
+            'thumb_srcset': ', '.join(
+                f"{thumb['src']} {thumb['width']}w" for thumb in thumbs),
             'thumb_width': thumb_width,
             'thumb_height': thumb_height,
             'width': width,
