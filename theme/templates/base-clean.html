@@ -90,34 +90,37 @@
         {% include "analytics.html" %}
 
         <script type="module">
-        import PhotoSwipeLightBox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js';
-        const lightbox = new PhotoSwipeLightBox({
-            gallery: '#the-gallery',
-            children: 'a.lightbox-img',
-            showHideAnimationType: 'fade',
-            pswpModule: () => import('/theme/photoswipe/photoswipe.esm.min.js')
-        });
-        lightbox.on('uiRegister', function() {
-            lightbox.pswp.ui.registerElement({
-                name: 'custom-caption',
-                order: 9,
-                isButton: false,
-                appendTo: 'root',
-                html: 'Caption text',
-                onInit: (el, pswp) => {
-                    lightbox.pswp.on('change', () => {
-                        const currSlideElement = lightbox.pswp.currSlide.data.element;
-                        let captionHTML = '';
-                        if (currSlideElement) {
-                        // get caption from alt attribute
-                            captionHTML = currSlideElement.querySelector('img').getAttribute('alt');
-                        }
-                        el.innerHTML = captionHTML || '';
-                    });
-                }
+        import PhotoSwipeLightbox from '/theme/photoswipe/photoswipe-lightbox.esm.min.js';
+        const gallery = document.querySelector('#the-gallery');
+        if (gallery) {
+            const lightbox = new PhotoSwipeLightbox({
+                gallery: gallery,
+                children: 'a.lightbox-img',
+                showHideAnimationType: 'fade',
+                pswpModule: () => import('/theme/photoswipe/photoswipe.esm.min.js')
             });
-        });
-        lightbox.init();
+            lightbox.on('uiRegister', function() {
+                lightbox.pswp.ui.registerElement({
+                    name: 'custom-caption',
+                    order: 9,
+                    isButton: false,
+                    appendTo: 'root',
+                    html: 'Caption text',
+                    onInit: (el, pswp) => {
+                        pswp.on('change', () => {
+                            const currSlideElement = pswp.currSlide.data.element;
+                            let captionHTML = '';
+                            if (currSlideElement) {
+                            // get caption from alt attribute
+                                captionHTML = currSlideElement.querySelector('img').getAttribute('alt');
+                            }
+                            el.innerHTML = captionHTML || '';
+                        });
+                    }
+                });
+            });
+            lightbox.init();
+        }
         </script>
     </body>
 </html>
