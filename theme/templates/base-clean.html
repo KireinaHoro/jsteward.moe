@@ -118,13 +118,12 @@
                     order: 9,
                     isButton: false,
                     appendTo: 'root',
-                    html: 'Caption text',
+                    html: '',
                     onInit: (el, pswp) => {
                         pswp.on('change', () => {
                             const currSlideElement = pswp.currSlide.data.element;
                             let captionHTML = '';
                             if (currSlideElement) {
-                            // get caption from alt attribute
                                 captionHTML = currSlideElement.querySelector('img').getAttribute('alt');
                             }
                             el.innerHTML = captionHTML || '';

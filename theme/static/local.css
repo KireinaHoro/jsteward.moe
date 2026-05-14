@@ -301,6 +301,9 @@ img:not(.grid-item img, .side-img) {
     bottom: 16px;
     transform: translateX(-50%);
 }
+.pswp__custom-caption:empty {
+    display: none;
+}
 .pswp__custom-caption a {
     color: #fff;
     text-decoration: underline;
