@@ -110,19 +110,8 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
 
 #blog-footer{ display: table; width: 100%}
 
-@media(max-width: 768px){
-#socialist { display: table-footer-group;}
-#colophon { display: table-header-group;}
-#sitelinks { display: table-footer-group;}
-}
-
 .grid-sizer, .grid-item {
     width: calc(100% / 5);
-}
-@media(max-width: 768px){
-    .grid-sizer, .grid-item {
-        width: calc(100% / 3);
-    }
 }
 
 .grid-item {
@@ -194,6 +183,83 @@ img:not(.grid-item img, .side-img) {
 }
 
 @media(max-width: 768px){
+    body {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .container {
+        width: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    body:not(.gallery-page) > .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .blog-header .container,
+    .gallery-page .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .blog-header {
+        padding: 12px 0 10px;
+    }
+
+    .blog-header .row-fluid [class*="span"] {
+        float: none;
+        width: auto;
+        margin-left: 0;
+    }
+
+    .brand {
+        font-size: 34px;
+        line-height: 1.1;
+        margin-top: 4px;
+        overflow-wrap: anywhere;
+    }
+
+    #blog-nav {
+        padding: 0;
+        margin-top: 6px;
+    }
+
+    #blog-nav .nav {
+        float: none;
+        margin-bottom: 0;
+        text-align: right;
+    }
+
+    #blog-nav .nav > li {
+        float: none;
+        display: inline-block;
+    }
+
+    .gallery-page .content-title-gallery {
+        margin-bottom: 22px;
+    }
+
+    .gallery-page .content-title-gallery h1 {
+        font-size: 34px;
+        line-height: 1.15;
+    }
+
+    #socialist { display: table-footer-group; }
+    #colophon { display: table-header-group; }
+    #sitelinks { display: table-footer-group; }
+
+    .gallery-page .grid-sizer, .gallery-page .grid-item {
+        width: calc(100% / 3);
+    }
+
+    .gallery-page .grid-item {
+        padding: 2px;
+    }
+
     .side-img {
         float: none;
         width: 95%;
