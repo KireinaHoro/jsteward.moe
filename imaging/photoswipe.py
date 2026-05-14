@@ -4,7 +4,7 @@ from xml.etree import ElementTree as ET
 from pathlib import Path
 from PIL import Image
 
-from .thumbnailgen import gen_thumbnail
+from .thumbnailgen import gen_thumbnail, thumbnail_dimensions
 
 
 class PhotoSwipeImageProcessor(Treeprocessor):
@@ -46,6 +46,7 @@ class PhotoSwipeImageProcessor(Treeprocessor):
             a = ET.Element("a", {
                 "href": src,
                 "class": "lightbox-img",
+                "data-pswp-src": src,
                 "data-pswp-width": str(width),
                 "data-pswp-height": str(height),
                 "target": "_blank",
@@ -63,7 +64,12 @@ class PhotoSwipeImageProcessor(Treeprocessor):
                 max_width=1600,
                 quality=50,
             )
+            thumb_width, thumb_height = thumbnail_dimensions(width, height, 1600)
             img.set('src', thumb_src)
+            img.set('width', str(thumb_width))
+            img.set('height', str(thumb_height))
+            img.set('loading', 'lazy')
+            img.set('decoding', 'async')
 
             a.append(img)
 

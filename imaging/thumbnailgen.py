@@ -2,6 +2,14 @@ from pathlib import Path
 from PIL import Image, ImageOps
 
 
+def thumbnail_dimensions(width: int, height: int, max_width: int) -> tuple[int, int]:
+    if width <= max_width:
+        return width, height
+
+    ratio = max_width / width
+    return max_width, int(height * ratio)
+
+
 def gen_thumbnail(
     inputdir: Path,
     outputdir: Path,
@@ -48,17 +56,15 @@ def gen_thumbnail(
     resized_output_path.parent.mkdir(parents=True, exist_ok=True)
 
     with Image.open(input_path) as im:
-        width, height = im.size
         im = ImageOps.exif_transpose(im)  # some pictures has exif rotation
+        width, height = im.size
+        new_width, new_height = thumbnail_dimensions(width, height, max_width)
 
         if width <= max_width:
             # Just copy original
             im.save(resized_output_path, format="AVIF", quality=quality)
         else:
-            ratio = max_width / width
-            new_height = int(height * ratio)
-
-            resized = im.resize((max_width, new_height), Image.LANCZOS)
+            resized = im.resize((new_width, new_height), Image.LANCZOS)
             resized.save(resized_output_path, format="AVIF", quality=quality)
 
     return "/" + resized_rel

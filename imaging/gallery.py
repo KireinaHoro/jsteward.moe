@@ -3,7 +3,7 @@ from PIL import Image
 from pathlib import Path
 from os.path import basename
 
-from .thumbnailgen import gen_thumbnail
+from .thumbnailgen import gen_thumbnail, thumbnail_dimensions
 
 
 def image_getter(inputdir, outputdir):
@@ -34,6 +34,7 @@ def get_images(inputdir, outputdir, gallery_id):
         print(f'... {file} ({width} x {height})')
 
         max_width = 500 if width < height * 6 else 3200
+        thumb_width, thumb_height = thumbnail_dimensions(width, height, max_width)
 
         src = f'/images/gallery/{gallery_id}/{basename(file)}'
         thumb_src = gen_thumbnail(
@@ -47,6 +48,8 @@ def get_images(inputdir, outputdir, gallery_id):
         images.append({
             'full': src,
             'thumb': thumb_src,
+            'thumb_width': thumb_width,
+            'thumb_height': thumb_height,
             'width': width,
             'height': height,
         })
