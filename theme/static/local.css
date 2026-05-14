@@ -138,6 +138,16 @@ code { font-family: 'IBM Plex Mono', 'monospace'; }
     display: block;
     width: 100%;
     height: auto;
+    opacity: 1;
+    transition: opacity 180ms ease-out;
+}
+
+.js .gallery-page .grid img[loading="lazy"] {
+    opacity: 0;
+}
+
+.js .gallery-page .grid img[loading="lazy"].is-loaded {
+    opacity: 1;
 }
 
 .grid-item.grid-item-wide {

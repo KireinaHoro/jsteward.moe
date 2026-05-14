@@ -12,7 +12,10 @@ var iso = new Isotope(elem, {
         columnWidth: '.grid-sizer'
     }
 });
-imagesLoaded(elem).on('progress', function() {
+imagesLoaded(elem).on('progress', function(instance, image) {
+    if (image.img) {
+        image.img.classList.add('is-loaded');
+    }
     iso.layout();
 });
 </script>
@@ -43,9 +46,8 @@ imagesLoaded(elem).on('progress', function() {
                    href="{{ img.full }}"
                    data-pswp-src="{{ img.full }}"
                    data-pswp-width="{{ img.width }}"
-                   data-pswp-height="{{ img.height }}"
-                   target="_blank">
-                    <img src="{{ img.thumb }}" width="{{ img.thumb_width }}" height="{{ img.thumb_height }}" alt="" decoding="async" loading="{% if loop.index <= 9 %}eager{% else %}lazy{% endif %}"{% if loop.index <= 3 %} fetchpriority="high"{% elif loop.index > 9 %} fetchpriority="low"{% endif %}>
+                   data-pswp-height="{{ img.height }}">
+                    <img src="{{ img.thumb }}" width="{{ img.thumb_width }}" height="{{ img.thumb_height }}" alt="" decoding="async" loading="lazy"{% if loop.index > 9 %} fetchpriority="low"{% endif %}>
                 </a>
             </div>
             {% endfor %}
