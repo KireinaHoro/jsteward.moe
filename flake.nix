@@ -45,7 +45,11 @@
       program = "${serve}/bin/serve";
     };
     devShells.default = pkgs.mkShell {
-      buildInputs = [ myPython pkgs.getopt ]; # getopt for imaging/collage/image-export.sh
+      buildInputs = [
+        myPython
+        pkgs.getopt    # getopt for imaging/collage/image-export.sh
+        pkgs.exiftool
+      ];
     };
     packages.default = website;
   });

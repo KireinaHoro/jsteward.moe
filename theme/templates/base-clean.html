@@ -126,7 +126,7 @@
                             if (currSlideElement) {
                                 captionHTML = currSlideElement.querySelector('img').getAttribute('alt');
                             }
-                            el.innerHTML = captionHTML || '';
+                            el.textContent = captionHTML || '';
                         });
                     }
                 });

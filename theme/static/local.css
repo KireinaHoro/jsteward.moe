@@ -302,6 +302,8 @@ img:not(.grid-item img, .side-img) {
     background: rgba(75, 150, 75, 0.75);
     font-size: 16px;
     color: #fff;
+    line-height: 1.35;
+    white-space: pre-line;
     width: calc(100% - 32px);
     max-width: 400px;
     padding: 2px 8px;
