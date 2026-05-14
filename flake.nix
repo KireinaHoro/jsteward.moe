@@ -13,17 +13,18 @@
   with flake-utils.lib; eachSystem (defaultSystems ++ ["aarch64-darwin"]) (system: let
     pkgs = import nixpkgs { inherit system; };
     cv = "${resume.packages.${system}.default}/cv.pdf";
+    myPython = pkgs.python3.withPackages (ps: with ps; [
+      pelican
+      markdown
+      pillow
+    ]);
     website = pkgs.stdenvNoCC.mkDerivation {
       name = "jsteward.moe";
       src = pkgs.lib.cleanSource ./.;
-      buildInputs = with pkgs.python3Packages; [
-        pelican
-        markdown
-        pillow
-      ];
+      buildInputs = [ myPython ];
       buildPhase = ''
         mkdir -p $out
-        pelican
+        python3 -m pelican
         cp ${cv} $out/images/
       '';
       COMMIT = if self ? rev then self.rev else "dirty";
@@ -44,7 +45,7 @@
       program = "${serve}/bin/serve";
     };
     devShells.default = pkgs.mkShell {
-      buildInputs = with pkgs; [ getopt ];
+      buildInputs = [ myPython pkgs.getopt ]; # getopt for imaging/collage/image-export.sh
     };
     packages.default = website;
   });
