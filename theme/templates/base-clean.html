@@ -117,6 +117,10 @@
                 showHideAnimationType: 'fade',
                 pswpModule: () => import('/theme/photoswipe/photoswipe.esm.min.js')
             });
+            lightbox.on('slideInit', function(event) {
+                // Keep PhotoSwipe from swapping element size at the end of zoom animations.
+                event.slide.g = function() {};
+            });
             lightbox.on('uiRegister', function() {
                 lightbox.pswp.ui.registerElement({
                     name: 'custom-caption',
