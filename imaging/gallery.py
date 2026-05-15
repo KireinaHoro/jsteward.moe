@@ -1,6 +1,7 @@
 # automatically scan photos for galleries
 import sys
 import re
+from datetime import datetime
 
 from PIL import ExifTags, Image
 from pathlib import Path
@@ -34,6 +35,16 @@ def _exif_value(exif, ifd, *names):
         if ExifTags.TAGS.get(tag_id, tag_id) in names:
             return value
     return None
+
+
+def _capture_datetime(exif):
+    value = _exif_value(exif, ExifTags.IFD.Exif, 'DateTimeOriginal')
+    if not value:
+        return None
+    try:
+        return datetime.strptime(str(value), '%Y:%m:%d %H:%M:%S')
+    except ValueError:
+        return None
 
 
 def _gallery_alt(exif):
@@ -82,12 +93,15 @@ def _gallery_alt(exif):
         'PhotographicSensitivity',
     )
     iso = f'ISO {_format_number(iso)}' if iso else None
+    captured_at = _capture_datetime(exif)
+    captured_at = captured_at.strftime('%y.%m.%d') if captured_at else None
 
     exposure = ' '.join(
         part for part in (aperture, shutter_speed, iso) if part)
     lines = [
         ' | '.join(part for part in (camera, lens) if part),
-        ' | '.join(part for part in (focal_length, exposure) if part),
+        ' | '.join(
+            part for part in (focal_length, exposure, captured_at) if part),
     ]
     lines = [line for line in lines if line]
     return '\n'.join(lines) if lines else None
@@ -140,7 +154,9 @@ def get_images(inputdir, outputdir, gallery_id, limit=None):
         try:
             with Image.open(file) as img:
                 width, height = img.size
-                alt = _gallery_alt(img.getexif())
+                exif = img.getexif()
+                alt = _gallery_alt(exif)
+                captured_at = _capture_datetime(exif)
         except Exception as e:
             print(f'!!! failed to open {file}: {e}; skipping...')
             continue
@@ -171,6 +187,7 @@ def get_images(inputdir, outputdir, gallery_id, limit=None):
             })
 
         images.append({
+            'filename': basename(file),
             'full': src,
             'thumb': thumbs[-1]['src'],
             'thumb_srcset': ', '.join(
@@ -180,6 +197,7 @@ def get_images(inputdir, outputdir, gallery_id, limit=None):
             'width': width,
             'height': height,
             'alt': alt,
+            'captured_at': captured_at,
         })
 
     print(f'>>> Done, added {len(images)} images')
