@@ -182,7 +182,7 @@ def get_images(inputdir, outputdir, gallery_id, limit=None):
 
     images = []
 
-    for file in sorted(base_path.glob("*.avif"))[:limit]:
+    for file in sorted(base_path.glob("*.avif")):
         try:
             with Image.open(file) as img:
                 width, height = img.size
@@ -232,6 +232,10 @@ def get_images(inputdir, outputdir, gallery_id, limit=None):
             'featured': file.name.endswith('-featured.avif'),
             'captured_at': captured_at,
         })
+
+    images = sorted(images, key=_newest_key, reverse=True)
+    if limit is not None:
+        images = images[:limit]
 
     print(f'>>> Done, added {len(images)} images')
     return images
