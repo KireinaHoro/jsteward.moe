@@ -94,7 +94,7 @@ def _gallery_alt(exif):
     )
     iso = f'ISO {_format_number(iso)}' if iso else None
     captured_at = _capture_datetime(exif)
-    captured_at = captured_at.strftime('%y.%m.%d') if captured_at else None
+    captured_at = captured_at.strftime('%Y-%m-%d') if captured_at else None
 
     exposure = ' '.join(
         part for part in (aperture, shutter_speed, iso) if part)
