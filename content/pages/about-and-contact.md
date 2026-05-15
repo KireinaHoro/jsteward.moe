@@ -1,7 +1,7 @@
 Title: Homepage
 Template: homepage
 Date: 2017-03-07 11:40:00
-Modified: 2025-09-04T14:50+02:00
+Modified: 2026-05-15T10:06+02:00
 Status: published
 Slug: about-and-contact
 save_as: index.html
@@ -13,6 +13,8 @@ My research interests span the broad area of computer systems, especially in ope
 You can find my full CV [here](/images/cv.pdf).
 
 I keep a [blog](/blog_index.html) to record experiences when dealing with various interesting systems, from old-school Unix to Android to RISC-V-on-FPGA endeavors.  From time to time, I also write about various life experiences.  Don't hesitate to comment or contact me to discuss on topics I've covered!
+
+I enjoy photography as a creative hobby, mainly focusing on portraits and landscape; check out my [portfolio](/gallery_index.html).  Feel free to reach out if you'd like a photo shoot!
 
 Since March 2026, I am a licensed amateur operator in Switzerland with callsign [HB9ISZ](https://www.qrz.com/db/HB9ISZ).
 
