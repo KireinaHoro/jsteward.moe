@@ -197,6 +197,12 @@ end
 local function destination_path(category, image)
   local source = image_source_path(image)
   local name = strip_extension(basename(source)):gsub("[^%w._-]+", "-")
+  local ok, red = pcall(function()
+    return image.red
+  end)
+  if ok and red and not name:match("%-featured$") then
+    name = name .. "-featured"
+  end
   local directory = GALLERY_DIR .. "/" .. category.id
   return directory .. "/" .. name .. ".avif"
 end

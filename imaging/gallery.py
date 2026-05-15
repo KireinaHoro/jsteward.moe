@@ -115,6 +115,13 @@ def image_getter(inputdir, outputdir):
             limit=limit)
 
 
+def landing_image_getter(inputdir, outputdir):
+    return lambda gallery_id: get_landing_images(
+            inputdir=Path(inputdir),
+            outputdir=Path(outputdir),
+            gallery_id=gallery_id)
+
+
 def category_getter(inputdir):
     return lambda: get_categories(Path(inputdir))
 
@@ -138,6 +145,31 @@ def get_categories(inputdir):
         })
 
     return categories
+
+
+def _newest_key(image):
+    captured_at = image['captured_at']
+    return (
+        captured_at is not None,
+        captured_at or datetime.min,
+        image['filename'].lower(),
+    )
+
+
+def get_landing_images(inputdir, outputdir, gallery_id):
+    images = get_images(inputdir, outputdir, gallery_id)
+    featured = sorted(
+        (image for image in images if image['featured']),
+        key=_newest_key,
+        reverse=True)
+    regular = sorted(
+        (image for image in images if not image['featured']),
+        key=_newest_key,
+        reverse=True)
+
+    if len(featured) >= 8:
+        return featured
+    return featured + regular[:8 - len(featured)]
 
 
 def get_images(inputdir, outputdir, gallery_id, limit=None):
@@ -197,6 +229,7 @@ def get_images(inputdir, outputdir, gallery_id, limit=None):
             'width': width,
             'height': height,
             'alt': alt,
+            'featured': file.name.endswith('-featured.avif'),
             'captured_at': captured_at,
         })
 

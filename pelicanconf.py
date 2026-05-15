@@ -8,7 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from imaging.photoswipe import PhotoSwipeImageExtension
-from imaging.gallery import category_getter, image_getter
+from imaging.gallery import category_getter, image_getter, landing_image_getter
 
 AUTHOR = 'Pengcheng Xu'
 SITENAME = 'Pengcheng Xu'
@@ -88,4 +88,5 @@ DEFAULT_DATE_FORMAT = '%d/%m/%y %H:%M'
 JINJA_GLOBALS = {
     "get_gallery_categories": category_getter(PATH),
     "get_gallery_images": image_getter(PATH, OUTPUT_PATH),
+    "get_landing_gallery_images": landing_image_getter(PATH, OUTPUT_PATH),
 }

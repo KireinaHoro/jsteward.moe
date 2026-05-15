@@ -83,7 +83,7 @@ document.querySelectorAll('.grid').forEach(function(elem) {
                 <div class="grid">
                     <div class="grid-sizer"></div>
 
-                    {% set images = get_gallery_images(category.id, limit=8) %}
+                    {% set images = get_landing_gallery_images(category.id) %}
 
                     {% for img in images %}
                     {{ gallery_item(img, loop.index <= 3) }}

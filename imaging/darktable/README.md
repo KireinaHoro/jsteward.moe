@@ -12,6 +12,8 @@ category, adjust the max width if needed, select images, and click
 `content/images/gallery/<category>/` by default.
 
 A toast appears after each exported image with progress like `15/20 filename`.
+Images with darktable's red color label are exported as `*-featured.avif`,
+which makes them appear on the gallery Overview.
 
 After export it runs `exiftool` and keeps only the fields used by
 `imaging/gallery.py` for captions:
