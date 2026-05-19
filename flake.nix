@@ -49,6 +49,7 @@
         myPython
         pkgs.getopt    # getopt for imaging/collage/image-export.sh
         pkgs.exiftool
+        pkgs.imagemagick
       ];
     };
     packages.default = website;

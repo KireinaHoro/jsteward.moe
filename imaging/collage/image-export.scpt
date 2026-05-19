@@ -8,7 +8,7 @@ end open
 on processImages(theFiles)
     -- Get the directory containing this app
     set appPath to POSIX path of (path to me)
-    set appDir to do shell script "dirname " & quoted form of appPath
+    set appDir to do shell script ("dirname " & (quoted form of appPath))
 
     -- Prompt for grid size (optional)
     set gridSize to text returned of (display dialog "Enter grid size (e.g. 2x2, 3x2, 4x1) or leave blank for horizontal" default answer "")
@@ -26,22 +26,22 @@ on processImages(theFiles)
     end repeat
 
     -- Build shell command
-    set cmd to appDir & "/image-export.sh"
+    set cmd to quoted form of (appDir & "/image-export.sh")
 
     if gridSize is not "" then
-        set cmd to cmd & " -g " & gridSize
+        set cmd to cmd & " -g " & (quoted form of gridSize)
     end if
 
     if collectionName is not "" then
-        set cmd to cmd & " -c " & collectionName
+        set cmd to cmd & " -c " & (quoted form of collectionName)
     end if
 
     if outFileName is not "" then
-        set cmd to cmd & " -n " & outFileName
+        set cmd to cmd & " -n " & (quoted form of outFileName)
     end if
 
     repeat with p in inputPaths
-        set cmd to cmd & " " & quoted form of p
+        set cmd to cmd & " " & (quoted form of p)
     end repeat
 
     -- Run the blog-export script

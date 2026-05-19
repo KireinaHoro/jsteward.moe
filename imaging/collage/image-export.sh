@@ -19,6 +19,7 @@ set -euo pipefail
 # ------------------------------------------------------------
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 DEFAULT_QUALITY=50
 QUALITY=$DEFAULT_QUALITY
@@ -66,7 +67,7 @@ EOF
 # Parse options with getopt
 # ------------------------------------------------------------
 
-export PATH="/etc/profiles/per-user/jsteward/bin/:$PATH"
+export PATH="/etc/profiles/per-user/${USER:-jsteward}/bin:$PATH"
 
 if ! OPTS=$(getopt -o g:q:n:c:o:h --long grid:,quality:,name:,collection:,output:,help -n 'image-export.sh' -- "$@"); then
     print_help
@@ -152,7 +153,7 @@ if [ -z "$OUTPUT_FILE" ]; then
         COLLECTION=incoming
     fi
 
-    OUTPUT_DIR="$SCRIPT_DIR/content/images/$COLLECTION"
+    OUTPUT_DIR="$REPO_ROOT/content/images/$COLLECTION"
     mkdir -p "$OUTPUT_DIR"
 
     OUTPUT_FILE="$OUTPUT_DIR/$NAME.avif"
